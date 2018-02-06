@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42320225-06E7-42D3-8287-4758C0693ACA}</ProjectGuid>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Blockly.Bindings</RootNamespace>
+    <AssemblyName>Blockly.Bindings</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Swift4">
+      <HintPath>..\..\..\packages\Xamarin.Swift4.4.0.0.0\lib\xamarinios10\Xamarin.Swift4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift4.Darwin, Version=4.0.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Xamarin.Swift4.Darwin.4.0.3\lib\xamarinios10\Xamarin.Swift4.Darwin.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift4.Dispatch, Version=4.0.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Xamarin.Swift4.Dispatch.4.0.3\lib\xamarinios10\Xamarin.Swift4.Dispatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift4.ObjectiveC, Version=4.0.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\packages\Xamarin.Swift4.ObjectiveC.4.0.3\lib\xamarinios10\Xamarin.Swift4.ObjectiveC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\Blockly.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <Import Project="..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets" Condition="Exists('..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets')" />
+  <Import Project="..\..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets" Condition="Exists('..\..\..\packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets')" />
+</Project>
