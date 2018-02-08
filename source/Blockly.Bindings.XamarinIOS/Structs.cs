@@ -30,4 +30,19 @@ namespace Blockly.Bindings.XamarinIOS
         OutputValue
     }
     
+    [Native]
+    public enum BKYInputType : ulong
+    {
+        Value = 0,
+        Statement,
+        Dummy
+    }
+    
+    [Native]
+    public enum BKYInputAlignment : ulong
+    {
+        Left = -1,
+        Center = 0,
+        Right = 1
+    }
 }

@@ -4881,7 +4881,7 @@ interface BKYNameManagerListener
 // @interface Blockly_Swift_4268 (BKYFieldVariableLayout) <BKYNameManagerListener>
 [Category]
 [BaseType(typeof(BKYFieldVariableLayout))]
-interface BKYFieldVariableLayout_Blockly_Swift_4268 : IBKYNameManagerListener
+interface BKYFieldVariableLayout_Blockly_Swift_4268 : BKYNameManagerListener
 {
     // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
     [Export("nameManager:shouldRemoveName:")]
@@ -4924,7 +4924,7 @@ interface BKYFieldVariableView_Blockly_Swift_4290 : BKYFieldLayoutMeasurer
 // @interface Blockly_Swift_4295 (BKYFieldVariableView) <BKYDropdownViewDelegate>
 [Category]
 [BaseType(typeof(BKYFieldVariableView))]
-interface BKYFieldVariableView_Blockly_Swift_4295 : IBKYDropdownViewDelegate
+interface BKYFieldVariableView_Blockly_Swift_4295 : BKYDropdownViewDelegate
 {
     // -(void)dropDownDidReceiveTap;
     [Export("dropDownDidReceiveTap")]
@@ -4944,7 +4944,7 @@ interface BKYFieldVariableView_Blockly_Swift_4300 : IUIPopoverPresentationContro
 // @interface Blockly_Swift_4305 (BKYFieldVariableView) <BKYDropdownOptionsViewControllerDelegate>
 [Category]
 [BaseType(typeof(BKYFieldVariableView))]
-interface BKYFieldVariableView_Blockly_Swift_4305 : IBKYDropdownOptionsViewControllerDelegate
+interface BKYFieldVariableView_Blockly_Swift_4305 : BKYDropdownOptionsViewControllerDelegate
 {
     // -(void)dropdownOptionsViewController:(BKYDropdownOptionsViewController * _Nonnull)viewController didSelectOptionIndex:(NSInteger)optionIndex;
     [Export("dropdownOptionsViewController:didSelectOptionIndex:")]
@@ -6004,7 +6004,7 @@ interface BKYProcedureCoordinator
 // @interface Blockly_Swift_5553 (BKYProcedureCoordinator) <BKYNameManagerListener>
 [Category]
 [BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5553 : IBKYNameManagerListener
+interface BKYProcedureCoordinator_Blockly_Swift_5553 : BKYNameManagerListener
 {
     // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
     [Export("nameManager:shouldRemoveName:")]
@@ -6382,7 +6382,7 @@ interface BKYToolboxCategoryViewController
 // @interface Blockly_Swift_5900 (BKYToolboxCategoryViewController) <BKYNameManagerListener>
 [Category]
 [BaseType(typeof(BKYToolboxCategoryViewController))]
-interface BKYToolboxCategoryViewController_Blockly_Swift_5900 : IBKYNameManagerListener
+interface BKYToolboxCategoryViewController_Blockly_Swift_5900 : BKYNameManagerListener
 {
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
     [Export("nameManager:didAddName:")]
@@ -7319,7 +7319,7 @@ interface BKYWorkspaceLayoutCoordinator
 // @interface Blockly_Swift_6975 (BKYWorkspaceLayoutCoordinator) <BKYNameManagerListener>
 [Category]
 [BaseType(typeof(BKYWorkspaceLayoutCoordinator))]
-interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6975 : IBKYNameManagerListener
+interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6975 : BKYNameManagerListener
 {
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
     [Export("nameManager:didRemoveName:")]
