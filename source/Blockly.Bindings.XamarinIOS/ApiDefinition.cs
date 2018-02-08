@@ -3533,17 +3533,17 @@ interface BKYDropdownOptionsViewController
     [Export("tableView:numberOfRowsInSection:")]
     nint TableView(UITableView tableView, nint section);
 
-    // -(CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-    [Export("tableView:heightForRowAtIndexPath:")]
-    nfloat TableView(UITableView tableView, NSIndexPath indexPath);
+//    // -(CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
+//    [Export("tableView:heightForRowAtIndexPath:")]
+//    nfloat TableView(UITableView tableView, NSIndexPath indexPath);
 
     // -(UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
     [Export("tableView:cellForRowAtIndexPath:")]
     UITableViewCell TableView(UITableView tableView, NSIndexPath indexPath);
 
-    // -(void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-    [Export("tableView:didSelectRowAtIndexPath:")]
-    void TableView(UITableView tableView, NSIndexPath indexPath);
+//    // -(void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+//    [Export("tableView:didSelectRowAtIndexPath:")]
+//    void TableView(UITableView tableView, NSIndexPath indexPath);
 
     // -(instancetype _Nonnull)initWithStyle:(UITableViewStyle)style __attribute__((objc_designated_initializer));
     [Export("initWithStyle:")]
@@ -4114,9 +4114,9 @@ interface BKYFieldColorPickerViewController
     [Export("collectionView:cellForItemAtIndexPath:")]
     UICollectionViewCell CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
 
-    // -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-    [Export("collectionView:didSelectItemAtIndexPath:")]
-    void CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
+//    // -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+//    [Export("collectionView:didSelectItemAtIndexPath:")]
+//    void CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
 
     // -(void)refreshView;
     [Export("refreshView")]
@@ -4154,7 +4154,7 @@ interface BKYFieldColorView
 // @interface Blockly_Swift_3649 (BKYFieldColorView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldColorView))]
-interface BKYFieldColorView_Blockly_Swift_3649 : IBKYFieldLayoutMeasurer
+interface BKYFieldColorView_Blockly_Swift_3649 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4165,7 +4165,7 @@ interface BKYFieldColorView_Blockly_Swift_3649 : IBKYFieldLayoutMeasurer
 // @interface Blockly_Swift_3654 (BKYFieldColorView) <BKYFieldColorPickerViewControllerDelegate>
 [Category]
 [BaseType(typeof(BKYFieldColorView))]
-interface BKYFieldColorView_Blockly_Swift_3654 : IBKYFieldColorPickerViewControllerDelegate
+interface BKYFieldColorView_Blockly_Swift_3654 : BKYFieldColorPickerViewControllerDelegate
 {
     // -(void)fieldColorPickerViewController:(BKYFieldColorPickerViewController * _Nonnull)viewController didPickColor:(UIColor * _Nonnull)color;
     [Export("fieldColorPickerViewController:didPickColor:")]
@@ -4268,7 +4268,7 @@ interface BKYFieldDateView_Blockly_Swift_3734 : IUITextFieldDelegate
 // @interface Blockly_Swift_3739 (BKYFieldDateView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldDateView))]
-interface BKYFieldDateView_Blockly_Swift_3739 : IBKYFieldLayoutMeasurer
+interface BKYFieldDateView_Blockly_Swift_3739 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4337,7 +4337,7 @@ interface BKYFieldDropdownView
 // @interface Blockly_Swift_3806 (BKYFieldDropdownView) <BKYDropdownViewDelegate>
 [Category]
 [BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3806 : IBKYDropdownViewDelegate
+interface BKYFieldDropdownView_Blockly_Swift_3806 : BKYDropdownViewDelegate
 {
     // -(void)dropDownDidReceiveTap;
     [Export("dropDownDidReceiveTap")]
@@ -4347,7 +4347,7 @@ interface BKYFieldDropdownView_Blockly_Swift_3806 : IBKYDropdownViewDelegate
 // @interface Blockly_Swift_3811 (BKYFieldDropdownView) <BKYDropdownOptionsViewControllerDelegate>
 [Category]
 [BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3811 : IBKYDropdownOptionsViewControllerDelegate
+interface BKYFieldDropdownView_Blockly_Swift_3811 : BKYDropdownOptionsViewControllerDelegate
 {
     // -(void)dropdownOptionsViewController:(BKYDropdownOptionsViewController * _Nonnull)viewController didSelectOptionIndex:(NSInteger)optionIndex;
     [Export("dropdownOptionsViewController:didSelectOptionIndex:")]
@@ -4357,7 +4357,7 @@ interface BKYFieldDropdownView_Blockly_Swift_3811 : IBKYDropdownOptionsViewContr
 // @interface Blockly_Swift_3816 (BKYFieldDropdownView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3816 : IBKYFieldLayoutMeasurer
+interface BKYFieldDropdownView_Blockly_Swift_3816 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4453,7 +4453,7 @@ interface BKYFieldImageView
 // @interface Blockly_Swift_3900 (BKYFieldImageView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldImageView))]
-interface BKYFieldImageView_Blockly_Swift_3900 : IBKYFieldLayoutMeasurer
+interface BKYFieldImageView_Blockly_Swift_3900 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4531,7 +4531,7 @@ interface BKYFieldInputView
 // @interface Blockly_Swift_3966 (BKYFieldInputView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldInputView))]
-interface BKYFieldInputView_Blockly_Swift_3966 : IBKYFieldLayoutMeasurer
+interface BKYFieldInputView_Blockly_Swift_3966 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4611,7 +4611,7 @@ interface BKYFieldLabelView
 // @interface Blockly_Swift_4026 (BKYFieldLabelView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldLabelView))]
-interface BKYFieldLabelView_Blockly_Swift_4026 : IBKYFieldLayoutMeasurer
+interface BKYFieldLabelView_Blockly_Swift_4026 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4632,7 +4632,7 @@ interface BKYFieldListener
 // @interface Blockly_Swift_4042 (BKYFieldLayout) <BKYFieldListener>
 [Category]
 [BaseType(typeof(BKYFieldLayout))]
-interface BKYFieldLayout_Blockly_Swift_4042 : IBKYFieldListener
+interface BKYFieldLayout_Blockly_Swift_4042 : BKYFieldListener
 {
     // -(void)didUpdateField:(BKYField * _Nonnull)field;
     [Export("didUpdateField:")]
@@ -4731,7 +4731,7 @@ interface BKYFieldNumberView_Blockly_Swift_4122 : IUITextFieldDelegate
 // @interface Blockly_Swift_4127 (BKYFieldNumberView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4127 : IBKYFieldLayoutMeasurer
+interface BKYFieldNumberView_Blockly_Swift_4127 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -4757,7 +4757,7 @@ interface BKYNumberPadDelegate
 // @interface Blockly_Swift_4149 (BKYFieldNumberView) <BKYNumberPadDelegate>
 [Category]
 [BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4149 : IBKYNumberPadDelegate
+interface BKYFieldNumberView_Blockly_Swift_4149 : BKYNumberPadDelegate
 {
     // -(void)numberPad:(BKYNumberPad * _Nonnull)numberPad didChangeText:(NSString * _Nonnull)text;
     [Export("numberPad:didChangeText:")]
@@ -4913,7 +4913,7 @@ interface BKYFieldVariableView
 // @interface Blockly_Swift_4290 (BKYFieldVariableView) <BKYFieldLayoutMeasurer>
 [Category]
 [BaseType(typeof(BKYFieldVariableView))]
-interface BKYFieldVariableView_Blockly_Swift_4290 : IBKYFieldLayoutMeasurer
+interface BKYFieldVariableView_Blockly_Swift_4290 : BKYFieldLayoutMeasurer
 {
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
