@@ -52,5 +52,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blockly.Bindings.XamarinIOS\Blockly.Bindings.XamarinIOS.csproj">
+      <Project>{42320225-06e7-42d3-8287-4758c0693aca}</Project>
+      <Name>Blockly.Bindings.XamarinIOS</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
