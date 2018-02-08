@@ -160,16 +160,6 @@ interface WKContentRuleListStore
     void GetAvailableContentRuleListIdentifiers(Action<NSArray<NSString>> completionHandler);
 }
 
-[Static]
-[Verify(ConstantsInterfaceAssociation)]
-partial interface Constants
-{
-    // extern NSString *const _Nonnull WKErrorDomain __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=8.0))) __attribute__((availability(macos, introduced=10.10)));
-    [Mac(10, 10), iOS(8, 0)]
-    [Field("WKErrorDomain", "__Internal")]
-    NSString WKErrorDomain { get; }
-}
-
 // @interface WKSecurityOrigin : NSObject
 [Mac(10, 11), iOS(9, 0)]
 [BaseType(typeof(NSObject))]
@@ -532,6 +522,51 @@ partial interface Constants
     [iOS(10, 0)]
     [Field("WKPreviewActionItemIdentifierShare", "__Internal")]
     NSString WKPreviewActionItemIdentifierShare { get; }
+    
+    // extern NSString *const _Nonnull WKWebsiteDataTypeDiskCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeDiskCache", "__Internal")]
+    NSString WKWebsiteDataTypeDiskCache { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeMemoryCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeMemoryCache", "__Internal")]
+    NSString WKWebsiteDataTypeMemoryCache { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeOfflineWebApplicationCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeOfflineWebApplicationCache", "__Internal")]
+    NSString WKWebsiteDataTypeOfflineWebApplicationCache { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeCookies __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeCookies", "__Internal")]
+    NSString WKWebsiteDataTypeCookies { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeSessionStorage __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeSessionStorage", "__Internal")]
+    NSString WKWebsiteDataTypeSessionStorage { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeLocalStorage __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeLocalStorage", "__Internal")]
+    NSString WKWebsiteDataTypeLocalStorage { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeWebSQLDatabases __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeWebSQLDatabases", "__Internal")]
+    NSString WKWebsiteDataTypeWebSQLDatabases { get; }
+
+    // extern NSString *const _Nonnull WKWebsiteDataTypeIndexedDBDatabases __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
+    [Mac(10, 11), iOS(9, 0)]
+    [Field("WKWebsiteDataTypeIndexedDBDatabases", "__Internal")]
+    NSString WKWebsiteDataTypeIndexedDBDatabases { get; }
+    
+    // extern NSString *const _Nonnull WKErrorDomain __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=8.0))) __attribute__((availability(macos, introduced=10.10)));
+    [Mac(10, 10), iOS(8, 0)]
+    [Field("WKErrorDomain", "__Internal")]
+    NSString WKErrorDomain { get; }
 }
 
 // @interface WKPreviewElementInfo : NSObject <NSCopying>
@@ -838,51 +873,6 @@ interface WKWebViewConfiguration_WKDeprecated
     [Deprecated(PlatformName.iOS, 10, 0)]
     [Export("requiresUserActionForMediaPlayback")]
     bool RequiresUserActionForMediaPlayback { get; set; }
-}
-
-[Static]
-[Verify(ConstantsInterfaceAssociation)]
-partial interface Constants
-{
-    // extern NSString *const _Nonnull WKWebsiteDataTypeDiskCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeDiskCache", "__Internal")]
-    NSString WKWebsiteDataTypeDiskCache { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeMemoryCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeMemoryCache", "__Internal")]
-    NSString WKWebsiteDataTypeMemoryCache { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeOfflineWebApplicationCache __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeOfflineWebApplicationCache", "__Internal")]
-    NSString WKWebsiteDataTypeOfflineWebApplicationCache { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeCookies __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeCookies", "__Internal")]
-    NSString WKWebsiteDataTypeCookies { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeSessionStorage __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeSessionStorage", "__Internal")]
-    NSString WKWebsiteDataTypeSessionStorage { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeLocalStorage __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeLocalStorage", "__Internal")]
-    NSString WKWebsiteDataTypeLocalStorage { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeWebSQLDatabases __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeWebSQLDatabases", "__Internal")]
-    NSString WKWebsiteDataTypeWebSQLDatabases { get; }
-
-    // extern NSString *const _Nonnull WKWebsiteDataTypeIndexedDBDatabases __attribute__((visibility("default"))) __attribute__((availability(ios, introduced=9.0))) __attribute__((availability(macos, introduced=10.11)));
-    [Mac(10, 11), iOS(9, 0)]
-    [Field("WKWebsiteDataTypeIndexedDBDatabases", "__Internal")]
-    NSString WKWebsiteDataTypeIndexedDBDatabases { get; }
 }
 
 // @interface WKWebsiteDataRecord : NSObject

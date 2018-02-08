@@ -1,4 +1,6 @@
 ﻿using System;
+using Foundation;
+using ObjCRuntime;
 
 namespace Blockly.Bindings.XamarinIOS
 {
@@ -39,7 +41,7 @@ namespace Blockly.Bindings.XamarinIOS
     }
     
     [Native]
-    public enum BKYInputAlignment : ulong
+    public enum BKYInputAlignment : long
     {
         Left = -1,
         Center = 0,
