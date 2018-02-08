@@ -4889,7 +4889,7 @@ interface BKYFieldVariableLayout_Blockly_Swift_4268 : BKYNameManagerListener
 
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
     [Export("nameManager:didRenameName:toName:")]
-    void NameManager(BKYNameManager nameManager, string oldName, string newName);
+    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @interface BKYFieldVariableView : BKYFieldView
@@ -6043,19 +6043,19 @@ interface BKYProcedureCoordinator_Blockly_Swift_5590 : BKYWorkspaceListener
 {
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace willAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:willAddBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void WillAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didAddBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void DidAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace willRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:willRemoveBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void WillRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didRemoveBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void DidRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 }
 
 // @interface Blockly_Swift_5598 (BKYProcedureCoordinator) <BKYEventManagerListener>
@@ -6627,9 +6627,9 @@ interface BKYViewManager
     [Export("shared", ArgumentSemantic.Strong)]
     BKYViewManager Shared { get; }
 
-    // @property (readonly, nonatomic, strong) NSMapTable<NSString *,BKYLayoutView *> * _Nonnull views;
-    [Export("views", ArgumentSemantic.Strong)]
-    NSMapTable<NSString, BKYLayoutView> Views { get; }
+//    // @property (readonly, nonatomic, strong) NSMapTable<NSString *,BKYLayoutView *> * _Nonnull views;
+//    [Export("views", ArgumentSemantic.Strong)]
+//    NSMapTable<NSString, BKYLayoutView> Views { get; }
 
     // -(void)cacheView:(BKYLayoutView * _Nonnull)layoutView forLayout:(BKYLayout * _Nonnull)layout;
     [Export("cacheView:forLayout:")]
@@ -7003,12 +7003,12 @@ interface BKYWorkspaceViewControllerDelegate
     // @required -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
     [Abstract]
     [Export("workspaceViewController:didAddBlockView:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+    void WorkspaceViewControllerDidAddBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
     // @required -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didRemoveBlockView:(BKYBlockView * _Nonnull)blockView;
     [Abstract]
     [Export("workspaceViewController:didRemoveBlockView:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+    void WorkspaceViewControllerDidRemoveBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
     // @required -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
     [Abstract]
@@ -7028,11 +7028,11 @@ interface BKYWorkbenchViewController_Blockly_Swift_6534 : BKYWorkspaceViewContro
 {
     // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
     [Export("workspaceViewController:didAddBlockView:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+    void WorkspaceViewControllerDidAddBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
     // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didRemoveBlockView:(BKYBlockView * _Nonnull)blockView;
     [Export("workspaceViewController:didRemoveBlockView:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+    void WorkspaceViewControllerDidRemoveBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
     // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
     [Export("workspaceViewController:willPresentViewController:")]
@@ -7333,11 +7333,11 @@ interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6980 : BKYWorkspaceListene
 {
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didAddBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void DidAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didRemoveBlockTrees:")]
-    void Workspace(BKYWorkspace workspace, BKYBlock[] blockTrees);
+    void DidRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
 }
 
 // @interface BKYWorkspaceView : BKYLayoutView

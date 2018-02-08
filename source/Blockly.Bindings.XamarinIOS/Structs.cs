@@ -52,4 +52,34 @@ namespace Blockly.Bindings.XamarinIOS
         Horizontal = 0,
         Vertical
     }
+    
+    [Native]
+    public enum BKYWorkspaceFlowLayoutDirection : ulong
+    {
+        Horizontal,
+        Vertical
+    }
+    
+    [Native]
+    public enum BKYWorkbenchViewControllerStyle : ulong
+    {
+        DefaultStyle,
+        Alternate
+    }
+    
+    [Native]
+    public enum BKYWorkspaceViewLocation : ulong
+    {
+        Anywhere = 0,
+        TopLeading,
+        TopCenter,
+        TopTrailing,
+        MiddleLeading,
+        Center,
+        MiddleTrailing,
+        BottomLeading,
+        BottomCenter,
+        BottomTrailing
+    }
+    
 }
