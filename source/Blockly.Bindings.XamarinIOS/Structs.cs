@@ -83,5 +83,4 @@ namespace Blockly.Bindings.XamarinIOS
         BottomCenter,
         BottomTrailing
     }
-    
 }
