@@ -4863,19 +4863,19 @@ interface BKYNameManagerListener
 {
     // @optional -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
     [Export("nameManager:didAddName:")]
-    void NameManager(BKYNameManager nameManager, string name);
+    void NameManagerDidAddName(BKYNameManager nameManager, string name);
 
     // @optional -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
     [Export("nameManager:didRenameName:toName:")]
-    void NameManager(BKYNameManager nameManager, string oldName, string newName);
+    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
 
     // @optional -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
     [Export("nameManager:shouldRemoveName:")]
-    bool NameManager(BKYNameManager nameManager, string name);
+    bool NameManagerShouldRemoveName(BKYNameManager nameManager, string name);
 
     // @optional -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
     [Export("nameManager:didRemoveName:")]
-    void NameManager(BKYNameManager nameManager, string name);
+    void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
 }
 
 // @interface Blockly_Swift_4268 (BKYFieldVariableLayout) <BKYNameManagerListener>
@@ -4885,7 +4885,7 @@ interface BKYFieldVariableLayout_Blockly_Swift_4268 : BKYNameManagerListener
 {
     // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
     [Export("nameManager:shouldRemoveName:")]
-    bool NameManager(BKYNameManager nameManager, string name);
+    bool NameManagerShouldRemoveName(BKYNameManager nameManager, string name);
 
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
     [Export("nameManager:didRenameName:toName:")]
@@ -6008,11 +6008,11 @@ interface BKYProcedureCoordinator_Blockly_Swift_5553 : BKYNameManagerListener
 {
     // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
     [Export("nameManager:shouldRemoveName:")]
-    bool NameManager(BKYNameManager nameManager, string name);
+    bool NameManagerShouldRemoveName(BKYNameManager nameManager, string name);
 
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
     [Export("nameManager:didRenameName:toName:")]
-    void NameManager(BKYNameManager nameManager, string oldName, string newName);
+    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @protocol BKYWorkspaceListener
@@ -6386,15 +6386,15 @@ interface BKYToolboxCategoryViewController_Blockly_Swift_5900 : BKYNameManagerLi
 {
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
     [Export("nameManager:didAddName:")]
-    void NameManager(BKYNameManager nameManager, string name);
+    void NameManagerDidAddName(BKYNameManager nameManager, string name);
 
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
     [Export("nameManager:didRenameName:toName:")]
-    void NameManager(BKYNameManager nameManager, string oldName, string newName);
+    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
 
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
     [Export("nameManager:didRemoveName:")]
-    void NameManager(BKYNameManager nameManager, string name);
+    void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
 }
 
 // @interface BKYToolboxLayout : NSObject
@@ -7323,7 +7323,7 @@ interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6975 : BKYNameManagerListe
 {
     // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
     [Export("nameManager:didRemoveName:")]
-    void NameManager(BKYNameManager nameManager, string name);
+    void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
 }
 
 // @interface Blockly_Swift_6980 (BKYWorkspaceLayoutCoordinator) <BKYWorkspaceListener>
