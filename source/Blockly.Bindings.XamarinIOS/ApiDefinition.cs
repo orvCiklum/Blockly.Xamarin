@@ -5278,7 +5278,7 @@ interface BKYRecyclable
 // @interface Blockly_Swift_4747 (BKYLayoutView) <BKYRecyclable>
 [Category]
 [BaseType(typeof(BKYLayoutView))]
-interface BKYLayoutView_Blockly_Swift_4747 : IBKYRecyclable
+interface BKYLayoutView_Blockly_Swift_4747 : BKYRecyclable
 {
     // -(void)prepareForReuse;
     [Export("prepareForReuse")]
@@ -5325,9 +5325,9 @@ interface BKYMessageManager
 [BaseType(typeof(NSObject))]
 interface BKYMutatorHelper
 {
-    // @property (readonly, nonatomic, strong) NSMapTable<NSString *,BKYConnection *> * _Nonnull savedTargetConnections;
-    [Export("savedTargetConnections", ArgumentSemantic.Strong)]
-    NSMapTable<NSString, BKYConnection> SavedTargetConnections { get; }
+//    // @property (readonly, nonatomic, strong) NSMapTable<NSString *,BKYConnection *> * _Nonnull savedTargetConnections;
+//    [Export("savedTargetConnections", ArgumentSemantic.Strong)]
+//    NSMapTable<NSString, BKYConnection> SavedTargetConnections { get; }
 
     // -(void)clearSavedTargetConnections;
     [Export("clearSavedTargetConnections")]
@@ -5698,7 +5698,7 @@ interface BKYMutatorProcedureIfReturnLayout
 // @interface Blockly_Swift_5222 (BKYMutatorProcedureIfReturnLayout) <BKYEventManagerListener>
 [Category]
 [BaseType(typeof(BKYMutatorProcedureIfReturnLayout))]
-interface BKYMutatorProcedureIfReturnLayout_Blockly_Swift_5222 : IBKYEventManagerListener
+interface BKYMutatorProcedureIfReturnLayout_Blockly_Swift_5222 : BKYEventManagerListener
 {
     // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
     [Export("eventManager:didFireEvent:")]
@@ -6039,7 +6039,7 @@ interface BKYWorkspaceListener
 // @interface Blockly_Swift_5590 (BKYProcedureCoordinator) <BKYWorkspaceListener>
 [Category]
 [BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5590 : IBKYWorkspaceListener
+interface BKYProcedureCoordinator_Blockly_Swift_5590 : BKYWorkspaceListener
 {
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace willAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:willAddBlockTrees:")]
@@ -6061,7 +6061,7 @@ interface BKYProcedureCoordinator_Blockly_Swift_5590 : IBKYWorkspaceListener
 // @interface Blockly_Swift_5598 (BKYProcedureCoordinator) <BKYEventManagerListener>
 [Category]
 [BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5598 : IBKYEventManagerListener
+interface BKYProcedureCoordinator_Blockly_Swift_5598 : BKYEventManagerListener
 {
     // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
     [Export("eventManager:didFireEvent:")]
@@ -6290,9 +6290,9 @@ interface BKYToolboxCategoryListViewController
     [Export("collectionView:cellForItemAtIndexPath:")]
     UICollectionViewCell CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
 
-    // -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-    [Export("collectionView:didSelectItemAtIndexPath:")]
-    void CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
+//    // -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+//    [Export("collectionView:didSelectItemAtIndexPath:")]
+//    void CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
 }
 
 // @interface Blockly_Swift_5845 (BKYToolboxCategoryListViewController) <UICollectionViewDelegateFlowLayout>
@@ -6569,7 +6569,7 @@ interface BKYViewBuilder
 // @interface Blockly_Swift_6071 (BKYViewBuilder) <BKYLayoutHierarchyListener>
 [Category]
 [BaseType(typeof(BKYViewBuilder))]
-interface BKYViewBuilder_Blockly_Swift_6071 : IBKYLayoutHierarchyListener
+interface BKYViewBuilder_Blockly_Swift_6071 : BKYLayoutHierarchyListener
 {
     // -(void)layout:(BKYLayout * _Nonnull)layout didAdoptChildLayout:(BKYLayout * _Nonnull)childLayout fromOldParentLayout:(BKYLayout * _Nullable)oldParentLayout;
     [Export("layout:didAdoptChildLayout:fromOldParentLayout:")]
@@ -6866,7 +6866,7 @@ interface BKYWorkbenchViewController
 // @interface Blockly_Swift_6370 (BKYWorkbenchViewController) <BKYEventManagerListener>
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6370 : IBKYEventManagerListener
+interface BKYWorkbenchViewController_Blockly_Swift_6370 : BKYEventManagerListener
 {
     // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
     [Export("eventManager:didFireEvent:")]
@@ -6876,7 +6876,7 @@ interface BKYWorkbenchViewController_Blockly_Swift_6370 : IBKYEventManagerListen
 // @interface Blockly_Swift_6375 (BKYWorkbenchViewController) <BKYBlocklyPanGestureRecognizerDelegate>
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6375 : IBKYBlocklyPanGestureRecognizerDelegate
+interface BKYWorkbenchViewController_Blockly_Swift_6375 : BKYBlocklyPanGestureRecognizerDelegate
 {
     // -(void)blocklyPanGestureRecognizer:(BKYBlocklyPanGestureRecognizer * _Nonnull)gesture didTouchBlock:(BKYBlockView * _Nonnull)block touch:(UITouch * _Nonnull)touch touchState:(enum BKYBlocklyPanGestureRecognizerTouchState)touchState;
     [Export("blocklyPanGestureRecognizer:didTouchBlock:touch:touchState:")]
@@ -6928,7 +6928,7 @@ interface BKYWorkbenchViewController_Blockly_Swift_6423 : IUIGestureRecognizerDe
 // @interface Blockly_Swift_6429 (BKYWorkbenchViewController) <BKYToolboxCategoryListViewControllerDelegate>
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6429 : IBKYToolboxCategoryListViewControllerDelegate
+interface BKYWorkbenchViewController_Blockly_Swift_6429 : BKYToolboxCategoryListViewControllerDelegate
 {
     // -(void)toolboxCategoryListViewController:(BKYToolboxCategoryListViewController * _Nonnull)controller didSelectCategory:(BKYToolboxCategory * _Nonnull)category;
     [Export("toolboxCategoryListViewController:didSelectCategory:")]
@@ -7024,7 +7024,7 @@ interface BKYWorkspaceViewControllerDelegate
 // @interface Blockly_Swift_6534 (BKYWorkbenchViewController) <BKYWorkspaceViewControllerDelegate>
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6534 : IBKYWorkspaceViewControllerDelegate
+interface BKYWorkbenchViewController_Blockly_Swift_6534 : BKYWorkspaceViewControllerDelegate
 {
     // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
     [Export("workspaceViewController:didAddBlockView:")]
@@ -7329,7 +7329,7 @@ interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6975 : BKYNameManagerListe
 // @interface Blockly_Swift_6980 (BKYWorkspaceLayoutCoordinator) <BKYWorkspaceListener>
 [Category]
 [BaseType(typeof(BKYWorkspaceLayoutCoordinator))]
-interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6980 : IBKYWorkspaceListener
+interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6980 : BKYWorkspaceListener
 {
     // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didAddBlockTrees:")]
@@ -7483,7 +7483,7 @@ interface BKYWorkspaceView_Blockly_Swift_7125 : IUIScrollViewDelegate
 // @interface Blockly_Swift_7137 (BKYWorkspaceViewController) <BKYViewBuilderDelegate>
 [Category]
 [BaseType(typeof(BKYWorkspaceViewController))]
-interface BKYWorkspaceViewController_Blockly_Swift_7137 : IBKYViewBuilderDelegate
+interface BKYWorkspaceViewController_Blockly_Swift_7137 : BKYViewBuilderDelegate
 {
     // -(void)viewBuilder:(BKYViewBuilder * _Nonnull)viewBuilder didAddChild:(UIView * _Nonnull)childView toParent:(UIView * _Nonnull)parentView;
     [Export("viewBuilder:didAddChild:toParent:")]
@@ -7493,7 +7493,7 @@ interface BKYWorkspaceViewController_Blockly_Swift_7137 : IBKYViewBuilderDelegat
 // @interface Blockly_Swift_7143 (BKYWorkspaceViewController) <BKYLayoutPopoverDelegate>
 [Category]
 [BaseType(typeof(BKYWorkspaceViewController))]
-interface BKYWorkspaceViewController_Blockly_Swift_7143 : IBKYLayoutPopoverDelegate
+interface BKYWorkspaceViewController_Blockly_Swift_7143 : BKYLayoutPopoverDelegate
 {
     // -(BOOL)layoutView:(BKYLayoutView * _Nonnull)layoutView requestedToPresentPopoverViewController:(UIViewController * _Nonnull)viewController fromView:(UIView * _Nonnull)fromView presentationDelegate:(id<UIPopoverPresentationControllerDelegate> _Nullable)presentationDelegate __attribute__((warn_unused_result));
     [Export("layoutView:requestedToPresentPopoverViewController:fromView:presentationDelegate:")]

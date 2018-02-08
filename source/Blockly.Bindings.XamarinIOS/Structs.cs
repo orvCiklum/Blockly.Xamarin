@@ -45,4 +45,11 @@ namespace Blockly.Bindings.XamarinIOS
         Center = 0,
         Right = 1
     }
+    
+    [Native]
+    public enum BKYToolboxCategoryListViewControllerOrientation : ulong
+    {
+        Horizontal = 0,
+        Vertical
+    }
 }
