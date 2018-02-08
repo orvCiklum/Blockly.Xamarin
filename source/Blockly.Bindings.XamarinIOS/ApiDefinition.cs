@@ -672,7 +672,6 @@ interface BKYBlockLayout
 
     // -(BOOL)hasHighlightedConnections __attribute__((warn_unused_result));
     [Export("hasHighlightedConnections")]
-    [Verify(MethodToProperty)]
     bool HasHighlightedConnections { get; }
 }
 
@@ -772,7 +771,6 @@ interface BKYEvent
 
     // -(BOOL)isDiscardable __attribute__((warn_unused_result));
     [Export("isDiscardable")]
-    [Verify(MethodToProperty)]
     bool IsDiscardable { get; }
 
     // -(BKYEvent * _Nullable)mergedWithNextChronologicalEvent:(BKYEvent * _Nonnull)event __attribute__((warn_unused_result));
@@ -874,7 +872,6 @@ interface BKYEventMove
 
     // -(BOOL)isDiscardable __attribute__((warn_unused_result));
     [Export("isDiscardable")]
-    [Verify(MethodToProperty)]
     bool IsDiscardable { get; }
 
     // -(void)recordNewValuesForBlock:(BKYBlock * _Nullable)block;
@@ -1123,7 +1120,6 @@ interface BKYEventChange
 
     // -(BOOL)isDiscardable __attribute__((warn_unused_result));
     [Export("isDiscardable")]
-    [Verify(MethodToProperty)]
     bool IsDiscardable { get; }
 
     // +(BKYEventChange * _Nonnull)commentTextEventWithWorkspace:(BKYWorkspace * _Nonnull)workspace block:(BKYBlock * _Nonnull)block oldValue:(NSString * _Nonnull)oldValue newValue:(NSString * _Nonnull)newValue __attribute__((warn_unused_result));
@@ -2189,7 +2185,6 @@ interface BKYLayoutConfig
     // +(NSInteger)newPropertyKey __attribute__((warn_unused_result));
     [Static]
     [Export("newPropertyKey")]
-    [Verify(MethodToProperty)]
     nint NewPropertyKey { get; }
 
     // -(BOOL)setBool:(BOOL)boolValue for:(NSInteger)key;
@@ -2734,13 +2729,11 @@ interface BKYDropdownView
     // +(UIImage * _Nullable)defaultDropDownArrowImage __attribute__((warn_unused_result));
     [Static]
     [NullAllowed, Export("defaultDropDownArrowImage")]
-    [Verify(MethodToProperty)]
     UIImage DefaultDropDownArrowImage { get; }
 
     // +(CGSize)defaultDropDownArrowImageSize __attribute__((warn_unused_result));
     [Static]
     [Export("defaultDropDownArrowImageSize")]
-    [Verify(MethodToProperty)]
     CGSize DefaultDropDownArrowImageSize { get; }
 }
 
@@ -2838,7 +2831,6 @@ interface BKYField
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -2887,7 +2879,6 @@ interface BKYFieldAngle
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3046,7 +3037,6 @@ interface BKYFieldCheckbox
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3116,7 +3106,6 @@ interface BKYFieldColor
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3276,7 +3265,6 @@ interface BKYFieldDate
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3375,7 +3363,6 @@ interface BKYFieldDropdown
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3487,7 +3474,6 @@ interface BKYFieldImage
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3561,7 +3547,6 @@ interface BKYFieldInput
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3653,7 +3638,6 @@ interface BKYFieldLabel
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3747,7 +3731,6 @@ interface BKYFieldNumber
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3882,7 +3865,6 @@ interface BKYFieldVariable
 
     // -(BKYField * _Nonnull)copyField __attribute__((warn_unused_result));
     [Export("copyField")]
-    [Verify(MethodToProperty)]
     BKYField CopyField { get; }
 
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
@@ -3938,7 +3920,6 @@ interface BKYFieldVariableLayout
 
     // -(NSInteger)numberOfVariableReferences __attribute__((warn_unused_result));
     [Export("numberOfVariableReferences")]
-    [Verify(MethodToProperty)]
     nint NumberOfVariableReferences { get; }
 }
 
@@ -4146,7 +4127,6 @@ interface BKYInputBuilder
 
     // -(BKYInput * _Nonnull)makeInput __attribute__((warn_unused_result));
     [Export("makeInput")]
-    [Verify(MethodToProperty)]
     BKYInput MakeInput { get; }
 
     // -(void)appendField:(BKYField * _Nonnull)field;
@@ -4232,7 +4212,6 @@ interface BKYJSONHelper
     // +(NSArray * _Nullable)makeJSONArrayWithString:(NSString * _Nonnull)string error:(NSError * _Nullable * _Nullable)error __attribute__((warn_unused_result));
     [Static]
     [Export("makeJSONArrayWithString:error:")]
-    [Verify(StronglyTypedNSArray)]
     [return: NullAllowed]
     NSObject[] MakeJSONArrayWithString(string @string, [NullAllowed] out NSError error);
 }
@@ -4467,7 +4446,6 @@ interface BKYMutatorIfElse_Blockly_Swift_4990
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
     [Export("sortedMutatorInputs")]
-    [Verify(MethodToProperty)]
     BKYInput[] SortedMutatorInputs { get; }
 }
 
@@ -4578,7 +4556,6 @@ interface BKYMutatorProcedureCaller_Blockly_Swift_5076
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
     [Export("sortedMutatorInputs")]
-    [Verify(MethodToProperty)]
     BKYInput[] SortedMutatorInputs { get; }
 }
 
@@ -4646,7 +4623,6 @@ interface BKYMutatorProcedureDefinition_Blockly_Swift_5120
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
     [Export("sortedMutatorInputs")]
-    [Verify(MethodToProperty)]
     BKYInput[] SortedMutatorInputs { get; }
 }
 
@@ -4686,7 +4662,6 @@ interface MutatorProcedureDefinitionLayout
 
     // -(BOOL)containsDuplicateParameters __attribute__((warn_unused_result));
     [Export("containsDuplicateParameters")]
-    [Verify(MethodToProperty)]
     bool ContainsDuplicateParameters { get; }
 }
 
@@ -4750,7 +4725,6 @@ interface BKYMutatorProcedureIfReturn_Blockly_Swift_5195
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
     [Export("sortedMutatorInputs")]
-    [Verify(MethodToProperty)]
     BKYInput[] SortedMutatorInputs { get; }
 }
 
@@ -4957,7 +4931,6 @@ interface NumberPadTextField
 {
     // -(NSArray * _Nonnull)selectionRectsForRange:(UITextRange * _Nonnull)range __attribute__((warn_unused_result));
     [Export("selectionRectsForRange:")]
-    [Verify(StronglyTypedNSArray)]
     NSObject[] SelectionRectsForRange(UITextRange range);
 
     // -(BOOL)canPerformAction:(SEL _Nonnull)action withSender:(id _Nullable)sender __attribute__((warn_unused_result));
@@ -5203,7 +5176,6 @@ interface BKYWorkspace
 
     // -(NSArray<BKYBlock *> * _Nonnull)topLevelBlocks __attribute__((warn_unused_result));
     [Export("topLevelBlocks")]
-    [Verify(MethodToProperty)]
     BKYBlock[] TopLevelBlocks { get; }
 
     // -(BOOL)addBlockTree:(BKYBlock * _Nonnull)rootBlock error:(NSError * _Nullable * _Nullable)error;
@@ -5357,7 +5329,7 @@ interface BKYToolboxCategoryListViewController
 
     // -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
     [Export("observeValueForKeyPath:ofObject:change:context:")]
-    unsafe void ObserveValueForKeyPath([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] void* context);
+    unsafe void ObserveValueForKeyPath([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
 
     // -(void)refreshView;
     [Export("refreshView")]
@@ -5613,7 +5585,7 @@ interface BKYTrashCanViewController
 
     // -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
     [Export("observeValueForKeyPath:ofObject:change:context:")]
-    unsafe void ObserveValueForKeyPath([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] void* context);
+    unsafe void ObserveValueForKeyPath([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
 
     // -(void)setWorkspaceViewHeight:(CGFloat)height animated:(BOOL)animated;
     [Export("setWorkspaceViewHeight:animated:")]
@@ -6051,7 +6023,6 @@ interface BKYWorkbenchViewController_Blockly_Swift_6458
     // +(NSInteger)newUIStateValue __attribute__((warn_unused_result));
     [Static]
     [Export("newUIStateValue")]
-    [Verify(MethodToProperty)]
     nint NewUIStateValue { get; }
 
     // -(void)addUIStateValue:(NSInteger)stateValue animated:(BOOL)animated;
@@ -6283,7 +6254,6 @@ interface BKYWorkspaceLayout
 
     // -(NSArray<BKYBlockLayout *> * _Nonnull)allVisibleBlockLayoutsInWorkspace __attribute__((warn_unused_result));
     [Export("allVisibleBlockLayoutsInWorkspace")]
-    [Verify(MethodToProperty)]
     BKYBlockLayout[] AllVisibleBlockLayoutsInWorkspace { get; }
 
     // -(void)appendBlockGroupLayout:(BKYBlockGroupLayout * _Nonnull)blockGroupLayout updateLayout:(BOOL)updateLayout;
@@ -6599,7 +6569,6 @@ interface BKYWorkspaceViewController_Blockly_Swift_7143 : BKYLayoutPopoverDelega
 interface BKYWorkspaceViewController_Blockly_Swift_7153 : IUIPopoverPresentationControllerDelegate
 {
     // -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller traitCollection:(UITraitCollection * _Nonnull)traitCollection __attribute__((availability(ios, introduced=8.3))) __attribute__((warn_unused_result));
-    [iOS(8, 3)]
     [Export("adaptivePresentationStyleForPresentationController:traitCollection:")]
     UIModalPresentationStyle AdaptivePresentationStyleForPresentationController(UIPresentationController controller, UITraitCollection traitCollection);
 
@@ -6613,7 +6582,6 @@ interface BKYWorkspaceViewController_Blockly_Swift_7153 : IUIPopoverPresentation
     UIViewController PresentationController(UIPresentationController controller, UIModalPresentationStyle style);
 
     // -(void)presentationController:(UIPresentationController * _Nonnull)presentationController willPresentWithAdaptiveStyle:(UIModalPresentationStyle)style transitionCoordinator:(id<UIViewControllerTransitionCoordinator> _Nullable)transitionCoordinator __attribute__((availability(ios, introduced=8.3)));
-    [iOS(8, 3)]
     [Export("presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:")]
     void PresentationController(UIPresentationController presentationController, UIModalPresentationStyle style, [NullAllowed] IUIViewControllerTransitionCoordinator transitionCoordinator);
 
@@ -6631,7 +6599,7 @@ interface BKYWorkspaceViewController_Blockly_Swift_7153 : IUIPopoverPresentation
 
     // -(void)popoverPresentationController:(UIPopoverPresentationController * _Nonnull)popoverPresentationController willRepositionPopoverToRect:(CGRect * _Nonnull)rect inView:(UIView * _Nonnull * _Nonnull)view;
     [Export("popoverPresentationController:willRepositionPopoverToRect:inView:")]
-    unsafe void PopoverPresentationController(UIPopoverPresentationController popoverPresentationController, CGRect* rect, out UIView view);
+    unsafe void PopoverPresentationController(UIPopoverPresentationController popoverPresentationController, CGRect rect, out UIView view);
 
     // -(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^ _Nullable)(void))completion;
     [Export("dismissViewControllerAnimated:completion:")]
@@ -6682,19 +6650,19 @@ interface BKYZIndexedGroupView
         // @property (readonly, nonatomic) BOOL shadow;
         [Export("shadow")]
         bool Shadow { get; }
-    //
-    //    // @property (readonly, nonatomic, strong) BKYConnection * _Nullable outputConnection;
-    //    [NullAllowed, Export("outputConnection", ArgumentSemantic.Strong)]
-    //    BKYConnection OutputConnection { get; }
-    //
+    
+        // @property (readonly, nonatomic, strong) BKYConnection * _Nullable outputConnection;
+        [NullAllowed, Export("outputConnection", ArgumentSemantic.Strong)]
+        BKYConnection OutputConnection { get; }
+    
         // @property (readonly, nonatomic, strong) BKYBlock * _Nullable outputBlock;
         [NullAllowed, Export("outputBlock", ArgumentSemantic.Strong)]
         BKYBlock OutputBlock { get; }
-    //
-    //    // @property (readonly, nonatomic, strong) BKYConnection * _Nullable nextConnection;
-    //    [NullAllowed, Export("nextConnection", ArgumentSemantic.Strong)]
-    //    BKYConnection NextConnection { get; }
-    //
+    
+        // @property (readonly, nonatomic, strong) BKYConnection * _Nullable nextConnection;
+        [NullAllowed, Export("nextConnection", ArgumentSemantic.Strong)]
+        BKYConnection NextConnection { get; }
+    
         // @property (readonly, nonatomic, strong) BKYBlock * _Nullable nextBlock;
         [NullAllowed, Export("nextBlock", ArgumentSemantic.Strong)]
         BKYBlock NextBlock { get; }
@@ -6702,27 +6670,27 @@ interface BKYZIndexedGroupView
         // @property (readonly, nonatomic, strong) BKYBlock * _Nullable nextShadowBlock;
         [NullAllowed, Export("nextShadowBlock", ArgumentSemantic.Strong)]
         BKYBlock NextShadowBlock { get; }
-    //
-    //    // @property (readonly, nonatomic, strong) BKYConnection * _Nullable previousConnection;
-    //    [NullAllowed, Export("previousConnection", ArgumentSemantic.Strong)]
-    //    BKYConnection PreviousConnection { get; }
-    //
-    //    // @property (readonly, nonatomic, strong) BKYBlock * _Nullable previousBlock;
-    //    [NullAllowed, Export("previousBlock", ArgumentSemantic.Strong)]
-    //    BKYBlock PreviousBlock { get; }
-    //
-    //    // @property (readonly, nonatomic, strong) BKYConnection * _Nullable inferiorConnection;
-    //    [NullAllowed, Export("inferiorConnection", ArgumentSemantic.Strong)]
-    //    BKYConnection InferiorConnection { get; }
-    //
-    //    // @property (readonly, copy, nonatomic) NSArray<BKYConnection *> * _Nonnull directConnections;
-    //    [Export("directConnections", ArgumentSemantic.Copy)]
-    //    BKYConnection[] DirectConnections { get; }
-    //
-    //    // @property (readonly, copy, nonatomic) NSArray<BKYInput *> * _Nonnull inputs;
-    //    [Export("inputs", ArgumentSemantic.Copy)]
-    //    BKYInput[] Inputs { get; }
-    //
+    
+        // @property (readonly, nonatomic, strong) BKYConnection * _Nullable previousConnection;
+        [NullAllowed, Export("previousConnection", ArgumentSemantic.Strong)]
+        BKYConnection PreviousConnection { get; }
+    
+        // @property (readonly, nonatomic, strong) BKYBlock * _Nullable previousBlock;
+        [NullAllowed, Export("previousBlock", ArgumentSemantic.Strong)]
+        BKYBlock PreviousBlock { get; }
+    
+        // @property (readonly, nonatomic, strong) BKYConnection * _Nullable inferiorConnection;
+        [NullAllowed, Export("inferiorConnection", ArgumentSemantic.Strong)]
+        BKYConnection InferiorConnection { get; }
+    
+        // @property (readonly, copy, nonatomic) NSArray<BKYConnection *> * _Nonnull directConnections;
+        [Export("directConnections", ArgumentSemantic.Copy)]
+        BKYConnection[] DirectConnections { get; }
+    
+        // @property (readonly, copy, nonatomic) NSArray<BKYInput *> * _Nonnull inputs;
+        [Export("inputs", ArgumentSemantic.Copy)]
+        BKYInput[] Inputs { get; }
+    
         // @property (readonly, nonatomic, strong) UIColor * _Nonnull color;
         [Export("color", ArgumentSemantic.Strong)]
         UIColor Color { get; }
@@ -6762,59 +6730,56 @@ interface BKYZIndexedGroupView
         // @property (readonly, nonatomic) BOOL topLevel;
         [Export("topLevel")]
         bool TopLevel { get; }
-    //
-    //    // @property (nonatomic, strong) BKYBlockStyle * _Nonnull style;
-    //    [Export("style", ArgumentSemantic.Strong)]
-    //    BKYBlockStyle Style { get; set; }
-    //
-    //    // @property (nonatomic, weak) BKYBlockLayout * _Nullable layout;
-    //    [NullAllowed, Export("layout", ArgumentSemantic.Weak)]
-    //    BKYBlockLayout Layout { get; set; }
-    //
-    //    // -(NSArray<BKYConnection *> * _Nonnull)allConnectionsForTree __attribute__((warn_unused_result));
-    //    [Export("allConnectionsForTree")]
-    //    [Verify(MethodToProperty)]
-    //    BKYConnection[] AllConnectionsForTree { get; }
-    //
+    
+        // @property (nonatomic, strong) BKYBlockStyle * _Nonnull style;
+        [Export("style", ArgumentSemantic.Strong)]
+        BKYBlockStyle Style { get; set; }
+    
+        // @property (nonatomic, weak) BKYBlockLayout * _Nullable layout;
+        [NullAllowed, Export("layout", ArgumentSemantic.Weak)]
+        BKYBlockLayout Layout { get; set; }
+    
+        // -(NSArray<BKYConnection *> * _Nonnull)allConnectionsForTree __attribute__((warn_unused_result));
+        [Export("allConnectionsForTree")]
+        BKYConnection[] AllConnectionsForTree { get; }
+    
         // -(BKYBlock * _Nonnull)lastBlockInChain __attribute__((warn_unused_result));
         [Export("lastBlockInChain")]
         BKYBlock LastBlockInChain { get; }
-    //
-    //    // -(BKYConnection * _Nullable)lastInputValueConnectionInChain __attribute__((warn_unused_result));
-    //    [NullAllowed, Export("lastInputValueConnectionInChain")]
-    //    [Verify(MethodToProperty)]
-    //    BKYConnection LastInputValueConnectionInChain { get; }
-    //
-    //    // -(NSArray<BKYBlock *> * _Nonnull)allBlocksForTree __attribute__((warn_unused_result));
-    //    [Export("allBlocksForTree")]
-    //    [Verify(MethodToProperty)]
-    //    BKYBlock[] AllBlocksForTree { get; }
-    //
-    //    // -(BKYInput * _Nullable)firstInputWithName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
-    //    [Export("firstInputWithName:")]
-    //    [return: NullAllowed]
-    //    BKYInput FirstInputWithName(string name);
-    //
-    //    // -(BKYField * _Nullable)firstFieldWithName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
-    //    [Export("firstFieldWithName:")]
-    //    [return: NullAllowed]
-    //    BKYField FirstFieldWithName(string name);
-    //
+    
+        // -(BKYConnection * _Nullable)lastInputValueConnectionInChain __attribute__((warn_unused_result));
+        [NullAllowed, Export("lastInputValueConnectionInChain")]
+        BKYConnection LastInputValueConnectionInChain { get; }
+    
+        // -(NSArray<BKYBlock *> * _Nonnull)allBlocksForTree __attribute__((warn_unused_result));
+        [Export("allBlocksForTree")]
+        BKYBlock[] AllBlocksForTree { get; }
+    
+        // -(BKYInput * _Nullable)firstInputWithName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
+        [Export("firstInputWithName:")]
+        [return: NullAllowed]
+        BKYInput FirstInputWithName(string name);
+    
+        // -(BKYField * _Nullable)firstFieldWithName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
+        [Export("firstFieldWithName:")]
+        [return: NullAllowed]
+        BKYField FirstFieldWithName(string name);
+    
         // -(void)notifyDidUpdateBlock;
         [Export("notifyDidUpdateBlock")]
         void NotifyDidUpdateBlock();
-    //
-    //    // -(void)appendInput:(BKYInput * _Nonnull)input;
-    //    [Export("appendInput:")]
-    //    void AppendInput(BKYInput input);
-    //
-    //    // -(void)insertInput:(BKYInput * _Nonnull)input at:(NSInteger)index;
-    //    [Export("insertInput:at:")]
-    //    void InsertInput(BKYInput input, nint index);
-    //
-    //    // -(BOOL)removeInput:(BKYInput * _Nonnull)input error:(NSError * _Nullable * _Nullable)error;
-    //    [Export("removeInput:error:")]
-    //    bool RemoveInput(BKYInput input, [NullAllowed] out NSError error);
+    
+        // -(void)appendInput:(BKYInput * _Nonnull)input;
+        [Export("appendInput:")]
+        void AppendInput(BKYInput input);
+    
+        // -(void)insertInput:(BKYInput * _Nonnull)input at:(NSInteger)index;
+        [Export("insertInput:at:")]
+        void InsertInput(BKYInput input, nint index);
+    
+        // -(BOOL)removeInput:(BKYInput * _Nonnull)input error:(NSError * _Nullable * _Nullable)error;
+        [Export("removeInput:error:")]
+        bool RemoveInput(BKYInput input, [NullAllowed] out NSError error);
     }
     
     // @protocol BKYBlockExtension
