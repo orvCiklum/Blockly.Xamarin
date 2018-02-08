@@ -398,7 +398,7 @@ interface BKYBlockFactory
 // @interface BKYLayout : NSObject
 [BaseType(typeof(NSObject))]
 [DisableDefaultCtor]
-interface BKYLayout
+interface BKYLayout: INativeObject
 {
     // @property (readonly, copy, nonatomic) NSString * _Nonnull uuid;
     [Export("uuid")]
@@ -498,7 +498,7 @@ interface BKYBlockGroupLayout
 
 // @protocol BKYZIndexedView
 [Protocol, Model]
-interface BKYZIndexedView
+interface BKYZIndexedView: INativeObject
 {
     // @required @property (readonly, nonatomic) NSUInteger zIndex;
     [Abstract]
@@ -6661,7 +6661,7 @@ interface BKYZIndexedGroupView
        // @interface BKYBlock : NSObject
     [BaseType(typeof(NSObject))]
     [DisableDefaultCtor]
-    interface BKYBlock
+    interface BKYBlock: INativeObject
     {
         // @property (readonly, copy, nonatomic) NSString * _Nonnull uuid;
         [Export("uuid")]
@@ -6819,7 +6819,7 @@ interface BKYZIndexedGroupView
     
     // @protocol BKYBlockExtension
     [Protocol, Model]
-    interface BKYBlockExtension
+    interface BKYBlockExtension: INativeObject
     {
         // @required -(BOOL)runWithBlock:(BKYBlock * _Nonnull)block error:(NSError * _Nullable * _Nullable)error;
         [Abstract]
