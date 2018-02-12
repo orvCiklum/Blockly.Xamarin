@@ -1247,33 +1247,27 @@ interface BKYBlocklyPanGestureRecognizerDelegate
     void DidTouchBlock(BKYBlocklyPanGestureRecognizer gesture, BKYBlockView block, UITouch touch, BKYBlocklyPanGestureRecognizerTouchState touchState);
 }
 
-// @interface BKYCodeGenerator : NSObject
-[BaseType(typeof(NSObject))]
-[DisableDefaultCtor]
-interface BKYCodeGenerator
-{
-    // @property (readonly, copy, nonatomic) NSString * _Nonnull jsGeneratorObject;
-    [Export("jsGeneratorObject")]
-    string JsGeneratorObject { get; }
+// @interface BKYCodeGenerator : NSObject <WKNavigationDelegate>
+    [BaseType (typeof(NSObject))]
+    [DisableDefaultCtor]
+    interface BKYCodeGenerator : IWKNavigationDelegate
+    {
+        // @property (readonly, copy, nonatomic) NSString * _Nonnull jsGeneratorObject;
+        [Export ("jsGeneratorObject")]
+        string JsGeneratorObject { get; }
 
-    // @property (readonly, nonatomic) enum BKYCodeGeneratorState state;
-    [Export("state")]
-    BKYCodeGeneratorState State { get; }
-}
+        // @property (readonly, nonatomic) enum BKYCodeGeneratorState state;
+        [Export ("state")]
+        BKYCodeGeneratorState State { get; }
 
-// @interface Blockly_Swift_1717 (BKYCodeGenerator) <WKNavigationDelegate>
-[Category]
-[BaseType(typeof(BKYCodeGenerator))]
-interface BKYCodeGenerator_Blockly_Swift_1717 : IWKNavigationDelegate
-{
-    // -(void)webView:(WKWebView * _Nonnull)webView didFinishNavigation:(WKNavigation * _Null_unspecified)navigation;
-    [Export("webView:didFinishNavigation:")]
-    void WebView(WKWebView webView, WKNavigation navigation);
+        // -(void)webView:(WKWebView * _Nonnull)webView didFinishNavigation:(WKNavigation * _Null_unspecified)navigation;
+        [Export ("webView:didFinishNavigation:")]
+        void WebView (WKWebView webView, WKNavigation navigation);
 
-    // -(void)webView:(WKWebView * _Nonnull)webView didFailNavigation:(WKNavigation * _Null_unspecified)navigation withError:(NSError * _Nonnull)error;
-    [Export("webView:didFailNavigation:withError:")]
-    void WebView(WKWebView webView, WKNavigation navigation, NSError error);
-}
+        // -(void)webView:(WKWebView * _Nonnull)webView didFailNavigation:(WKNavigation * _Null_unspecified)navigation withError:(NSError * _Nonnull)error;
+        [Export ("webView:didFailNavigation:withError:")]
+        void WebView (WKWebView webView, WKNavigation navigation, NSError error);
+    }
 
 // @interface BKYCodeGeneratorService : NSObject
 [BaseType(typeof(NSObject))]
