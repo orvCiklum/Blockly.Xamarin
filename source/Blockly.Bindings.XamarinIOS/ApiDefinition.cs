@@ -5534,234 +5534,253 @@ interface BKYViewManager
     BKYLayoutView FindViewForLayout(BKYLayout layout);
 }
 
-// @interface BKYWorkbenchViewController : UIViewController
-[BaseType(typeof(UIViewController))]
-interface BKYWorkbenchViewController
+// @interface BKYWorkbenchViewController : UIViewController <BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, UIGestureRecognizerDelegate>
+[BaseType (typeof(UIViewController))]
+interface BKYWorkbenchViewController : BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, IUIGestureRecognizerDelegate
 {
-    // @property (readonly, nonatomic) NSInteger stateTrashCanOpen;
-    [Export("stateTrashCanOpen")]
-    nint StateTrashCanOpen { get; }
+	// @property (readonly, nonatomic) NSInteger stateTrashCanOpen;
+	[Export ("stateTrashCanOpen")]
+	nint StateTrashCanOpen { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateTrashCanHighlighted;
-    [Export("stateTrashCanHighlighted")]
-    nint StateTrashCanHighlighted { get; }
+	// @property (readonly, nonatomic) NSInteger stateTrashCanHighlighted;
+	[Export ("stateTrashCanHighlighted")]
+	nint StateTrashCanHighlighted { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateCategoryOpen;
-    [Export("stateCategoryOpen")]
-    nint StateCategoryOpen { get; }
+	// @property (readonly, nonatomic) NSInteger stateCategoryOpen;
+	[Export ("stateCategoryOpen")]
+	nint StateCategoryOpen { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateEditingTextField;
-    [Export("stateEditingTextField")]
-    nint StateEditingTextField { get; }
+	// @property (readonly, nonatomic) NSInteger stateEditingTextField;
+	[Export ("stateEditingTextField")]
+	nint StateEditingTextField { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateDraggingBlock;
-    [Export("stateDraggingBlock")]
-    nint StateDraggingBlock { get; }
+	// @property (readonly, nonatomic) NSInteger stateDraggingBlock;
+	[Export ("stateDraggingBlock")]
+	nint StateDraggingBlock { get; }
 
-    // @property (readonly, nonatomic) NSInteger statePresentingPopover;
-    [Export("statePresentingPopover")]
-    nint StatePresentingPopover { get; }
+	// @property (readonly, nonatomic) NSInteger statePresentingPopover;
+	[Export ("statePresentingPopover")]
+	nint StatePresentingPopover { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateDidPanWorkspace;
-    [Export("stateDidPanWorkspace")]
-    nint StateDidPanWorkspace { get; }
+	// @property (readonly, nonatomic) NSInteger stateDidPanWorkspace;
+	[Export ("stateDidPanWorkspace")]
+	nint StateDidPanWorkspace { get; }
 
-    // @property (readonly, nonatomic) NSInteger stateDidTapWorkspace;
-    [Export("stateDidTapWorkspace")]
-    nint StateDidTapWorkspace { get; }
+	// @property (readonly, nonatomic) NSInteger stateDidTapWorkspace;
+	[Export ("stateDidTapWorkspace")]
+	nint StateDidTapWorkspace { get; }
 
-    // @property (readonly, nonatomic, strong) BKYWorkspaceViewController * _Nonnull workspaceViewController;
-    [Export("workspaceViewController", ArgumentSemantic.Strong)]
-    BKYWorkspaceViewController WorkspaceViewController { get; }
+	// @property (readonly, nonatomic, strong) BKYWorkspaceViewController * _Nonnull workspaceViewController;
+	[Export ("workspaceViewController", ArgumentSemantic.Strong)]
+	BKYWorkspaceViewController WorkspaceViewController { get; }
 
-    // @property (readonly, nonatomic, strong) BKYTrashCanView * _Nonnull trashCanView;
-    [Export("trashCanView", ArgumentSemantic.Strong)]
-    BKYTrashCanView TrashCanView { get; }
+	// @property (readonly, nonatomic, strong) BKYTrashCanView * _Nonnull trashCanView;
+	[Export ("trashCanView", ArgumentSemantic.Strong)]
+	BKYTrashCanView TrashCanView { get; }
 
-    // @property (readonly, nonatomic, strong) UIButton * _Nonnull undoButton;
-    [Export("undoButton", ArgumentSemantic.Strong)]
-    UIButton UndoButton { get; }
+	// @property (readonly, nonatomic, strong) UIButton * _Nonnull undoButton;
+	[Export ("undoButton", ArgumentSemantic.Strong)]
+	UIButton UndoButton { get; }
 
-    // @property (readonly, nonatomic, strong) UIButton * _Nonnull redoButton;
-    [Export("redoButton", ArgumentSemantic.Strong)]
-    UIButton RedoButton { get; }
+	// @property (readonly, nonatomic, strong) UIButton * _Nonnull redoButton;
+	[Export ("redoButton", ArgumentSemantic.Strong)]
+	UIButton RedoButton { get; }
 
-    // @property (readonly, nonatomic, strong) BKYToolboxCategoryViewController * _Nonnull toolboxCategoryViewController;
-    [Export("toolboxCategoryViewController", ArgumentSemantic.Strong)]
-    BKYToolboxCategoryViewController ToolboxCategoryViewController { get; }
+	// @property (readonly, nonatomic, strong) BKYToolboxCategoryViewController * _Nonnull toolboxCategoryViewController;
+	[Export ("toolboxCategoryViewController", ArgumentSemantic.Strong)]
+	BKYToolboxCategoryViewController ToolboxCategoryViewController { get; }
 
-    // @property (readonly, nonatomic, strong) BKYLayoutEngine * _Nonnull engine;
-    [Export("engine", ArgumentSemantic.Strong)]
-    BKYLayoutEngine Engine { get; }
+	// @property (readonly, nonatomic, strong) BKYLayoutEngine * _Nonnull engine;
+	[Export ("engine", ArgumentSemantic.Strong)]
+	BKYLayoutEngine Engine { get; }
 
-    // @property (readonly, nonatomic, strong) BKYLayoutBuilder * _Nonnull layoutBuilder;
-    [Export("layoutBuilder", ArgumentSemantic.Strong)]
-    BKYLayoutBuilder LayoutBuilder { get; }
+	// @property (readonly, nonatomic, strong) BKYLayoutBuilder * _Nonnull layoutBuilder;
+	[Export ("layoutBuilder", ArgumentSemantic.Strong)]
+	BKYLayoutBuilder LayoutBuilder { get; }
 
-    // @property (readonly, nonatomic, strong) BKYBlockFactory * _Nonnull blockFactory;
-    [Export("blockFactory", ArgumentSemantic.Strong)]
-    BKYBlockFactory BlockFactory { get; }
+	// @property (readonly, nonatomic, strong) BKYBlockFactory * _Nonnull blockFactory;
+	[Export ("blockFactory", ArgumentSemantic.Strong)]
+	BKYBlockFactory BlockFactory { get; }
 
-    // @property (readonly, nonatomic, strong) BKYViewFactory * _Nonnull viewFactory;
-    [Export("viewFactory", ArgumentSemantic.Strong)]
-    BKYViewFactory ViewFactory { get; }
+	// @property (readonly, nonatomic, strong) BKYViewFactory * _Nonnull viewFactory;
+	[Export ("viewFactory", ArgumentSemantic.Strong)]
+	BKYViewFactory ViewFactory { get; }
 
-    // @property (readonly, nonatomic) enum BKYWorkbenchViewControllerStyle style;
-    [Export("style")]
-    BKYWorkbenchViewControllerStyle Style { get; }
+	// @property (readonly, nonatomic) enum BKYWorkbenchViewControllerStyle style;
+	[Export ("style")]
+	BKYWorkbenchViewControllerStyle Style { get; }
 
-    // @property (readonly, nonatomic, strong) BKYWorkspace * _Nullable workspace;
-    [NullAllowed, Export("workspace", ArgumentSemantic.Strong)]
-    BKYWorkspace Workspace { get; }
+	// @property (readonly, nonatomic, strong) BKYWorkspace * _Nullable workspace;
+	[NullAllowed, Export ("workspace", ArgumentSemantic.Strong)]
+	BKYWorkspace Workspace { get; }
 
-    // @property (readonly, nonatomic, strong) BKYToolbox * _Nullable toolbox;
-    [NullAllowed, Export("toolbox", ArgumentSemantic.Strong)]
-    BKYToolbox Toolbox { get; }
+	// @property (readonly, nonatomic, strong) BKYToolbox * _Nullable toolbox;
+	[NullAllowed, Export ("toolbox", ArgumentSemantic.Strong)]
+	BKYToolbox Toolbox { get; }
 
-    // @property (readonly, nonatomic, strong) BKYNameManager * _Nonnull variableNameManager;
-    [Export("variableNameManager", ArgumentSemantic.Strong)]
-    BKYNameManager VariableNameManager { get; }
+	// @property (readonly, nonatomic, strong) BKYNameManager * _Nonnull variableNameManager;
+	[Export ("variableNameManager", ArgumentSemantic.Strong)]
+	BKYNameManager VariableNameManager { get; }
 
-    // @property (nonatomic, strong) BKYProcedureCoordinator * _Nullable procedureCoordinator;
-    [NullAllowed, Export("procedureCoordinator", ArgumentSemantic.Strong)]
-    BKYProcedureCoordinator ProcedureCoordinator { get; set; }
+	// @property (nonatomic, strong) BKYProcedureCoordinator * _Nullable procedureCoordinator;
+	[NullAllowed, Export ("procedureCoordinator", ArgumentSemantic.Strong)]
+	BKYProcedureCoordinator ProcedureCoordinator { get; set; }
 
-    // @property (nonatomic) BOOL enableTrashCan;
-    [Export("enableTrashCan")]
-    bool EnableTrashCan { get; set; }
+	// @property (nonatomic) BOOL enableTrashCan;
+	[Export ("enableTrashCan")]
+	bool EnableTrashCan { get; set; }
 
-    // @property (nonatomic) BOOL keepTrashedBlocks;
-    [Export("keepTrashedBlocks")]
-    bool KeepTrashedBlocks { get; set; }
+	// @property (nonatomic) BOOL keepTrashedBlocks;
+	[Export ("keepTrashedBlocks")]
+	bool KeepTrashedBlocks { get; set; }
 
-    // @property (nonatomic) BOOL allowZoom;
-    [Export("allowZoom")]
-    bool AllowZoom { get; set; }
+	// @property (nonatomic) BOOL allowZoom;
+	[Export ("allowZoom")]
+	bool AllowZoom { get; set; }
 
-    // @property (nonatomic) BOOL allowUndoRedo;
-    [Export("allowUndoRedo")]
-    bool AllowUndoRedo { get; set; }
+	// @property (nonatomic) BOOL allowUndoRedo;
+	[Export ("allowUndoRedo")]
+	bool AllowUndoRedo { get; set; }
 
-    // @property (nonatomic) BOOL allowInteractivePopGestureRecognizer;
-    [Export("allowInteractivePopGestureRecognizer")]
-    bool AllowInteractivePopGestureRecognizer { get; set; }
+	// @property (nonatomic) BOOL allowInteractivePopGestureRecognizer;
+	[Export ("allowInteractivePopGestureRecognizer")]
+	bool AllowInteractivePopGestureRecognizer { get; set; }
 
-    // @property (nonatomic, strong) UIColor * _Nullable workspaceBackgroundColor;
-    [NullAllowed, Export("workspaceBackgroundColor", ArgumentSemantic.Strong)]
-    UIColor WorkspaceBackgroundColor { get; set; }
+	// @property (nonatomic, strong) UIColor * _Nullable workspaceBackgroundColor;
+	[NullAllowed, Export ("workspaceBackgroundColor", ArgumentSemantic.Strong)]
+	UIColor WorkspaceBackgroundColor { get; set; }
 
-    // @property (nonatomic) BOOL toolboxDrawerStaysOpen;
-    [Export("toolboxDrawerStaysOpen")]
-    bool ToolboxDrawerStaysOpen { get; set; }
+	// @property (nonatomic) BOOL toolboxDrawerStaysOpen;
+	[Export ("toolboxDrawerStaysOpen")]
+	bool ToolboxDrawerStaysOpen { get; set; }
 
-    // @property (readonly, copy, nonatomic) NSSet<NSNumber *> * _Nonnull state;
-    [Export("state", ArgumentSemantic.Copy)]
-    NSSet<NSNumber> State { get; }
+	// @property (readonly, copy, nonatomic) NSSet<NSNumber *> * _Nonnull state;
+	[Export ("state", ArgumentSemantic.Copy)]
+	NSSet<NSNumber> State { get; }
 
-    [Wrap("WeakDelegate")]
-    [NullAllowed]
-    BKYWorkbenchViewControllerDelegate Delegate { get; set; }
+	[Wrap ("WeakDelegate")]
+	[NullAllowed]
+	BKYWorkbenchViewControllerDelegate Delegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYWorkbenchViewControllerDelegate> _Nullable delegate;
-    [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-    NSObject WeakDelegate { get; set; }
+	// @property (nonatomic, weak) id<BKYWorkbenchViewControllerDelegate> _Nullable delegate;
+	[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+	NSObject WeakDelegate { get; set; }
 
-    // @property (readonly, nonatomic, strong) BKYToolboxCategoryListViewController * _Nonnull toolboxCategoryListViewController;
-    [Export("toolboxCategoryListViewController", ArgumentSemantic.Strong)]
-    BKYToolboxCategoryListViewController ToolboxCategoryListViewController { get; }
+	// @property (readonly, nonatomic, strong) BKYToolboxCategoryListViewController * _Nonnull toolboxCategoryListViewController;
+	[Export ("toolboxCategoryListViewController", ArgumentSemantic.Strong)]
+	BKYToolboxCategoryListViewController ToolboxCategoryListViewController { get; }
 
-    // @property (readonly, nonatomic, strong) BKYTrashCanViewController * _Nonnull trashCanViewController;
-    [Export("trashCanViewController", ArgumentSemantic.Strong)]
-    BKYTrashCanViewController TrashCanViewController { get; }
+	// @property (readonly, nonatomic, strong) BKYTrashCanViewController * _Nonnull trashCanViewController;
+	[Export ("trashCanViewController", ArgumentSemantic.Strong)]
+	BKYTrashCanViewController TrashCanViewController { get; }
 
-    // @property (readonly, nonatomic) BOOL shouldRecordEvents;
-    [Export("shouldRecordEvents")]
-    bool ShouldRecordEvents { get; }
+	// @property (readonly, nonatomic) BOOL shouldRecordEvents;
+	[Export ("shouldRecordEvents")]
+	bool ShouldRecordEvents { get; }
 
-    // @property (copy, nonatomic) NSArray<BKYEvent *> * _Nonnull undoStack;
-    [Export("undoStack", ArgumentSemantic.Copy)]
-    BKYEvent[] UndoStack { get; set; }
+	// @property (copy, nonatomic) NSArray<BKYEvent *> * _Nonnull undoStack;
+	[Export ("undoStack", ArgumentSemantic.Copy)]
+	BKYEvent[] UndoStack { get; set; }
 
-    // @property (copy, nonatomic) NSArray<BKYEvent *> * _Nonnull redoStack;
-    [Export("redoStack", ArgumentSemantic.Copy)]
-    BKYEvent[] RedoStack { get; set; }
+	// @property (copy, nonatomic) NSArray<BKYEvent *> * _Nonnull redoStack;
+	[Export ("redoStack", ArgumentSemantic.Copy)]
+	BKYEvent[] RedoStack { get; set; }
 
-    // @property (readonly, nonatomic, strong) UIPanGestureRecognizer * _Null_unspecified workspacePanGesetureRecognizer;
-    [Export("workspacePanGesetureRecognizer", ArgumentSemantic.Strong)]
-    UIPanGestureRecognizer WorkspacePanGesetureRecognizer { get; }
+	// @property (readonly, nonatomic, strong) UIPanGestureRecognizer * _Null_unspecified workspacePanGesetureRecognizer;
+	[Export ("workspacePanGesetureRecognizer", ArgumentSemantic.Strong)]
+	UIPanGestureRecognizer WorkspacePanGesetureRecognizer { get; }
 
-    // @property (readonly, nonatomic, strong) UITapGestureRecognizer * _Nonnull workspaceTapGestureRecognizer;
-    [Export("workspaceTapGestureRecognizer", ArgumentSemantic.Strong)]
-    UITapGestureRecognizer WorkspaceTapGestureRecognizer { get; }
+	// @property (readonly, nonatomic, strong) UITapGestureRecognizer * _Nonnull workspaceTapGestureRecognizer;
+	[Export ("workspaceTapGestureRecognizer", ArgumentSemantic.Strong)]
+	UITapGestureRecognizer WorkspaceTapGestureRecognizer { get; }
 
-    // -(instancetype _Nonnull)initWithStyle:(enum BKYWorkbenchViewControllerStyle)style __attribute__((objc_designated_initializer));
-    [Export("initWithStyle:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYWorkbenchViewControllerStyle style);
+	// -(instancetype _Nonnull)initWithStyle:(enum BKYWorkbenchViewControllerStyle)style __attribute__((objc_designated_initializer));
+	[Export ("initWithStyle:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYWorkbenchViewControllerStyle style);
 
-    // -(instancetype _Nonnull)initWithStyle:(enum BKYWorkbenchViewControllerStyle)style engine:(BKYLayoutEngine * _Nonnull)engine layoutBuilder:(BKYLayoutBuilder * _Nonnull)layoutBuilder blockFactory:(BKYBlockFactory * _Nonnull)blockFactory viewFactory:(BKYViewFactory * _Nonnull)viewFactory variableNameManager:(BKYNameManager * _Nonnull)variableNameManager procedureCoordinator:(BKYProcedureCoordinator * _Nonnull)procedureCoordinator __attribute__((objc_designated_initializer));
-    [Export("initWithStyle:engine:layoutBuilder:blockFactory:viewFactory:variableNameManager:procedureCoordinator:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYWorkbenchViewControllerStyle style, BKYLayoutEngine engine, BKYLayoutBuilder layoutBuilder, BKYBlockFactory blockFactory, BKYViewFactory viewFactory, BKYNameManager variableNameManager, BKYProcedureCoordinator procedureCoordinator);
+	// -(instancetype _Nonnull)initWithStyle:(enum BKYWorkbenchViewControllerStyle)style engine:(BKYLayoutEngine * _Nonnull)engine layoutBuilder:(BKYLayoutBuilder * _Nonnull)layoutBuilder blockFactory:(BKYBlockFactory * _Nonnull)blockFactory viewFactory:(BKYViewFactory * _Nonnull)viewFactory variableNameManager:(BKYNameManager * _Nonnull)variableNameManager procedureCoordinator:(BKYProcedureCoordinator * _Nonnull)procedureCoordinator __attribute__((objc_designated_initializer));
+	[Export ("initWithStyle:engine:layoutBuilder:blockFactory:viewFactory:variableNameManager:procedureCoordinator:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYWorkbenchViewControllerStyle style, BKYLayoutEngine engine, BKYLayoutBuilder layoutBuilder, BKYBlockFactory blockFactory, BKYViewFactory viewFactory, BKYNameManager variableNameManager, BKYProcedureCoordinator procedureCoordinator);
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)loadView;
-    [Export("loadView")]
-    void LoadView();
+	// -(void)loadView;
+	[Export ("loadView")]
+	void LoadView ();
 
-    // -(void)viewDidLoad;
-    [Export("viewDidLoad")]
-    void ViewDidLoad();
+	// -(void)viewDidLoad;
+	[Export ("viewDidLoad")]
+	void ViewDidLoad ();
 
-    // -(void)viewDidAppear:(BOOL)animated;
-    [Export("viewDidAppear:")]
-    void ViewDidAppear(bool animated);
+	// -(void)viewDidAppear:(BOOL)animated;
+	[Export ("viewDidAppear:")]
+	void ViewDidAppear (bool animated);
 
-    // -(void)viewWillDisappear:(BOOL)animated;
-    [Export("viewWillDisappear:")]
-    void ViewWillDisappear(bool animated);
+	// -(void)viewWillDisappear:(BOOL)animated;
+	[Export ("viewWillDisappear:")]
+	void ViewWillDisappear (bool animated);
 
-    // -(BOOL)loadWorkspace:(BKYWorkspace * _Nonnull)workspace error:(NSError * _Nullable * _Nullable)error;
-    [Export("loadWorkspace:error:")]
-    bool LoadWorkspace(BKYWorkspace workspace, [NullAllowed] out NSError error);
+	// -(BOOL)loadWorkspace:(BKYWorkspace * _Nonnull)workspace error:(NSError * _Nullable * _Nullable)error;
+	[Export ("loadWorkspace:error:")]
+	bool LoadWorkspace (BKYWorkspace workspace, [NullAllowed] out NSError error);
 
-    // -(BOOL)loadWorkspace:(BKYWorkspace * _Nonnull)workspace connectionManager:(BKYConnectionManager * _Nonnull)connectionManager error:(NSError * _Nullable * _Nullable)error;
-    [Export("loadWorkspace:connectionManager:error:")]
-    bool LoadWorkspace(BKYWorkspace workspace, BKYConnectionManager connectionManager, [NullAllowed] out NSError error);
+	// -(BOOL)loadWorkspace:(BKYWorkspace * _Nonnull)workspace connectionManager:(BKYConnectionManager * _Nonnull)connectionManager error:(NSError * _Nullable * _Nullable)error;
+	[Export ("loadWorkspace:connectionManager:error:")]
+	bool LoadWorkspace (BKYWorkspace workspace, BKYConnectionManager connectionManager, [NullAllowed] out NSError error);
 
-    // -(BOOL)loadToolbox:(BKYToolbox * _Nonnull)toolbox error:(NSError * _Nullable * _Nullable)error;
-    [Export("loadToolbox:error:")]
-    bool LoadToolbox(BKYToolbox toolbox, [NullAllowed] out NSError error);
+	// -(BOOL)loadToolbox:(BKYToolbox * _Nonnull)toolbox error:(NSError * _Nullable * _Nullable)error;
+	[Export ("loadToolbox:error:")]
+	bool LoadToolbox (BKYToolbox toolbox, [NullAllowed] out NSError error);
 
-    // -(void)refreshView;
-    [Export("refreshView")]
-    void RefreshView();
+	// -(void)refreshView;
+	[Export ("refreshView")]
+	void RefreshView ();
+
+	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
+	[Export ("workspaceViewController:didAddBlockView:")]
+	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+
+	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didRemoveBlockView:(BKYBlockView * _Nonnull)blockView;
+	[Export ("workspaceViewController:didRemoveBlockView:")]
+	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+
+	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
+	[Export ("workspaceViewController:willPresentViewController:")]
+	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
+
+	// -(void)workspaceViewControllerDismissedViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController;
+	[Export ("workspaceViewControllerDismissedViewController:")]
+	void WorkspaceViewControllerDismissedViewController (BKYWorkspaceViewController workspaceViewController);
+
+	// -(void)toolboxCategoryListViewController:(BKYToolboxCategoryListViewController * _Nonnull)controller didSelectCategory:(BKYToolboxCategory * _Nonnull)category;
+	[Export ("toolboxCategoryListViewController:didSelectCategory:")]
+	void ToolboxCategoryListViewController (BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
+
+	// -(void)toolboxCategoryListViewControllerDidDeselectCategory:(BKYToolboxCategoryListViewController * _Nonnull)controller;
+	[Export ("toolboxCategoryListViewControllerDidDeselectCategory:")]
+	void ToolboxCategoryListViewControllerDidDeselectCategory (BKYToolboxCategoryListViewController controller);
+
+	// -(void)blocklyPanGestureRecognizer:(BKYBlocklyPanGestureRecognizer * _Nonnull)gesture didTouchBlock:(BKYBlockView * _Nonnull)block touch:(UITouch * _Nonnull)touch touchState:(enum BKYBlocklyPanGestureRecognizerTouchState)touchState;
+	[Export ("blocklyPanGestureRecognizer:didTouchBlock:touch:touchState:")]
+	void BlocklyPanGestureRecognizer (BKYBlocklyPanGestureRecognizer gesture, BKYBlockView block, UITouch touch, BKYBlocklyPanGestureRecognizerTouchState touchState);
+
+	// -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer __attribute__((warn_unused_result));
+	[Export ("gestureRecognizerShouldBegin:")]
+	bool GestureRecognizerShouldBegin (UIGestureRecognizer gestureRecognizer);
+
+	// -(BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer __attribute__((warn_unused_result));
+	[Export ("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")]
+	bool GestureRecognizer (UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
+
+	// -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
+	[Export ("eventManager:didFireEvent:")]
+	void EventManager (BKYEventManager eventManager, BKYEvent @event);
 }
-
-// @interface Blockly_Swift_6370 (BKYWorkbenchViewController) <BKYEventManagerListener>
-[Category]
-[BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6370 : BKYEventManagerListener
-{
-    // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
-    [Export("eventManager:didFireEvent:")]
-    void EventManager(BKYEventManager eventManager, BKYEvent @event);
-}
-
-// @interface Blockly_Swift_6375 (BKYWorkbenchViewController) <BKYBlocklyPanGestureRecognizerDelegate>
-[Category]
-[BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6375 : BKYBlocklyPanGestureRecognizerDelegate
-{
-    // -(void)blocklyPanGestureRecognizer:(BKYBlocklyPanGestureRecognizer * _Nonnull)gesture didTouchBlock:(BKYBlockView * _Nonnull)block touch:(UITouch * _Nonnull)touch touchState:(enum BKYBlocklyPanGestureRecognizerTouchState)touchState;
-    [Export("blocklyPanGestureRecognizer:didTouchBlock:touch:touchState:")]
-    void BlocklyPanGestureRecognizer(BKYBlocklyPanGestureRecognizer gesture, BKYBlockView block, UITouch touch, BKYBlocklyPanGestureRecognizerTouchState touchState);
-}
-
 // @interface Blockly_Swift_6384 (BKYWorkbenchViewController)
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
@@ -5788,34 +5807,6 @@ interface BKYWorkbenchViewController_Blockly_Swift_6406
     // -(void)removeGestureTrackingForBlockView:(BKYBlockView * _Nonnull)blockView;
     [Export("removeGestureTrackingForBlockView:")]
     void RemoveGestureTrackingForBlockView(BKYBlockView blockView);
-}
-
-// @interface Blockly_Swift_6423 (BKYWorkbenchViewController) <UIGestureRecognizerDelegate>
-[Category]
-[BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6423 : IUIGestureRecognizerDelegate
-{
-    // -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer __attribute__((warn_unused_result));
-    [Export("gestureRecognizerShouldBegin:")]
-    bool GestureRecognizerShouldBegin(UIGestureRecognizer gestureRecognizer);
-
-    // -(BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer __attribute__((warn_unused_result));
-    [Export("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:")]
-    bool GestureRecognizer(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
-}
-
-// @interface Blockly_Swift_6429 (BKYWorkbenchViewController) <BKYToolboxCategoryListViewControllerDelegate>
-[Category]
-[BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6429 : BKYToolboxCategoryListViewControllerDelegate
-{
-    // -(void)toolboxCategoryListViewController:(BKYToolboxCategoryListViewController * _Nonnull)controller didSelectCategory:(BKYToolboxCategory * _Nonnull)category;
-    [Export("toolboxCategoryListViewController:didSelectCategory:")]
-    void ToolboxCategoryListViewController(BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
-
-    // -(void)toolboxCategoryListViewControllerDidDeselectCategory:(BKYToolboxCategoryListViewController * _Nonnull)controller;
-    [Export("toolboxCategoryListViewControllerDidDeselectCategory:")]
-    void ToolboxCategoryListViewControllerDidDeselectCategory(BKYToolboxCategoryListViewController controller);
 }
 
 // @interface Blockly_Swift_6437 (BKYWorkbenchViewController)
