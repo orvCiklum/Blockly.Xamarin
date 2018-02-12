@@ -3577,34 +3577,28 @@ interface BKYFieldLabelLayout
     IntPtr Constructor(BKYFieldLabel fieldLabel, BKYLayoutEngine engine, BKYFieldLayoutMeasurer measurer);
 }
 
-// @interface BKYFieldLabelView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldLabelView
-{
-    // @property (readonly, nonatomic, strong) BKYFieldLabelLayout * _Nullable fieldLabelLayout;
-    [NullAllowed, Export("fieldLabelLayout", ArgumentSemantic.Strong)]
-    BKYFieldLabelLayout FieldLabelLayout { get; }
+// @interface BKYFieldLabelView : BKYFieldView <BKYFieldLayoutMeasurer>
+    [BaseType (typeof(BKYFieldView))]
+    interface BKYFieldLabelView : IBKYFieldLayoutMeasurer
+    {
+        // @property (readonly, nonatomic, strong) BKYFieldLabelLayout * _Nullable fieldLabelLayout;
+        [NullAllowed, Export ("fieldLabelLayout", ArgumentSemantic.Strong)]
+        BKYFieldLabelLayout FieldLabelLayout { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-// @interface Blockly_Swift_4026 (BKYFieldLabelView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldLabelView))]
-interface BKYFieldLabelView_Blockly_Swift_4026 : BKYFieldLayoutMeasurer
-{
-    // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
+        // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
+        [Static]
+        [Export ("measureLayout:scale:")]
+        CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
+    }
 
 // @protocol BKYFieldListener
 [Protocol, Model]
