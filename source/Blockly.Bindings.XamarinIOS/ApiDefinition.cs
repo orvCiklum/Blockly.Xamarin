@@ -6196,70 +6196,115 @@ interface BKYWorkspaceLayoutCoordinator : BKYNameManagerListener, BKYWorkspaceLi
 	void NameManager (BKYNameManager nameManager, string name);
 }
 
-// @interface BKYWorkspaceView : BKYLayoutView
-[BaseType(typeof(BKYLayoutView))]
-interface BKYWorkspaceView
+// @interface BKYWorkspaceView : BKYLayoutView <UIScrollViewDelegate>
+[BaseType (typeof(BKYLayoutView))]
+interface BKYWorkspaceView : IUIScrollViewDelegate, BKYBlockGroupViewDelegate
 {
-    // @property (readonly, nonatomic, strong) BKYWorkspaceLayout * _Nullable workspaceLayout;
-    [NullAllowed, Export("workspaceLayout", ArgumentSemantic.Strong)]
-    BKYWorkspaceLayout WorkspaceLayout { get; }
+	// @property (readonly, nonatomic, strong) BKYWorkspaceLayout * _Nullable workspaceLayout;
+	[NullAllowed, Export ("workspaceLayout", ArgumentSemantic.Strong)]
+	BKYWorkspaceLayout WorkspaceLayout { get; }
 
-    // @property (readonly, copy, nonatomic) NSSet<BKYBlockGroupView *> * _Nonnull blockGroupViews;
-    [Export("blockGroupViews", ArgumentSemantic.Copy)]
-    NSSet<BKYBlockGroupView> BlockGroupViews { get; }
+	// @property (readonly, copy, nonatomic) NSSet<BKYBlockGroupView *> * _Nonnull blockGroupViews;
+	[Export ("blockGroupViews", ArgumentSemantic.Copy)]
+	NSSet<BKYBlockGroupView> BlockGroupViews { get; }
 
-    // @property (nonatomic, strong) BKYWorkspaceScrollView * _Nonnull scrollView;
-    [Export("scrollView", ArgumentSemantic.Strong)]
-    BKYWorkspaceScrollView ScrollView { get; set; }
+	// @property (nonatomic, strong) BKYWorkspaceScrollView * _Nonnull scrollView;
+	[Export ("scrollView", ArgumentSemantic.Strong)]
+	BKYWorkspaceScrollView ScrollView { get; set; }
 
-    // @property (nonatomic, strong) BKYZIndexedGroupView * _Null_unspecified dragLayerView;
-    [Export("dragLayerView", ArgumentSemantic.Strong)]
-    BKYZIndexedGroupView DragLayerView { get; set; }
+	// @property (nonatomic, strong) BKYZIndexedGroupView * _Null_unspecified dragLayerView;
+	[Export ("dragLayerView", ArgumentSemantic.Strong)]
+	BKYZIndexedGroupView DragLayerView { get; set; }
 
-    // @property (nonatomic) BOOL allowCanvasPadding;
-    [Export("allowCanvasPadding")]
-    bool AllowCanvasPadding { get; set; }
+	// @property (nonatomic) BOOL allowCanvasPadding;
+	[Export ("allowCanvasPadding")]
+	bool AllowCanvasPadding { get; set; }
 
-    // @property (nonatomic) int canvasPaddingScale;
-    [Export("canvasPaddingScale")]
-    int CanvasPaddingScale { get; set; }
+	// @property (nonatomic) BKYEdgeInsets canvasPaddingScale;
+	[Export ("canvasPaddingScale", ArgumentSemantic.Assign)]
+	BKYEdgeInsets CanvasPaddingScale { get; set; }
 
-    // @property (nonatomic) int scrollIntoViewEdgeInsets;
-    [Export("scrollIntoViewEdgeInsets")]
-    int ScrollIntoViewEdgeInsets { get; set; }
+	// @property (nonatomic) BKYEdgeInsets scrollIntoViewEdgeInsets;
+	[Export ("scrollIntoViewEdgeInsets", ArgumentSemantic.Assign)]
+	BKYEdgeInsets ScrollIntoViewEdgeInsets { get; set; }
 
-    // @property (nonatomic) BOOL allowZoom;
-    [Export("allowZoom")]
-    bool AllowZoom { get; set; }
+	// @property (nonatomic) BOOL allowZoom;
+	[Export ("allowZoom")]
+	bool AllowZoom { get; set; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
+	// -(void)prepareForReuse;
+	[Export ("prepareForReuse")]
+	void PrepareForReuse ();
 
-    // -(void)layoutSubviews;
-    [Export("layoutSubviews")]
-    void LayoutSubviews();
+	// -(void)layoutSubviews;
+	[Export ("layoutSubviews")]
+	void LayoutSubviews ();
 
-    // -(id)workspacePositionFromBlockView:(UIView * _Nonnull)blockView __attribute__((warn_unused_result));
-    [Export("workspacePositionFromBlockView:")]
-    NSObject WorkspacePositionFromBlockView(UIView blockView);
+	// -(BKYWorkspacePoint)workspacePositionFromBlockView:(UIView * _Nonnull)blockView __attribute__((warn_unused_result));
+	[Export ("workspacePositionFromBlockView:")]
+	BKYWorkspacePoint WorkspacePositionFromBlockView (UIView blockView);
 
-    // -(void)scrollBlockIntoView:(BKYBlock * _Nonnull)block location:(enum BKYWorkspaceViewLocation)location animated:(BOOL)animated;
-    [Export("scrollBlockIntoView:location:animated:")]
-    void ScrollBlockIntoView(BKYBlock block, BKYWorkspaceViewLocation location, bool animated);
+	// -(void)scrollBlockIntoView:(BKYBlock * _Nonnull)block location:(enum BKYWorkspaceViewLocation)location animated:(BOOL)animated;
+	[Export ("scrollBlockIntoView:location:animated:")]
+	void ScrollBlockIntoView (BKYBlock block, BKYWorkspaceViewLocation location, bool animated);
 
-    // -(void)setViewportTo:(enum BKYWorkspaceViewLocation)location animated:(BOOL)animated;
-    [Export("setViewportTo:animated:")]
-    void SetViewportTo(BKYWorkspaceViewLocation location, bool animated);
+	// -(void)setViewportTo:(enum BKYWorkspaceViewLocation)location animated:(BOOL)animated;
+	[Export ("setViewportTo:animated:")]
+	void SetViewportTo (BKYWorkspaceViewLocation location, bool animated);
 
-    // -(id)workspacePositionFromViewPoint:(CGPoint)point __attribute__((warn_unused_result));
-    [Export("workspacePositionFromViewPoint:")]
-    NSObject WorkspacePositionFromViewPoint(CGPoint point);
+	// -(BKYWorkspacePoint)workspacePositionFromViewPoint:(CGPoint)point __attribute__((warn_unused_result));
+	[Export ("workspacePositionFromViewPoint:")]
+	BKYWorkspacePoint WorkspacePositionFromViewPoint (CGPoint point);
+
+	// -(void)addBlockGroupView:(BKYBlockGroupView * _Nonnull)blockGroupView;
+	[Export ("addBlockGroupView:")]
+	void AddBlockGroupView (BKYBlockGroupView blockGroupView);
+
+	// -(void)removeBlockGroupView:(BKYBlockGroupView * _Nonnull)blockGroupView;
+	[Export ("removeBlockGroupView:")]
+	void RemoveBlockGroupView (BKYBlockGroupView blockGroupView);
+
+	// -(void)blockGroupViewDidUpdateDragging:(BKYBlockGroupView * _Nonnull)blockGroupView;
+	[Export ("blockGroupViewDidUpdateDragging:")]
+	void BlockGroupViewDidUpdateDragging (BKYBlockGroupView blockGroupView);
+
+	// -(void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)scrollView;
+	[Export ("scrollViewDidEndDecelerating:")]
+	void ScrollViewDidEndDecelerating (UIScrollView scrollView);
+
+	// -(void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate;
+	[Export ("scrollViewDidEndDragging:willDecelerate:")]
+	void ScrollViewDidEndDragging (UIScrollView scrollView, bool decelerate);
+
+	// -(UIView * _Nullable)viewForZoomingInScrollView:(UIScrollView * _Nonnull)scrollView __attribute__((warn_unused_result));
+	[Export ("viewForZoomingInScrollView:")]
+	[return: NullAllowed]
+	UIView ViewForZoomingInScrollView (UIScrollView scrollView);
+
+	// -(void)scrollViewWillBeginZooming:(UIScrollView * _Nonnull)zoomScrollView withView:(UIView * _Nullable)view;
+	[Export ("scrollViewWillBeginZooming:withView:")]
+	void ScrollViewWillBeginZooming (UIScrollView zoomScrollView, [NullAllowed] UIView view);
+
+	// -(void)scrollViewDidZoom:(UIScrollView * _Nonnull)zoomScrollView;
+	[Export ("scrollViewDidZoom:")]
+	void ScrollViewDidZoom (UIScrollView zoomScrollView);
+
+	// -(void)scrollViewDidEndZooming:(UIScrollView * _Nonnull)scrollView withView:(UIView * _Nullable)view atScale:(CGFloat)scale;
+	[Export ("scrollViewDidEndZooming:withView:atScale:")]
+	void ScrollViewDidEndZooming (UIScrollView scrollView, [NullAllowed] UIView view, nfloat scale);
+
+	// -(void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
+	[Export ("scrollViewDidScroll:")]
+	void ScrollViewDidScroll (UIScrollView scrollView);
+    
+    // -(void)blockGroupViewDidUpdateDragging:(BKYBlockGroupView * _Nonnull)blockGroupView; 
+    [Export("blockGroupViewDidUpdateDragging:")] 
+    void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView); 
 }
 
 // @interface Blockly_Swift_7090 (BKYWorkspaceView)
@@ -6267,20 +6312,6 @@ interface BKYWorkspaceView
 [BaseType(typeof(BKYWorkspaceView))]
 interface BKYWorkspaceView_Blockly_Swift_7090
 {
-}
-
-// @interface BKYWorkspaceScrollView : UIScrollView <UIGestureRecognizerDelegate>
-[BaseType(typeof(UIScrollView))]
-interface BKYWorkspaceScrollView : IUIGestureRecognizerDelegate
-{
-    // @property (readonly, nonatomic) BOOL isInMotion;
-    [Export("isInMotion")]
-    bool IsInMotion { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @protocol BKYAnglePickerViewControllerDelegate
@@ -6291,59 +6322,6 @@ interface BKYBlockGroupViewDelegate
     [Abstract]
     [Export("blockGroupViewDidUpdateDragging:")]
     void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView);
-}
-    
-// @interface Blockly_Swift_7112 (BKYWorkspaceView)
-[Category]
-[BaseType(typeof(BKYWorkspaceView))]
-interface BKYWorkspaceView_Blockly_Swift_7112: BKYBlockGroupViewDelegate
-{
-    // -(void)addBlockGroupView:(BKYBlockGroupView * _Nonnull)blockGroupView;
-    [Export("addBlockGroupView:")]
-    void AddBlockGroupView(BKYBlockGroupView blockGroupView);
-
-    // -(void)removeBlockGroupView:(BKYBlockGroupView * _Nonnull)blockGroupView;
-    [Export("removeBlockGroupView:")]
-    void RemoveBlockGroupView(BKYBlockGroupView blockGroupView);
-
-    // -(void)blockGroupViewDidUpdateDragging:(BKYBlockGroupView * _Nonnull)blockGroupView;
-    [Export("blockGroupViewDidUpdateDragging:")]
-    void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView);
-}
-
-// @interface Blockly_Swift_7125 (BKYWorkspaceView) <UIScrollViewDelegate>
-[Category]
-[BaseType(typeof(BKYWorkspaceView))]
-interface BKYWorkspaceView_Blockly_Swift_7125 : IUIScrollViewDelegate
-{
-    // -(void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)scrollView;
-    [Export("scrollViewDidEndDecelerating:")]
-    void ScrollViewDidEndDecelerating(UIScrollView scrollView);
-
-    // -(void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate;
-    [Export("scrollViewDidEndDragging:willDecelerate:")]
-    void ScrollViewDidEndDragging(UIScrollView scrollView, bool decelerate);
-
-    // -(UIView * _Nullable)viewForZoomingInScrollView:(UIScrollView * _Nonnull)scrollView __attribute__((warn_unused_result));
-    [Export("viewForZoomingInScrollView:")]
-    [return: NullAllowed]
-    UIView ViewForZoomingInScrollView(UIScrollView scrollView);
-
-    // -(void)scrollViewWillBeginZooming:(UIScrollView * _Nonnull)zoomScrollView withView:(UIView * _Nullable)view;
-    [Export("scrollViewWillBeginZooming:withView:")]
-    void ScrollViewWillBeginZooming(UIScrollView zoomScrollView, [NullAllowed] UIView view);
-
-    // -(void)scrollViewDidZoom:(UIScrollView * _Nonnull)zoomScrollView;
-    [Export("scrollViewDidZoom:")]
-    void ScrollViewDidZoom(UIScrollView zoomScrollView);
-
-    // -(void)scrollViewDidEndZooming:(UIScrollView * _Nonnull)scrollView withView:(UIView * _Nullable)view atScale:(CGFloat)scale;
-    [Export("scrollViewDidEndZooming:withView:atScale:")]
-    void ScrollViewDidEndZooming(UIScrollView scrollView, [NullAllowed] UIView view, nfloat scale);
-
-    // -(void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
-    [Export("scrollViewDidScroll:")]
-    void ScrollViewDidScroll(UIScrollView scrollView);
 }
 
 // @interface Blockly_Swift_7137 (BKYWorkspaceViewController) <BKYViewBuilderDelegate>
