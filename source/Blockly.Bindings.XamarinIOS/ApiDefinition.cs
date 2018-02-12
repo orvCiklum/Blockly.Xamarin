@@ -4745,120 +4745,114 @@ interface BKYNameManager
     string GenerateUniqueName(string name, bool addToList);
 }
 
-// @interface BKYNumberPad : UIView
-[BaseType(typeof(UIView))]
-interface BKYNumberPad
+// @interface BKYNumberPad : UIView <UITextFieldDelegate>
+[BaseType (typeof(UIView))]
+interface BKYNumberPad : IUITextFieldDelegate
 {
-    // @property (nonatomic, weak) UIButton * _Nullable button0 __attribute__((iboutlet));
-    [NullAllowed, Export("button0", ArgumentSemantic.Weak)]
-    UIButton Button0 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button0 __attribute__((iboutlet));
+	[NullAllowed, Export ("button0", ArgumentSemantic.Weak)]
+	UIButton Button0 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button1 __attribute__((iboutlet));
-    [NullAllowed, Export("button1", ArgumentSemantic.Weak)]
-    UIButton Button1 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button1 __attribute__((iboutlet));
+	[NullAllowed, Export ("button1", ArgumentSemantic.Weak)]
+	UIButton Button1 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button2 __attribute__((iboutlet));
-    [NullAllowed, Export("button2", ArgumentSemantic.Weak)]
-    UIButton Button2 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button2 __attribute__((iboutlet));
+	[NullAllowed, Export ("button2", ArgumentSemantic.Weak)]
+	UIButton Button2 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button3 __attribute__((iboutlet));
-    [NullAllowed, Export("button3", ArgumentSemantic.Weak)]
-    UIButton Button3 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button3 __attribute__((iboutlet));
+	[NullAllowed, Export ("button3", ArgumentSemantic.Weak)]
+	UIButton Button3 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button4 __attribute__((iboutlet));
-    [NullAllowed, Export("button4", ArgumentSemantic.Weak)]
-    UIButton Button4 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button4 __attribute__((iboutlet));
+	[NullAllowed, Export ("button4", ArgumentSemantic.Weak)]
+	UIButton Button4 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button5 __attribute__((iboutlet));
-    [NullAllowed, Export("button5", ArgumentSemantic.Weak)]
-    UIButton Button5 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button5 __attribute__((iboutlet));
+	[NullAllowed, Export ("button5", ArgumentSemantic.Weak)]
+	UIButton Button5 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button6 __attribute__((iboutlet));
-    [NullAllowed, Export("button6", ArgumentSemantic.Weak)]
-    UIButton Button6 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button6 __attribute__((iboutlet));
+	[NullAllowed, Export ("button6", ArgumentSemantic.Weak)]
+	UIButton Button6 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button7 __attribute__((iboutlet));
-    [NullAllowed, Export("button7", ArgumentSemantic.Weak)]
-    UIButton Button7 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button7 __attribute__((iboutlet));
+	[NullAllowed, Export ("button7", ArgumentSemantic.Weak)]
+	UIButton Button7 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button8 __attribute__((iboutlet));
-    [NullAllowed, Export("button8", ArgumentSemantic.Weak)]
-    UIButton Button8 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button8 __attribute__((iboutlet));
+	[NullAllowed, Export ("button8", ArgumentSemantic.Weak)]
+	UIButton Button8 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable button9 __attribute__((iboutlet));
-    [NullAllowed, Export("button9", ArgumentSemantic.Weak)]
-    UIButton Button9 { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable button9 __attribute__((iboutlet));
+	[NullAllowed, Export ("button9", ArgumentSemantic.Weak)]
+	UIButton Button9 { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable buttonMinusSign __attribute__((iboutlet));
-    [NullAllowed, Export("buttonMinusSign", ArgumentSemantic.Weak)]
-    UIButton ButtonMinusSign { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable buttonMinusSign __attribute__((iboutlet));
+	[NullAllowed, Export ("buttonMinusSign", ArgumentSemantic.Weak)]
+	UIButton ButtonMinusSign { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable buttonDecimal __attribute__((iboutlet));
-    [NullAllowed, Export("buttonDecimal", ArgumentSemantic.Weak)]
-    UIButton ButtonDecimal { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable buttonDecimal __attribute__((iboutlet));
+	[NullAllowed, Export ("buttonDecimal", ArgumentSemantic.Weak)]
+	UIButton ButtonDecimal { get; set; }
 
-    // @property (nonatomic, weak) UIButton * _Nullable buttonBackspace __attribute__((iboutlet));
-    [NullAllowed, Export("buttonBackspace", ArgumentSemantic.Weak)]
-    UIButton ButtonBackspace { get; set; }
+	// @property (nonatomic, weak) UIButton * _Nullable buttonBackspace __attribute__((iboutlet));
+	[NullAllowed, Export ("buttonBackspace", ArgumentSemantic.Weak)]
+	UIButton ButtonBackspace { get; set; }
 
-    // @property (nonatomic, weak) NumberPadTextField * _Nullable textField __attribute__((iboutlet));
-    [NullAllowed, Export("textField", ArgumentSemantic.Weak)]
-    NumberPadTextField TextField { get; set; }
+	// @property (nonatomic, weak) NumberPadTextField * _Nullable textField __attribute__((iboutlet));
+	[NullAllowed, Export ("textField", ArgumentSemantic.Weak)]
+	NumberPadTextField TextField { get; set; }
 
-    // @property (readonly, nonatomic) BOOL isDefault;
-    [Export("isDefault")]
-    bool IsDefault { get; }
+	// @property (readonly, nonatomic) BOOL isDefault;
+	[Export ("isDefault")]
+	bool IsDefault { get; }
 
-    // @property (nonatomic) BOOL allowMinusSign;
-    [Export("allowMinusSign")]
-    bool AllowMinusSign { get; set; }
+	// @property (nonatomic) BOOL allowMinusSign;
+	[Export ("allowMinusSign")]
+	bool AllowMinusSign { get; set; }
 
-    // @property (nonatomic) BOOL allowDecimal;
-    [Export("allowDecimal")]
-    bool AllowDecimal { get; set; }
+	// @property (nonatomic) BOOL allowDecimal;
+	[Export ("allowDecimal")]
+	bool AllowDecimal { get; set; }
 
-    // @property (copy, nonatomic) NSString * _Nonnull text;
-    [Export("text")]
-    string Text { get; set; }
+	// @property (copy, nonatomic) NSString * _Nonnull text;
+	[Export ("text")]
+	string Text { get; set; }
 
-    // @property (nonatomic, strong) UIFont * _Nullable font;
-    [NullAllowed, Export("font", ArgumentSemantic.Strong)]
-    UIFont Font { get; set; }
+	// @property (nonatomic, strong) UIFont * _Nullable font;
+	[NullAllowed, Export ("font", ArgumentSemantic.Strong)]
+	UIFont Font { get; set; }
 
-    [Wrap("WeakDelegate")]
-    [NullAllowed]
-    BKYNumberPadDelegate Delegate { get; set; }
+	[Wrap ("WeakDelegate")]
+	[NullAllowed]
+	BKYNumberPadDelegate Delegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYNumberPadDelegate> _Nullable delegate;
-    [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-    NSObject WeakDelegate { get; set; }
+	// @property (nonatomic, weak) id<BKYNumberPadDelegate> _Nullable delegate;
+	[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+	NSObject WeakDelegate { get; set; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)layoutSubviews;
-    [Export("layoutSubviews")]
-    void LayoutSubviews();
+	// -(void)layoutSubviews;
+	[Export ("layoutSubviews")]
+	void LayoutSubviews ();
 
-    // -(void)didPressButton:(UIButton * _Nonnull)button;
-    [Export("didPressButton:")]
-    void DidPressButton(UIButton button);
-}
+	// -(void)didPressButton:(UIButton * _Nonnull)button;
+	[Export ("didPressButton:")]
+	void DidPressButton (UIButton button);
 
-// @interface Blockly_Swift_5380 (BKYNumberPad) <UITextFieldDelegate>
-[Category]
-[BaseType(typeof(BKYNumberPad))]
-interface BKYNumberPad_Blockly_Swift_5380 : IUITextFieldDelegate
-{
-    // -(BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string __attribute__((warn_unused_result));
-    [Export("textField:shouldChangeCharactersInRange:replacementString:")]
-    bool TextField(UITextField textField, NSRange range, string @string);
+	// -(BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string __attribute__((warn_unused_result));
+	[Export ("textField:shouldChangeCharactersInRange:replacementString:")]
+	bool TextField (UITextField textField, NSRange range, string @string);
 
-    // -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
-    [Export("textFieldShouldReturn:")]
-    bool TextFieldShouldReturn(UITextField textField);
+	// -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
+	[Export ("textFieldShouldReturn:")]
+	bool TextFieldShouldReturn (UITextField textField);
 }
 
 // @interface NumberPadTextField : UITextField
