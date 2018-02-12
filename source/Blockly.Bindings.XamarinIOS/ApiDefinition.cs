@@ -507,43 +507,43 @@ interface BKYZIndexedView: INativeObject
 }
 
 // @interface BKYLayoutView : UIView <BKYRecyclable>
-    [BaseType (typeof(UIView))]
-    interface BKYLayoutView : BKYRecyclable
-    {
-        // @property (nonatomic, strong) BKYLayout * _Nullable layout;
-        [NullAllowed, Export ("layout", ArgumentSemantic.Strong)]
-        BKYLayout Layout { get; set; }
+[BaseType (typeof(UIView))]
+interface BKYLayoutView : BKYRecyclable
+{
+    // @property (nonatomic, strong) BKYLayout * _Nullable layout;
+    [NullAllowed, Export ("layout", ArgumentSemantic.Strong)]
+    BKYLayout Layout { get; set; }
 
-        [Wrap ("WeakPopoverDelegate")]
-        [NullAllowed]
-        BKYLayoutPopoverDelegate PopoverDelegate { get; set; }
+    [Wrap ("WeakPopoverDelegate")]
+    [NullAllowed]
+    BKYLayoutPopoverDelegate PopoverDelegate { get; set; }
 
-        // @property (nonatomic, weak) id<BKYLayoutPopoverDelegate> _Nullable popoverDelegate;
-        [NullAllowed, Export ("popoverDelegate", ArgumentSemantic.Weak)]
-        NSObject WeakPopoverDelegate { get; set; }
+    // @property (nonatomic, weak) id<BKYLayoutPopoverDelegate> _Nullable popoverDelegate;
+    [NullAllowed, Export ("popoverDelegate", ArgumentSemantic.Weak)]
+    NSObject WeakPopoverDelegate { get; set; }
 
-        // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code;
-        [Export ("runAnimatableCode:code:")]
-        void RunAnimatableCode (bool animated, Action code);
+    // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code;
+    [Export ("runAnimatableCode:code:")]
+    void RunAnimatableCode (bool animated, Action code);
 
-        // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code completion:(void (^ _Nullable)(BOOL))completion;
-        [Export ("runAnimatableCode:code:completion:")]
-        void RunAnimatableCode (bool animated, Action code, [NullAllowed] Action<bool> completion);
+    // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code completion:(void (^ _Nullable)(BOOL))completion;
+    [Export ("runAnimatableCode:code:completion:")]
+    void RunAnimatableCode (bool animated, Action code, [NullAllowed] Action<bool> completion);
 
-        // -(void)prepareForReuse;
-        [Export ("prepareForReuse")]
-        void PrepareForReuse ();
+    // -(void)prepareForReuse;
+    [Export ("prepareForReuse")]
+    void PrepareForReuse ();
 
-        // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
-        [Export ("initWithFrame:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (CGRect frame);
+    // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
+    [Export ("initWithFrame:")]
+    [DesignatedInitializer]
+    IntPtr Constructor (CGRect frame);
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
-    }
+    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+    [Export ("initWithCoder:")]
+    [DesignatedInitializer]
+    IntPtr Constructor (NSCoder aDecoder);
+}
     
 // @interface BKYBlockGroupView : BKYLayoutView <BKYZIndexedView>
 [BaseType(typeof(BKYLayoutView))]
@@ -4332,37 +4332,31 @@ interface MutatorIfElseLayout
     void PreserveCurrentInputConnections();
 }
 
-// @interface BKYMutatorIfElseView : BKYLayoutView
-[BaseType(typeof(BKYLayoutView))]
-interface BKYMutatorIfElseView
-{
-    // @property (readonly, nonatomic, strong) MutatorIfElseLayout * _Nullable mutatorIfElseLayout;
-    [NullAllowed, Export("mutatorIfElseLayout", ArgumentSemantic.Strong)]
-    MutatorIfElseLayout MutatorIfElseLayout { get; }
+// @interface BKYMutatorIfElseView : BKYLayoutView <UIPopoverPresentationControllerDelegate>
+    [BaseType (typeof(BKYLayoutView))]
+    interface BKYMutatorIfElseView : IUIPopoverPresentationControllerDelegate
+    {
+        // @property (readonly, nonatomic, strong) MutatorIfElseLayout * _Nullable mutatorIfElseLayout;
+        [NullAllowed, Export ("mutatorIfElseLayout", ArgumentSemantic.Strong)]
+        MutatorIfElseLayout MutatorIfElseLayout { get; }
 
-    // @property (readonly, nonatomic, strong) UIButton * _Nonnull popoverButton;
-    [Export("popoverButton", ArgumentSemantic.Strong)]
-    UIButton PopoverButton { get; }
+        // @property (readonly, nonatomic, strong) UIButton * _Nonnull popoverButton;
+        [Export ("popoverButton", ArgumentSemantic.Strong)]
+        UIButton PopoverButton { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-// @interface Blockly_Swift_5057 (BKYMutatorIfElseView) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(BKYMutatorIfElseView))]
-interface BKYMutatorIfElseView_Blockly_Swift_5057 : IUIPopoverPresentationControllerDelegate
-{
-    // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
-}
+        // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
+        [Export ("prepareForPopoverPresentation:")]
+        void PrepareForPopoverPresentation (UIPopoverPresentationController popoverPresentationController);
+    }
 
 // @interface BKYMutatorProcedureCaller : NSObject
 [BaseType(typeof(NSObject))]
