@@ -4284,6 +4284,7 @@ interface BKYMutatorProcedureCaller_Blockly_Swift_5076
     bool MutateBlockAndReturnError([NullAllowed] out NSError error);
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
+    [Static]
     [Export("sortedMutatorInputs")]
     BKYInput[] SortedMutatorInputs { get; }
 }
@@ -4351,6 +4352,7 @@ interface BKYMutatorProcedureDefinition_Blockly_Swift_5120
     bool MutateBlockAndReturnError([NullAllowed] out NSError error);
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
+    [Static]
     [Export("sortedMutatorInputs")]
     BKYInput[] SortedMutatorInputs { get; }
 }
@@ -4444,6 +4446,7 @@ interface BKYMutatorProcedureIfReturn_Blockly_Swift_5195
     bool MutateBlockAndReturnError([NullAllowed] out NSError error);
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
+    [Static]
     [Export("sortedMutatorInputs")]
     BKYInput[] SortedMutatorInputs { get; }
 }
