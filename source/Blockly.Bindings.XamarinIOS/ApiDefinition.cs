@@ -585,102 +585,107 @@ interface BKYBlockGroupView : BKYZIndexedView
     IntPtr Constructor(NSCoder aDecoder);
 }
 
-// @interface BKYBlockLayout : BKYLayout
-[BaseType(typeof(BKYLayout))]
-interface BKYBlockLayout
+// @interface BKYBlockLayout : BKYLayout <BKYBlockListener>
+[BaseType (typeof(BKYLayout))]
+interface BKYBlockLayout : IBKYBlockListener
 {
-    // @property (readonly, nonatomic, strong) BKYBlock * _Nonnull block;
-    [Export("block", ArgumentSemantic.Strong)]
-    BKYBlock Block { get; }
+	// @property (readonly, nonatomic, strong) BKYBlock * _Nonnull block;
+	[Export ("block", ArgumentSemantic.Strong)]
+	BKYBlock Block { get; }
 
-    // @property (readonly, copy, nonatomic) NSArray<BKYInputLayout *> * _Nonnull inputLayouts;
-    [Export("inputLayouts", ArgumentSemantic.Copy)]
-    BKYInputLayout[] InputLayouts { get; }
+	// @property (readonly, copy, nonatomic) NSArray<BKYInputLayout *> * _Nonnull inputLayouts;
+	[Export ("inputLayouts", ArgumentSemantic.Copy)]
+	BKYInputLayout[] InputLayouts { get; }
 
-    // @property (nonatomic, strong) BKYMutatorLayout * _Nullable mutatorLayout;
-    [NullAllowed, Export("mutatorLayout", ArgumentSemantic.Strong)]
-    BKYMutatorLayout MutatorLayout { get; set; }
+	// @property (nonatomic, strong) BKYMutatorLayout * _Nullable mutatorLayout;
+	[NullAllowed, Export ("mutatorLayout", ArgumentSemantic.Strong)]
+	BKYMutatorLayout MutatorLayout { get; set; }
 
-    // @property (readonly, copy, nonatomic) NSArray<BKYFieldLayout *> * _Nonnull fieldLayouts;
-    [Export("fieldLayouts", ArgumentSemantic.Copy)]
-    BKYFieldLayout[] FieldLayouts { get; }
+	// @property (readonly, copy, nonatomic) NSArray<BKYFieldLayout *> * _Nonnull fieldLayouts;
+	[Export ("fieldLayouts", ArgumentSemantic.Copy)]
+	BKYFieldLayout[] FieldLayouts { get; }
 
-    // @property (readonly, nonatomic, strong) BKYBlockGroupLayout * _Nullable parentBlockGroupLayout;
-    [NullAllowed, Export("parentBlockGroupLayout", ArgumentSemantic.Strong)]
-    BKYBlockGroupLayout ParentBlockGroupLayout { get; }
+	// @property (readonly, nonatomic, strong) BKYBlockGroupLayout * _Nullable parentBlockGroupLayout;
+	[NullAllowed, Export ("parentBlockGroupLayout", ArgumentSemantic.Strong)]
+	BKYBlockGroupLayout ParentBlockGroupLayout { get; }
 
-    // @property (readonly, nonatomic, strong) BKYBlockGroupLayout * _Nullable rootBlockGroupLayout;
-    [NullAllowed, Export("rootBlockGroupLayout", ArgumentSemantic.Strong)]
-    BKYBlockGroupLayout RootBlockGroupLayout { get; }
+	// @property (readonly, nonatomic, strong) BKYBlockGroupLayout * _Nullable rootBlockGroupLayout;
+	[NullAllowed, Export ("rootBlockGroupLayout", ArgumentSemantic.Strong)]
+	BKYBlockGroupLayout RootBlockGroupLayout { get; }
 
-    // @property (readonly, nonatomic, strong) BKYBlockLayout * _Nullable draggableBlockLayout;
-    [NullAllowed, Export("draggableBlockLayout", ArgumentSemantic.Strong)]
-    BKYBlockLayout DraggableBlockLayout { get; }
+	// @property (readonly, nonatomic, strong) BKYBlockLayout * _Nullable draggableBlockLayout;
+	[NullAllowed, Export ("draggableBlockLayout", ArgumentSemantic.Strong)]
+	BKYBlockLayout DraggableBlockLayout { get; }
 
-    // @property (nonatomic) BOOL highlighted;
-    [Export("highlighted")]
-    bool Highlighted { get; set; }
+	// @property (nonatomic) BOOL highlighted;
+	[Export ("highlighted")]
+	bool Highlighted { get; set; }
 
-    // @property (nonatomic) BOOL visible;
-    [Export("visible")]
-    bool Visible { get; set; }
+	// @property (nonatomic) BOOL visible;
+	[Export ("visible")]
+	bool Visible { get; set; }
 
-    // @property (readonly, nonatomic) BOOL userInteractionEnabled;
-    [Export("userInteractionEnabled")]
-    bool UserInteractionEnabled { get; }
+	// @property (readonly, nonatomic) BOOL userInteractionEnabled;
+	[Export ("userInteractionEnabled")]
+	bool UserInteractionEnabled { get; }
 
-    // @property (readonly, nonatomic) CGFloat leadingEdgeXOffset;
-    [Export("leadingEdgeXOffset")]
-    nfloat LeadingEdgeXOffset { get; }
+	// @property (readonly, nonatomic) CGFloat leadingEdgeXOffset;
+	[Export ("leadingEdgeXOffset")]
+	nfloat LeadingEdgeXOffset { get; }
 
-    // @property (nonatomic) CGFloat firstLineHeight;
-    [Export("firstLineHeight")]
-    nfloat FirstLineHeight { get; set; }
+	// @property (nonatomic) CGFloat firstLineHeight;
+	[Export ("firstLineHeight")]
+	nfloat FirstLineHeight { get; set; }
 
-    // @property (nonatomic) BOOL disabled;
-    [Export("disabled")]
-    bool Disabled { get; set; }
+	// @property (nonatomic) BOOL disabled;
+	[Export ("disabled")]
+	bool Disabled { get; set; }
 
-    // @property (nonatomic) BOOL inputsInline;
-    [Export("inputsInline")]
-    bool InputsInline { get; set; }
+	// @property (nonatomic) BOOL inputsInline;
+	[Export ("inputsInline")]
+	bool InputsInline { get; set; }
 
-    // @property (copy, nonatomic) NSString * _Nonnull comment;
-    [Export("comment")]
-    string Comment { get; set; }
+	// @property (copy, nonatomic) NSString * _Nonnull comment;
+	[Export ("comment")]
+	string Comment { get; set; }
 
-    // -(instancetype _Nonnull)initWithBlock:(BKYBlock * _Nonnull)block engine:(BKYLayoutEngine * _Nonnull)engine __attribute__((objc_designated_initializer));
-    [Export("initWithBlock:engine:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYBlock block, BKYLayoutEngine engine);
+	// -(instancetype _Nonnull)initWithBlock:(BKYBlock * _Nonnull)block engine:(BKYLayoutEngine * _Nonnull)engine __attribute__((objc_designated_initializer));
+	[Export ("initWithBlock:engine:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYBlock block, BKYLayoutEngine engine);
 
-    // -(void)appendInputLayout:(BKYInputLayout * _Nonnull)inputLayout;
-    [Export("appendInputLayout:")]
-    void AppendInputLayout(BKYInputLayout inputLayout);
+	// -(void)appendInputLayout:(BKYInputLayout * _Nonnull)inputLayout;
+	[Export ("appendInputLayout:")]
+	void AppendInputLayout (BKYInputLayout inputLayout);
 
-    // -(BKYInputLayout * _Nonnull)removeInputLayoutAtIndex:(NSInteger)index;
-    [Export("removeInputLayoutAtIndex:")]
-    BKYInputLayout RemoveInputLayoutAtIndex(nint index);
+	// -(BKYInputLayout * _Nonnull)removeInputLayoutAtIndex:(NSInteger)index;
+	[Export ("removeInputLayoutAtIndex:")]
+	BKYInputLayout RemoveInputLayoutAtIndex (nint index);
 
-    // -(void)resetWithUpdateLayout:(BOOL)updateLayout;
-    [Export("resetWithUpdateLayout:")]
-    void ResetWithUpdateLayout(bool updateLayout);
+	// -(void)resetWithUpdateLayout:(BOOL)updateLayout;
+	[Export ("resetWithUpdateLayout:")]
+	void ResetWithUpdateLayout (bool updateLayout);
 
-    // -(void)addHighlightSourceWithSourceUUID:(NSString * _Nonnull)sourceUUID forConnection:(BKYConnection * _Nonnull)connection;
-    [Export("addHighlightSourceWithSourceUUID:forConnection:")]
-    void AddHighlightSourceWithSourceUUID(string sourceUUID, BKYConnection connection);
+	// -(void)addHighlightSourceWithSourceUUID:(NSString * _Nonnull)sourceUUID forConnection:(BKYConnection * _Nonnull)connection;
+	[Export ("addHighlightSourceWithSourceUUID:forConnection:")]
+	void AddHighlightSourceWithSourceUUID (string sourceUUID, BKYConnection connection);
 
-    // -(void)removeHighlightSourceWithSourceUUID:(NSString * _Nonnull)sourceUUID forConnection:(BKYConnection * _Nonnull)connection;
-    [Export("removeHighlightSourceWithSourceUUID:forConnection:")]
-    void RemoveHighlightSourceWithSourceUUID(string sourceUUID, BKYConnection connection);
+	// -(void)removeHighlightSourceWithSourceUUID:(NSString * _Nonnull)sourceUUID forConnection:(BKYConnection * _Nonnull)connection;
+	[Export ("removeHighlightSourceWithSourceUUID:forConnection:")]
+	void RemoveHighlightSourceWithSourceUUID (string sourceUUID, BKYConnection connection);
 
-    // -(BOOL)isConnectionHighlighted:(BKYConnection * _Nonnull)connection __attribute__((warn_unused_result));
-    [Export("isConnectionHighlighted:")]
-    bool IsConnectionHighlighted(BKYConnection connection);
+	// -(BOOL)isConnectionHighlighted:(BKYConnection * _Nonnull)connection __attribute__((warn_unused_result));
+	[Export ("isConnectionHighlighted:")]
+	bool IsConnectionHighlighted (BKYConnection connection);
 
-    // -(BOOL)hasHighlightedConnections __attribute__((warn_unused_result));
-    [Export("hasHighlightedConnections")]
-    bool HasHighlightedConnections { get; }
+	// -(BOOL)hasHighlightedConnections __attribute__((warn_unused_result));
+	[Export ("hasHighlightedConnections")]
+	[Verify (MethodToProperty)]
+	bool HasHighlightedConnections { get; }
+
+	// -(void)didUpdateBlock:(BKYBlock * _Nonnull)block;
+	[Export ("didUpdateBlock:")]
+	void DidUpdateBlock (BKYBlock block);
 }
 
 // @protocol BKYBlockListener
@@ -689,16 +694,6 @@ interface BKYBlockListener
 {
     // @required -(void)didUpdateBlock:(BKYBlock * _Nonnull)block;
     [Abstract]
-    [Export("didUpdateBlock:")]
-    void DidUpdateBlock(BKYBlock block);
-}
-
-// @interface Blockly_Swift_1022 (BKYBlockLayout) <BKYBlockListener>
-[Category]
-[BaseType(typeof(BKYBlockLayout))]
-interface BKYBlockLayout_Blockly_Swift_1022 : BKYBlockListener
-{
-    // -(void)didUpdateBlock:(BKYBlock * _Nonnull)block;
     [Export("didUpdateBlock:")]
     void DidUpdateBlock(BKYBlock block);
 }
