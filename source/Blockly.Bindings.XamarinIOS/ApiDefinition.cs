@@ -3350,7 +3350,7 @@ interface BKYFieldDropdownLayout
 
 // @interface BKYFieldDropdownView : BKYFieldView <BKYDropdownOptionsViewControllerDelegate, BKYDropdownViewDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate>
 [BaseType (typeof(BKYFieldView))]
-interface BKYFieldDropdownView : IBKYDropdownOptionsViewControllerDelegate, IBKYDropdownViewDelegate, IBKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate
+interface BKYFieldDropdownView : BKYDropdownOptionsViewControllerDelegate, BKYDropdownViewDelegate, BKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate
 {
     // @property (readonly, nonatomic, strong) BKYFieldDropdownLayout * _Nullable fieldDropdownLayout;
     [NullAllowed, Export ("fieldDropdownLayout", ArgumentSemantic.Strong)]
@@ -3441,7 +3441,7 @@ interface BKYFieldImageLayout
 
 // @interface BKYFieldImageView : BKYFieldView <BKYFieldLayoutMeasurer>
 [BaseType (typeof(BKYFieldView))]
-interface BKYFieldImageView : IBKYFieldLayoutMeasurer
+interface BKYFieldImageView : BKYFieldLayoutMeasurer
 {
     // @property (readonly, nonatomic, strong) BKYFieldImageLayout * _Nullable fieldImageLayout;
     [NullAllowed, Export ("fieldImageLayout", ArgumentSemantic.Strong)]
@@ -3508,7 +3508,7 @@ interface BKYFieldInputLayout
 
 // @interface BKYFieldInputView : BKYFieldView <BKYFieldLayoutMeasurer, UITextFieldDelegate>
     [BaseType (typeof(BKYFieldView))]
-    interface BKYFieldInputView : IBKYFieldLayoutMeasurer, IUITextFieldDelegate
+    interface BKYFieldInputView : BKYFieldLayoutMeasurer, IUITextFieldDelegate
     {
         // @property (readonly, nonatomic, strong) BKYFieldInputLayout * _Nullable fieldInputLayout;
         [NullAllowed, Export ("fieldInputLayout", ArgumentSemantic.Strong)]
@@ -3579,7 +3579,7 @@ interface BKYFieldLabelLayout
 
 // @interface BKYFieldLabelView : BKYFieldView <BKYFieldLayoutMeasurer>
     [BaseType (typeof(BKYFieldView))]
-    interface BKYFieldLabelView : IBKYFieldLayoutMeasurer
+    interface BKYFieldLabelView : BKYFieldLayoutMeasurer
     {
         // @property (readonly, nonatomic, strong) BKYFieldLabelLayout * _Nullable fieldLabelLayout;
         [NullAllowed, Export ("fieldLabelLayout", ArgumentSemantic.Strong)]
@@ -3680,43 +3680,47 @@ interface BKYFieldNumberLayout
     void SetValueFromLocalizedText(string text);
 }
 
-// @interface BKYFieldNumberView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldNumberView
+// @interface BKYFieldNumberView : BKYFieldView <BKYFieldLayoutMeasurer, BKYNumberPadDelegate, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
+[BaseType (typeof(BKYFieldView))]
+interface BKYFieldNumberView : BKYFieldLayoutMeasurer, BKYNumberPadDelegate, IUIPopoverPresentationControllerDelegate, UITextFieldDelegate
 {
-    // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
-    [Export("textField", ArgumentSemantic.Strong)]
-    BKYInsetTextField TextField { get; }
+	// @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
+	[Export ("textField", ArgumentSemantic.Strong)]
+	BKYInsetTextField TextField { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+	// -(void)prepareForReuse;
+	[Export ("prepareForReuse")]
+	void PrepareForReuse ();
 
-// @interface Blockly_Swift_4122 (BKYFieldNumberView) <UITextFieldDelegate>
-[Category]
-[BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4122 : IUITextFieldDelegate
-{
-    // -(BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
-    [Export("textFieldShouldBeginEditing:")]
-    bool TextFieldShouldBeginEditing(UITextField textField);
-}
+	// +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
+	[Static]
+	[Export ("measureLayout:scale:")]
+	CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
 
-// @interface Blockly_Swift_4127 (BKYFieldNumberView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4127 : BKYFieldLayoutMeasurer
-{
-    // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
+	// -(BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
+	[Export ("textFieldShouldBeginEditing:")]
+	bool TextFieldShouldBeginEditing (UITextField textField);
+
+	// -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
+	[Export ("prepareForPopoverPresentation:")]
+	void PrepareForPopoverPresentation (UIPopoverPresentationController popoverPresentationController);
+
+	// -(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController * _Nonnull)popoverPresentationController __attribute__((warn_unused_result));
+	[Export ("popoverPresentationControllerShouldDismissPopover:")]
+	bool PopoverPresentationControllerShouldDismissPopover (UIPopoverPresentationController popoverPresentationController);
+
+	// -(void)numberPad:(BKYNumberPad * _Nonnull)numberPad didChangeText:(NSString * _Nonnull)text;
+	[Export ("numberPad:didChangeText:")]
+	void NumberPad (BKYNumberPad numberPad, string text);
+
+	// -(void)numberPadDidPressReturnKey:(BKYNumberPad * _Nonnull)numberPad;
+	[Export ("numberPadDidPressReturnKey:")]
+	void NumberPadDidPressReturnKey (BKYNumberPad numberPad);
 }
 
 // @protocol BKYNumberPadDelegate
@@ -3732,34 +3736,6 @@ interface BKYNumberPadDelegate
     [Abstract]
     [Export("numberPadDidPressReturnKey:")]
     void NumberPadDidPressReturnKey(BKYNumberPad numberPad);
-}
-
-// @interface Blockly_Swift_4149 (BKYFieldNumberView) <BKYNumberPadDelegate>
-[Category]
-[BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4149 : BKYNumberPadDelegate
-{
-    // -(void)numberPad:(BKYNumberPad * _Nonnull)numberPad didChangeText:(NSString * _Nonnull)text;
-    [Export("numberPad:didChangeText:")]
-    void NumberPad(BKYNumberPad numberPad, string text);
-
-    // -(void)numberPadDidPressReturnKey:(BKYNumberPad * _Nonnull)numberPad;
-    [Export("numberPadDidPressReturnKey:")]
-    void NumberPadDidPressReturnKey(BKYNumberPad numberPad);
-}
-
-// @interface Blockly_Swift_4155 (BKYFieldNumberView) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldNumberView))]
-interface BKYFieldNumberView_Blockly_Swift_4155 : IUIPopoverPresentationControllerDelegate
-{
-    // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
-
-    // -(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController * _Nonnull)popoverPresentationController __attribute__((warn_unused_result));
-    [Export("popoverPresentationControllerShouldDismissPopover:")]
-    bool PopoverPresentationControllerShouldDismissPopover(UIPopoverPresentationController popoverPresentationController);
 }
 
 // @interface BKYFieldVariable : BKYField
