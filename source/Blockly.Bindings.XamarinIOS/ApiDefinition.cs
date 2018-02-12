@@ -4872,19 +4872,19 @@ interface BKYProcedureCoordinator : BKYEventManagerListener, BKYNameManagerListe
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace willAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:willAddBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceWillAddBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:didAddBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceDidAddBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace willRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:willRemoveBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceWillRemoveBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:didRemoveBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceDidRemoveBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
 	[Export ("eventManager:didFireEvent:")]
@@ -4892,11 +4892,11 @@ interface BKYProcedureCoordinator : BKYEventManagerListener, BKYNameManagerListe
 
 	// -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
 	[Export ("nameManager:shouldRemoveName:")]
-	bool NameManager (BKYNameManager nameManager, string name);
+	bool NameManagerShouldRemoveName (BKYNameManager nameManager, string name);
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
 	[Export ("nameManager:didRenameName:toName:")]
-	void NameManager (BKYNameManager nameManager, string oldName, string newName);
+	void NameManagerDidRenameName (BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @protocol BKYWorkspaceListener
@@ -5197,6 +5197,20 @@ interface BKYToolboxCategoryListViewControllerDelegate
     void ToolboxCategoryListViewControllerDidDeselectCategory(BKYToolboxCategoryListViewController controller);
 }
 
+    // @interface BKYWorkspaceScrollView : UIScrollView <UIGestureRecognizerDelegate>
+    [BaseType (typeof(UIScrollView))]
+    interface BKYWorkspaceScrollView : IUIGestureRecognizerDelegate
+    {
+        // @property (readonly, nonatomic) BOOL isInMotion;
+        [Export ("isInMotion")]
+        bool IsInMotion { get; }
+
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
+    }
+    
 // @interface BKYToolboxCategoryViewController : UIViewController <BKYNameManagerListener>
 [BaseType (typeof(UIViewController))]
 interface BKYToolboxCategoryViewController : BKYNameManagerListener
@@ -5743,15 +5757,15 @@ interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, 
 
 	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
 	[Export ("workspaceViewController:didAddBlockView:")]
-	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+	void WorkspaceViewControllerDidAddBlockView (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
 	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didRemoveBlockView:(BKYBlockView * _Nonnull)blockView;
 	[Export ("workspaceViewController:didRemoveBlockView:")]
-	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
+	void WorkspaceViewControllerDidRemoveBlockView (BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
 
 	// -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
 	[Export ("workspaceViewController:willPresentViewController:")]
-	void WorkspaceViewController (BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
+	void WorkspaceViewControllerWillPresentViewController (BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
 
 	// -(void)workspaceViewControllerDismissedViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController;
 	[Export ("workspaceViewControllerDismissedViewController:")]
@@ -5759,7 +5773,7 @@ interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, 
 
 	// -(void)toolboxCategoryListViewController:(BKYToolboxCategoryListViewController * _Nonnull)controller didSelectCategory:(BKYToolboxCategory * _Nonnull)category;
 	[Export ("toolboxCategoryListViewController:didSelectCategory:")]
-	void ToolboxCategoryListViewController (BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
+	void ToolboxCategoryListViewControllerDidSelectCategory (BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
 
 	// -(void)toolboxCategoryListViewControllerDidDeselectCategory:(BKYToolboxCategoryListViewController * _Nonnull)controller;
 	[Export ("toolboxCategoryListViewControllerDidDeselectCategory:")]
