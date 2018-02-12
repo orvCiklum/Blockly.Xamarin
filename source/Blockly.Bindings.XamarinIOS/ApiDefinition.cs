@@ -5099,93 +5099,87 @@ interface BKYToolbox_Blockly_Swift_5776
     BKYToolbox MakeToolboxWithXmlString(string xmlString, BKYBlockFactory factory, [NullAllowed] out NSError error);
 }
 
-// @interface BKYToolboxCategoryListViewController : UICollectionViewController
-[BaseType(typeof(UICollectionViewController))]
-interface BKYToolboxCategoryListViewController
+// @interface BKYToolboxCategoryListViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+[BaseType (typeof(UICollectionViewController))]
+interface BKYToolboxCategoryListViewController : IUICollectionViewDelegateFlowLayout
 {
-    // @property (readonly, nonatomic) enum BKYToolboxCategoryListViewControllerOrientation orientation;
-    [Export("orientation")]
-    BKYToolboxCategoryListViewControllerOrientation Orientation { get; }
+	// @property (readonly, nonatomic) enum BKYToolboxCategoryListViewControllerOrientation orientation;
+	[Export ("orientation")]
+	BKYToolboxCategoryListViewControllerOrientation Orientation { get; }
 
-    // @property (nonatomic, strong) BKYToolboxLayout * _Nullable toolboxLayout;
-    [NullAllowed, Export("toolboxLayout", ArgumentSemantic.Strong)]
-    BKYToolboxLayout ToolboxLayout { get; set; }
+	// @property (nonatomic, strong) BKYToolboxLayout * _Nullable toolboxLayout;
+	[NullAllowed, Export ("toolboxLayout", ArgumentSemantic.Strong)]
+	BKYToolboxLayout ToolboxLayout { get; set; }
 
-    // @property (nonatomic, strong) BKYToolboxCategory * _Nullable selectedCategory;
-    [NullAllowed, Export("selectedCategory", ArgumentSemantic.Strong)]
-    BKYToolboxCategory SelectedCategory { get; set; }
+	// @property (nonatomic, strong) BKYToolboxCategory * _Nullable selectedCategory;
+	[NullAllowed, Export ("selectedCategory", ArgumentSemantic.Strong)]
+	BKYToolboxCategory SelectedCategory { get; set; }
 
-    // @property (nonatomic, strong) UIFont * _Nonnull categoryFont;
-    [Export("categoryFont", ArgumentSemantic.Strong)]
-    UIFont CategoryFont { get; set; }
+	// @property (nonatomic, strong) UIFont * _Nonnull categoryFont;
+	[Export ("categoryFont", ArgumentSemantic.Strong)]
+	UIFont CategoryFont { get; set; }
 
-    // @property (nonatomic, strong) UIColor * _Nullable selectedCategoryTextColor;
-    [NullAllowed, Export("selectedCategoryTextColor", ArgumentSemantic.Strong)]
-    UIColor SelectedCategoryTextColor { get; set; }
+	// @property (nonatomic, strong) UIColor * _Nullable selectedCategoryTextColor;
+	[NullAllowed, Export ("selectedCategoryTextColor", ArgumentSemantic.Strong)]
+	UIColor SelectedCategoryTextColor { get; set; }
 
-    // @property (nonatomic, strong) UIColor * _Nullable unselectedCategoryBackgroundColor;
-    [NullAllowed, Export("unselectedCategoryBackgroundColor", ArgumentSemantic.Strong)]
-    UIColor UnselectedCategoryBackgroundColor { get; set; }
+	// @property (nonatomic, strong) UIColor * _Nullable unselectedCategoryBackgroundColor;
+	[NullAllowed, Export ("unselectedCategoryBackgroundColor", ArgumentSemantic.Strong)]
+	UIColor UnselectedCategoryBackgroundColor { get; set; }
 
-    // @property (nonatomic, strong) UIColor * _Nullable unselectedCategoryTextColor;
-    [NullAllowed, Export("unselectedCategoryTextColor", ArgumentSemantic.Strong)]
-    UIColor UnselectedCategoryTextColor { get; set; }
+	// @property (nonatomic, strong) UIColor * _Nullable unselectedCategoryTextColor;
+	[NullAllowed, Export ("unselectedCategoryTextColor", ArgumentSemantic.Strong)]
+	UIColor UnselectedCategoryTextColor { get; set; }
 
-    [Wrap("WeakDelegate")]
-    [NullAllowed]
-    BKYToolboxCategoryListViewControllerDelegate Delegate { get; set; }
+	[Wrap ("WeakDelegate")]
+	[NullAllowed]
+	BKYToolboxCategoryListViewControllerDelegate Delegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYToolboxCategoryListViewControllerDelegate> _Nullable delegate;
-    [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-    NSObject WeakDelegate { get; set; }
+	// @property (nonatomic, weak) id<BKYToolboxCategoryListViewControllerDelegate> _Nullable delegate;
+	[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+	NSObject WeakDelegate { get; set; }
 
-    // -(instancetype _Nonnull)initWithOrientation:(enum BKYToolboxCategoryListViewControllerOrientation)orientation __attribute__((objc_designated_initializer));
-    [Export("initWithOrientation:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYToolboxCategoryListViewControllerOrientation orientation);
+	// -(instancetype _Nonnull)initWithOrientation:(enum BKYToolboxCategoryListViewControllerOrientation)orientation __attribute__((objc_designated_initializer));
+	[Export ("initWithOrientation:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYToolboxCategoryListViewControllerOrientation orientation);
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)viewDidLoad;
-    [Export("viewDidLoad")]
-    void ViewDidLoad();
+	// -(void)viewDidLoad;
+	[Export ("viewDidLoad")]
+	void ViewDidLoad ();
 
-    // -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
-    [Export("observeValueForKeyPath:ofObject:change:context:")]
-    unsafe void ObserveValueForKeyPath([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
+	// -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
+	[Export ("observeValueForKeyPath:ofObject:change:context:")]
+	unsafe void ObserveValueForKeyPath ([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] void* context);
 
-    // -(void)refreshView;
-    [Export("refreshView")]
-    void RefreshView();
+	// -(void)refreshView;
+	[Export ("refreshView")]
+	void RefreshView ();
 
-    // -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView __attribute__((warn_unused_result));
-    [Export("numberOfSectionsInCollectionView:")]
-    nint NumberOfSectionsInCollectionView(UICollectionView collectionView);
+	// -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView __attribute__((warn_unused_result));
+	[Export ("numberOfSectionsInCollectionView:")]
+	nint NumberOfSectionsInCollectionView (UICollectionView collectionView);
 
-    // -(NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section __attribute__((warn_unused_result));
-    [Export("collectionView:numberOfItemsInSection:")]
-    nint CollectionView(UICollectionView collectionView, nint section);
+	// -(NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section __attribute__((warn_unused_result));
+	[Export ("collectionView:numberOfItemsInSection:")]
+	nint CollectionView (UICollectionView collectionView, nint section);
 
-    // -(UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-    [Export("collectionView:cellForItemAtIndexPath:")]
-    UICollectionViewCell CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
+	// -(UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
+	[Export ("collectionView:cellForItemAtIndexPath:")]
+	UICollectionViewCell CollectionView (UICollectionView collectionView, NSIndexPath indexPath);
 
-//    // -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-//    [Export("collectionView:didSelectItemAtIndexPath:")]
-//    void CollectionView(UICollectionView collectionView, NSIndexPath indexPath);
-}
+//	// -(void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+//	[Export ("collectionView:didSelectItemAtIndexPath:")]
+//	void CollectionView (UICollectionView collectionView, NSIndexPath indexPath);
 
-// @interface Blockly_Swift_5845 (BKYToolboxCategoryListViewController) <UICollectionViewDelegateFlowLayout>
-[Category]
-[BaseType(typeof(BKYToolboxCategoryListViewController))]
-interface BKYToolboxCategoryListViewController_Blockly_Swift_5845 : IUICollectionViewDelegateFlowLayout
-{
-    // -(CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-    [Export("collectionView:layout:sizeForItemAtIndexPath:")]
-    CGSize CollectionView(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, NSIndexPath indexPath);
+	// -(CGSize)collectionView:(UICollectionView * _Nonnull)collectionView layout:(UICollectionViewLayout * _Nonnull)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
+	[Export ("collectionView:layout:sizeForItemAtIndexPath:")]
+	CGSize CollectionView (UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, NSIndexPath indexPath);
 }
 
 // @protocol BKYToolboxCategoryListViewControllerDelegate
