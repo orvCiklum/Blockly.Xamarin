@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Foundation;
 using ObjCRuntime;
 
@@ -82,5 +83,25 @@ namespace Blockly.Bindings.XamarinIOS
         BottomLeading,
         BottomCenter,
         BottomTrailing
+    }
+    
+    [StructLayout (LayoutKind.Sequential)]
+    public struct BKYWorkspacePoint
+    {
+        public nfloat x;
+
+        public nfloat y;
+    }
+    
+    [StructLayout (LayoutKind.Sequential)]
+    public struct BKYEdgeInsets
+    {
+        public nfloat top;
+
+        public nfloat leading;
+
+        public nfloat bottom;
+
+        public nfloat trailing;
     }
 }

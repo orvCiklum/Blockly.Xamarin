@@ -81,11 +81,6 @@ interface BKYAnglePicker
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)layoutSubviews;
     [Export("layoutSubviews")]
     void LayoutSubviews();
@@ -123,9 +118,9 @@ interface BKYAnglePickerViewController
 
     [Wrap("WeakDelegate")]
     [NullAllowed]
-    BKYAnglePickerViewControllerDelegate Delegate { get; set; }
+    IBKYAnglePickerViewControllerDelegate Delegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYAnglePickerViewControllerDelegate> _Nullable delegate;
+    // @property (nonatomic, weak) id<IBKYAnglePickerViewControllerDelegate> _Nullable delegate;
     [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
     NSObject WeakDelegate { get; set; }
 
@@ -133,19 +128,14 @@ interface BKYAnglePickerViewController
     [Export("anglePicker", ArgumentSemantic.Strong)]
     BKYAnglePicker AnglePicker { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)viewDidLoad;
     [Export("viewDidLoad")]
     void ViewDidLoad();
 }
 
-// @protocol BKYAnglePickerViewControllerDelegate
+// @protocol IBKYAnglePickerViewControllerDelegate
 [Protocol, Model]
-interface BKYAnglePickerViewControllerDelegate
+interface IBKYAnglePickerViewControllerDelegate
 {
     // @required -(void)anglePickerViewController:(BKYAnglePickerViewController * _Nonnull)viewController didUpdateAngle:(double)angle;
     [Abstract]
@@ -169,11 +159,6 @@ interface BKYBezierPathLayer
     [Export("initWithLayer:")]
     [DesignatedInitializer]
     IntPtr Constructor(NSObject layer);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 
     // -(void)setBezierPath:(UIBezierPath * _Nullable)bezierPath animated:(BOOL)animated;
     [Export("setBezierPath:animated:")]
@@ -538,11 +523,6 @@ interface BKYLayoutView : BKYRecyclable
     [Export ("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor (CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export ("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor (NSCoder aDecoder);
 }
     
 // @interface BKYBlockGroupView : BKYLayoutView <BKYZIndexedView>
@@ -582,11 +562,6 @@ interface BKYBlockGroupView : BKYZIndexedView
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @interface BKYBlockLayout : BKYLayout <BKYBlockListener>
@@ -684,7 +659,6 @@ interface BKYBlockLayout : BKYBlockListener
 
 	// -(BOOL)hasHighlightedConnections __attribute__((warn_unused_result));
 	[Export ("hasHighlightedConnections")]
-	[Verify (MethodToProperty)]
 	bool HasHighlightedConnections { get; }
 
 	// -(void)didUpdateBlock:(BKYBlock * _Nonnull)block;
@@ -710,11 +684,6 @@ interface BKYBlockView
     [NullAllowed, Export("blockLayout", ArgumentSemantic.Strong)]
     BKYBlockLayout BlockLayout { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)prepareForReuse;
     [Export("prepareForReuse")]
     void PrepareForReuse();
@@ -728,11 +697,6 @@ interface BKYBlocklyError
     [Static]
     [Export("Domain")]
     string Domain { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @interface BKYEvent : NSObject
@@ -1858,11 +1822,6 @@ interface BKYDefaultBlockView
     [NullAllowed, Export("defaultBlockLayout", ArgumentSemantic.Strong)]
     BKYDefaultBlockLayout DefaultBlockLayout { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(UIView * _Nullable)hitTest:(CGPoint)point withEvent:(UIEvent * _Nullable)event __attribute__((warn_unused_result));
     [Export("hitTest:withEvent:")]
     [return: NullAllowed]
@@ -2635,11 +2594,6 @@ interface BKYDropdownOptionsViewController
     [Export("initWithNibName:bundle:")]
     [DesignatedInitializer]
     IntPtr Constructor([NullAllowed] string nibNameOrNil, [NullAllowed] NSBundle nibBundleOrNil);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @protocol BKYDropdownOptionsViewControllerDelegate
@@ -2712,11 +2666,6 @@ interface BKYDropdownView
     [Export("initWithDropDownArrowImage:")]
     [DesignatedInitializer]
     IntPtr Constructor([NullAllowed] UIImage dropDownArrowImage);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 
     // -(void)layoutSubviews;
     [Export("layoutSubviews")]
@@ -2889,7 +2838,7 @@ interface BKYFieldAngle
 
 // @interface BKYFieldLayout : BKYLayout
 [BaseType(typeof(BKYLayout))]
-interface BKYFieldLayout
+interface BKYFieldLayout: BKYFieldListener
 {
     // @property (nonatomic) Class<BKYFieldLayoutMeasurer> _Nonnull measurer;
     [Export("measurer", ArgumentSemantic.Assign)]
@@ -2915,6 +2864,10 @@ interface BKYFieldLayout
     // -(BOOL)setValueFromSerializedText:(NSString * _Nonnull)text error:(NSError * _Nullable * _Nullable)error;
     [Export("setValueFromSerializedText:error:")]
     bool SetValueFromSerializedText(string text, [NullAllowed] out NSError error);
+    
+    // -(void)didUpdateField:(BKYField * _Nonnull)field;
+    [Export("didUpdateField:")]
+    void DidUpdateField(BKYField field);
 }
 
 // @interface BKYFieldAngleLayout : BKYFieldLayout
@@ -2947,25 +2900,17 @@ interface BKYFieldView
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
-// @interface BKYFieldAngleView : BKYFieldView <BKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
+// @interface BKYFieldAngleView : BKYFieldView <IBKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
     [BaseType (typeof(BKYFieldView))]
-    interface BKYFieldAngleView : BKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate, IUITextFieldDelegate
+    interface BKYFieldAngleView : IBKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate, IUITextFieldDelegate
     {
         // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
         [Export ("textField", ArgumentSemantic.Strong)]
         BKYInsetTextField TextField { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -2982,7 +2927,7 @@ interface BKYFieldView
 
         // -(void)anglePickerViewController:(BKYAnglePickerViewController * _Nonnull)viewController didUpdateAngle:(double)angle;
         [Export ("anglePickerViewController:didUpdateAngle:")]
-        void AnglePickerViewController (BKYAnglePickerViewController viewController, double angle);
+        void DidUpdateAngle (BKYAnglePickerViewController viewController, double angle);
 
         // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
         [Export ("prepareForPopoverPresentation:")]
@@ -3047,10 +2992,7 @@ interface BKYFieldCheckboxLayout
         [NullAllowed, Export ("fieldCheckboxLayout", ArgumentSemantic.Strong)]
         BKYFieldCheckboxLayout FieldCheckboxLayout { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -3130,11 +3072,6 @@ interface BKYFieldColorPickerViewController
     [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
     NSObject WeakDelegate { get; set; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)viewDidLoad;
     [Export("viewDidLoad")]
     void ViewDidLoad();
@@ -3185,11 +3122,6 @@ interface BKYFieldColorView : BKYFieldColorPickerViewControllerDelegate, BKYFiel
     // @property (readonly, nonatomic, strong) BKYFieldColorLayout * _Nullable fieldColorLayout;
     [NullAllowed, Export ("fieldColorLayout", ArgumentSemantic.Strong)]
     BKYFieldColorLayout FieldColorLayout { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export ("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
     [Export ("prepareForReuse")]
@@ -3277,11 +3209,6 @@ interface BKYFieldDateView : BKYFieldLayoutMeasurer, IUITextFieldDelegate
     [Export ("datePicker", ArgumentSemantic.Strong)]
     UIDatePicker DatePicker { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export ("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor (NSCoder aDecoder);
-
     // -(void)prepareForReuse;
     [Export ("prepareForReuse")]
     void PrepareForReuse ();
@@ -3342,11 +3269,6 @@ interface BKYFieldDropdownView : BKYDropdownOptionsViewControllerDelegate, BKYDr
     // @property (readonly, nonatomic, strong) BKYFieldDropdownLayout * _Nullable fieldDropdownLayout;
     [NullAllowed, Export ("fieldDropdownLayout", ArgumentSemantic.Strong)]
     BKYFieldDropdownLayout FieldDropdownLayout { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export ("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
     [Export ("prepareForReuse")]
@@ -3434,11 +3356,6 @@ interface BKYFieldImageView : BKYFieldLayoutMeasurer
     [NullAllowed, Export ("fieldImageLayout", ArgumentSemantic.Strong)]
     BKYFieldImageLayout FieldImageLayout { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export ("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor (NSCoder aDecoder);
-
     // -(void)prepareForReuse;
     [Export ("prepareForReuse")]
     void PrepareForReuse ();
@@ -3505,10 +3422,7 @@ interface BKYFieldInputLayout
         [Export ("textField", ArgumentSemantic.Strong)]
         BKYInsetTextField TextField { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -3572,10 +3486,7 @@ interface BKYFieldLabelLayout
         [NullAllowed, Export ("fieldLabelLayout", ArgumentSemantic.Strong)]
         BKYFieldLabelLayout FieldLabelLayout { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -3593,16 +3504,6 @@ interface BKYFieldListener
 {
     // @required -(void)didUpdateField:(BKYField * _Nonnull)field;
     [Abstract]
-    [Export("didUpdateField:")]
-    void DidUpdateField(BKYField field);
-}
-
-// @interface Blockly_Swift_4042 (BKYFieldLayout) <BKYFieldListener>
-[Category]
-[BaseType(typeof(BKYFieldLayout))]
-interface BKYFieldLayout_Blockly_Swift_4042 : BKYFieldListener
-{
-    // -(void)didUpdateField:(BKYField * _Nonnull)field;
     [Export("didUpdateField:")]
     void DidUpdateField(BKYField field);
 }
@@ -3675,10 +3576,7 @@ interface BKYFieldNumberView : BKYFieldLayoutMeasurer, BKYNumberPadDelegate, IUI
 	[Export ("textField", ArgumentSemantic.Strong)]
 	BKYInsetTextField TextField { get; }
 
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
+	
 
 	// -(void)prepareForReuse;
 	[Export ("prepareForReuse")]
@@ -3795,7 +3693,6 @@ interface BKYFieldVariableLayout : BKYNameManagerListener
 
 	// -(NSInteger)numberOfVariableReferences __attribute__((warn_unused_result));
 	[Export ("numberOfVariableReferences")]
-	[Verify (MethodToProperty)]
 	nint NumberOfVariableReferences { get; }
 
 	// -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
@@ -3836,10 +3733,7 @@ interface BKYNameManagerListener
         [NullAllowed, Export ("fieldVariableLayout", ArgumentSemantic.Strong)]
         BKYFieldVariableLayout FieldVariableLayout { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -4005,11 +3899,6 @@ interface BKYInputView
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @interface BKYInsetTextField : UITextField
@@ -4032,11 +3921,6 @@ interface BKYInsetTextField
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @interface BKYJSONHelper : NSObject
@@ -4344,10 +4228,7 @@ interface MutatorIfElseLayout
         [Export ("popoverButton", ArgumentSemantic.Strong)]
         UIButton PopoverButton { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -4507,10 +4388,7 @@ interface MutatorProcedureDefinitionLayout
         [Export ("popoverButton", ArgumentSemantic.Strong)]
         UIButton PopoverButton { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
 
         // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
@@ -4715,11 +4593,6 @@ interface BKYNumberPad : IUITextFieldDelegate
 	[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 	NSObject WeakDelegate { get; set; }
 
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
-
 	// -(void)layoutSubviews;
 	[Export ("layoutSubviews")]
 	void LayoutSubviews ();
@@ -4761,11 +4634,6 @@ interface NumberPadTextField
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
 
 // @interface BKYNumberPadViewController : UIViewController
@@ -4775,11 +4643,6 @@ interface BKYNumberPadViewController
     // @property (readonly, nonatomic, strong) BKYNumberPad * _Nonnull numberPad;
     [Export("numberPad", ArgumentSemantic.Strong)]
     BKYNumberPad NumberPad { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 
     // -(void)viewDidLoad;
     [Export("viewDidLoad")]
@@ -5144,10 +5007,7 @@ interface BKYToolboxCategoryListViewController : IUICollectionViewDelegateFlowLa
 	[DesignatedInitializer]
 	IntPtr Constructor (BKYToolboxCategoryListViewControllerOrientation orientation);
 
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
+	
 
 	// -(void)viewDidLoad;
 	[Export ("viewDidLoad")]
@@ -5155,7 +5015,7 @@ interface BKYToolboxCategoryListViewController : IUICollectionViewDelegateFlowLa
 
 	// -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
 	[Export ("observeValueForKeyPath:ofObject:change:context:")]
-	unsafe void ObserveValueForKeyPath ([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] void* context);
+	unsafe void ObserveValueForKeyPath ([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
 
 	// -(void)refreshView;
 	[Export ("refreshView")]
@@ -5205,10 +5065,7 @@ interface BKYToolboxCategoryListViewControllerDelegate
         [Export ("isInMotion")]
         bool IsInMotion { get; }
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        [Export ("initWithCoder:")]
-        [DesignatedInitializer]
-        IntPtr Constructor (NSCoder aDecoder);
+
     }
     
 // @interface BKYToolboxCategoryViewController : UIViewController <BKYNameManagerListener>
@@ -5248,10 +5105,7 @@ interface BKYToolboxCategoryViewController : BKYNameManagerListener
 	[DesignatedInitializer]
 	IntPtr Constructor (BKYViewFactory viewFactory, BKYToolboxCategoryListViewControllerOrientation orientation, [NullAllowed] BKYNameManager variableNameManager);
 
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
+	
 
 	// -(void)viewDidLoad;
 	[Export ("viewDidLoad")]
@@ -5271,15 +5125,15 @@ interface BKYToolboxCategoryViewController : BKYNameManagerListener
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
 	[Export ("nameManager:didAddName:")]
-	void NameManager (BKYNameManager nameManager, string name);
+	void NameManagerDidAddName (BKYNameManager nameManager, string name);
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
 	[Export ("nameManager:didRenameName:toName:")]
-	void NameManager (BKYNameManager nameManager, string oldName, string newName);
+	void NameManagerDidRenameName (BKYNameManager nameManager, string oldName, string newName);
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
 	[Export ("nameManager:didRemoveName:")]
-	void NameManager (BKYNameManager nameManager, string name);
+	void NameManagerDidRemoveName (BKYNameManager nameManager, string name);
 }
 
 // @interface BKYToolboxLayout : NSObject
@@ -5325,11 +5179,6 @@ interface BKYTrashCanView
     [Export("button", ArgumentSemantic.Strong)]
     UIButton Button { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)setButtonPaddingWithTop:(CGFloat)top leading:(CGFloat)leading bottom:(CGFloat)bottom trailing:(CGFloat)trailing;
     [Export("setButtonPaddingWithTop:leading:bottom:trailing:")]
     void SetButtonPaddingWithTop(nfloat top, nfloat leading, nfloat bottom, nfloat trailing);
@@ -5372,11 +5221,6 @@ interface BKYWorkspaceViewController
     [DesignatedInitializer]
     IntPtr Constructor(BKYViewFactory viewFactory);
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-
     // -(void)loadView;
     [Export("loadView")]
     void LoadView();
@@ -5401,11 +5245,6 @@ interface BKYTrashCanViewController
     // @property (readonly, nonatomic) enum BKYWorkspaceFlowLayoutDirection layoutDirection;
     [Export("layoutDirection")]
     BKYWorkspaceFlowLayoutDirection LayoutDirection { get; }
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 
     // -(void)viewDidLoad;
     [Export("viewDidLoad")]
@@ -5458,20 +5297,6 @@ interface BKYTrashCanViewController
         [Export ("layout:didRemoveChildLayout:")]
         void Layout (BKYLayout layout, BKYLayout childLayout);
     }
-
-// @interface Blockly_Swift_6071 (BKYViewBuilder) <BKYLayoutHierarchyListener>
-[Category]
-[BaseType(typeof(BKYViewBuilder))]
-interface BKYViewBuilder_Blockly_Swift_6071 : BKYLayoutHierarchyListener
-{
-    // -(void)layout:(BKYLayout * _Nonnull)layout didAdoptChildLayout:(BKYLayout * _Nonnull)childLayout fromOldParentLayout:(BKYLayout * _Nullable)oldParentLayout;
-    [Export("layout:didAdoptChildLayout:fromOldParentLayout:")]
-    void Layout(BKYLayout layout, BKYLayout childLayout, [NullAllowed] BKYLayout oldParentLayout);
-
-    // -(void)layout:(BKYLayout * _Nonnull)layout didRemoveChildLayout:(BKYLayout * _Nonnull)childLayout;
-    [Export("layout:didRemoveChildLayout:")]
-    void Layout(BKYLayout layout, BKYLayout childLayout);
-}
 
 // @protocol BKYViewBuilderDelegate
 [Protocol, Model]
@@ -5550,7 +5375,7 @@ interface BKYViewManager
     
 // @interface BKYWorkbenchViewController : UIViewController <BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, UIGestureRecognizerDelegate>
 [BaseType (typeof(UIViewController))]
-interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, IBKYEventManagerListener, IBKYToolboxCategoryListViewControllerDelegate, IBKYWorkspaceViewControllerDelegate, IUIGestureRecognizerDelegate
+interface BKYWorkbenchViewController : BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, IUIGestureRecognizerDelegate
 {
 	// @property (readonly, nonatomic) NSInteger stateTrashCanOpen;
 	[Export ("stateTrashCanOpen")]
@@ -5717,11 +5542,6 @@ interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, 
 	[Export ("initWithStyle:engine:layoutBuilder:blockFactory:viewFactory:variableNameManager:procedureCoordinator:")]
 	[DesignatedInitializer]
 	IntPtr Constructor (BKYWorkbenchViewControllerStyle style, BKYLayoutEngine engine, BKYLayoutBuilder layoutBuilder, BKYBlockFactory blockFactory, BKYViewFactory viewFactory, BKYNameManager variableNameManager, BKYProcedureCoordinator procedureCoordinator);
-
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
 
 	// -(void)loadView;
 	[Export ("loadView")]
@@ -6178,11 +5998,11 @@ interface BKYWorkspaceLayoutCoordinator : BKYNameManagerListener, BKYWorkspaceLi
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:didAddBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceDidAddBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
 	[Export ("workspace:didRemoveBlockTrees:")]
-	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+	void WorkspaceDidRemoveBlockTrees (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
 	[Export ("nameManager:didRemoveName:")]
@@ -6225,10 +6045,7 @@ interface BKYWorkspaceView : IUIScrollViewDelegate, BKYBlockGroupViewDelegate
 	[Export ("allowZoom")]
 	bool AllowZoom { get; set; }
 
-	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-	[Export ("initWithCoder:")]
-	[DesignatedInitializer]
-	IntPtr Constructor (NSCoder aDecoder);
+	
 
 	// -(void)prepareForReuse;
 	[Export ("prepareForReuse")]
@@ -6294,10 +6111,6 @@ interface BKYWorkspaceView : IUIScrollViewDelegate, BKYBlockGroupViewDelegate
 	// -(void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView;
 	[Export ("scrollViewDidScroll:")]
 	void ScrollViewDidScroll (UIScrollView scrollView);
-    
-    // -(void)blockGroupViewDidUpdateDragging:(BKYBlockGroupView * _Nonnull)blockGroupView; 
-    [Export("blockGroupViewDidUpdateDragging:")] 
-    void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView); 
 }
 
 // @interface Blockly_Swift_7090 (BKYWorkspaceView)
@@ -6307,7 +6120,7 @@ interface BKYWorkspaceView_Blockly_Swift_7090
 {
 }
 
-// @protocol BKYAnglePickerViewControllerDelegate
+// @protocol BKYBlockGroupViewDelegate
 [Protocol, Model]
 interface BKYBlockGroupViewDelegate
 {
@@ -6330,11 +6143,6 @@ interface BKYZIndexedGroupView
     [Export("initWithFrame:")]
     [DesignatedInitializer]
     IntPtr Constructor(CGRect frame);
-
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
 }
     
        // @interface BKYBlock : NSObject
