@@ -3274,51 +3274,39 @@ interface BKYFieldDateLayout
     void UpdateDate(NSDate date);
 }
 
-// @interface BKYFieldDateView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldDateView
+// @interface BKYFieldDateView : BKYFieldView <BKYFieldLayoutMeasurer, UITextFieldDelegate>
+[BaseType (typeof(BKYFieldView))]
+interface BKYFieldDateView : BKYFieldLayoutMeasurer, IUITextFieldDelegate
 {
     // @property (readonly, nonatomic, strong) BKYFieldDateLayout * _Nullable fieldDateLayout;
-    [NullAllowed, Export("fieldDateLayout", ArgumentSemantic.Strong)]
+    [NullAllowed, Export ("fieldDateLayout", ArgumentSemantic.Strong)]
     BKYFieldDateLayout FieldDateLayout { get; }
 
     // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
-    [Export("textField", ArgumentSemantic.Strong)]
+    [Export ("textField", ArgumentSemantic.Strong)]
     BKYInsetTextField TextField { get; }
 
     // @property (readonly, nonatomic, strong) UIDatePicker * _Nonnull datePicker;
-    [Export("datePicker", ArgumentSemantic.Strong)]
+    [Export ("datePicker", ArgumentSemantic.Strong)]
     UIDatePicker DatePicker { get; }
 
     // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
+    [Export ("initWithCoder:")]
     [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+    [Export ("prepareForReuse")]
+    void PrepareForReuse ();
 
-// @interface Blockly_Swift_3734 (BKYFieldDateView) <UITextFieldDelegate>
-[Category]
-[BaseType(typeof(BKYFieldDateView))]
-interface BKYFieldDateView_Blockly_Swift_3734 : IUITextFieldDelegate
-{
     // -(BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string __attribute__((warn_unused_result));
-    [Export("textField:shouldChangeCharactersInRange:replacementString:")]
-    bool TextField(UITextField textField, NSRange range, string @string);
-}
+    [Export ("textField:shouldChangeCharactersInRange:replacementString:")]
+    bool TextField (UITextField textField, NSRange range, string @string);
 
-// @interface Blockly_Swift_3739 (BKYFieldDateView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldDateView))]
-interface BKYFieldDateView_Blockly_Swift_3739 : BKYFieldLayoutMeasurer
-{
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
+    [Export ("measureLayout:scale:")]
+    CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
 }
 
 // @interface BKYFieldDropdown : BKYField
