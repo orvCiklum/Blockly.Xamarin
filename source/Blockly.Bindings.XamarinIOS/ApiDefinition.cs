@@ -506,40 +506,44 @@ interface BKYZIndexedView: INativeObject
     nuint ZIndex { get; }
 }
 
-// @interface BKYLayoutView : UIView
-[BaseType(typeof(UIView))]
-interface BKYLayoutView
-{
-    // @property (nonatomic, strong) BKYLayout * _Nullable layout;
-    [NullAllowed, Export("layout", ArgumentSemantic.Strong)]
-    BKYLayout Layout { get; set; }
+// @interface BKYLayoutView : UIView <BKYRecyclable>
+    [BaseType (typeof(UIView))]
+    interface BKYLayoutView : BKYRecyclable
+    {
+        // @property (nonatomic, strong) BKYLayout * _Nullable layout;
+        [NullAllowed, Export ("layout", ArgumentSemantic.Strong)]
+        BKYLayout Layout { get; set; }
 
-    [Wrap("WeakPopoverDelegate")]
-    [NullAllowed]
-    BKYLayoutPopoverDelegate PopoverDelegate { get; set; }
+        [Wrap ("WeakPopoverDelegate")]
+        [NullAllowed]
+        BKYLayoutPopoverDelegate PopoverDelegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYLayoutPopoverDelegate> _Nullable popoverDelegate;
-    [NullAllowed, Export("popoverDelegate", ArgumentSemantic.Weak)]
-    NSObject WeakPopoverDelegate { get; set; }
+        // @property (nonatomic, weak) id<BKYLayoutPopoverDelegate> _Nullable popoverDelegate;
+        [NullAllowed, Export ("popoverDelegate", ArgumentSemantic.Weak)]
+        NSObject WeakPopoverDelegate { get; set; }
 
-    // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code;
-    [Export("runAnimatableCode:code:")]
-    void RunAnimatableCode(bool animated, Action code);
+        // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code;
+        [Export ("runAnimatableCode:code:")]
+        void RunAnimatableCode (bool animated, Action code);
 
-    // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code completion:(void (^ _Nullable)(BOOL))completion;
-    [Export("runAnimatableCode:code:completion:")]
-    void RunAnimatableCode(bool animated, Action code, [NullAllowed] Action<bool> completion);
+        // -(void)runAnimatableCode:(BOOL)animated code:(void (^ _Nonnull)(void))code completion:(void (^ _Nullable)(BOOL))completion;
+        [Export ("runAnimatableCode:code:completion:")]
+        void RunAnimatableCode (bool animated, Action code, [NullAllowed] Action<bool> completion);
 
-    // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
-    [Export("initWithFrame:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(CGRect frame);
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
-}
+        // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
+        [Export ("initWithFrame:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (CGRect frame);
+
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
+    }
     
 // @interface BKYBlockGroupView : BKYLayoutView <BKYZIndexedView>
 [BaseType(typeof(BKYLayoutView))]
@@ -4177,16 +4181,6 @@ interface BKYRecyclable
 {
     // @required -(void)prepareForReuse;
     [Abstract]
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
-
-// @interface Blockly_Swift_4747 (BKYLayoutView) <BKYRecyclable>
-[Category]
-[BaseType(typeof(BKYLayoutView))]
-interface BKYLayoutView_Blockly_Swift_4747 : BKYRecyclable
-{
-    // -(void)prepareForReuse;
     [Export("prepareForReuse")]
     void PrepareForReuse();
 }
