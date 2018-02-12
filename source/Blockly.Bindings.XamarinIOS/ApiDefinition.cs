@@ -3506,52 +3506,40 @@ interface BKYFieldInputLayout
     void UpdateText(string text);
 }
 
-// @interface BKYFieldInputView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldInputView
-{
-    // @property (readonly, nonatomic, strong) BKYFieldInputLayout * _Nullable fieldInputLayout;
-    [NullAllowed, Export("fieldInputLayout", ArgumentSemantic.Strong)]
-    BKYFieldInputLayout FieldInputLayout { get; }
+// @interface BKYFieldInputView : BKYFieldView <BKYFieldLayoutMeasurer, UITextFieldDelegate>
+    [BaseType (typeof(BKYFieldView))]
+    interface BKYFieldInputView : IBKYFieldLayoutMeasurer, IUITextFieldDelegate
+    {
+        // @property (readonly, nonatomic, strong) BKYFieldInputLayout * _Nullable fieldInputLayout;
+        [NullAllowed, Export ("fieldInputLayout", ArgumentSemantic.Strong)]
+        BKYFieldInputLayout FieldInputLayout { get; }
 
-    // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
-    [Export("textField", ArgumentSemantic.Strong)]
-    BKYInsetTextField TextField { get; }
+        // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
+        [Export ("textField", ArgumentSemantic.Strong)]
+        BKYInsetTextField TextField { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-// @interface Blockly_Swift_3966 (BKYFieldInputView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldInputView))]
-interface BKYFieldInputView_Blockly_Swift_3966 : BKYFieldLayoutMeasurer
-{
-    // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
+        // -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
+        [Export ("textFieldShouldReturn:")]
+        bool TextFieldShouldReturn (UITextField textField);
 
-// @interface Blockly_Swift_3971 (BKYFieldInputView) <UITextFieldDelegate>
-[Category]
-[BaseType(typeof(BKYFieldInputView))]
-interface BKYFieldInputView_Blockly_Swift_3971 : IUITextFieldDelegate
-{
-    // -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
-    [Export("textFieldShouldReturn:")]
-    bool TextFieldShouldReturn(UITextField textField);
+        // -(void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+        [Export ("textFieldDidEndEditing:")]
+        void TextFieldDidEndEditing (UITextField textField);
 
-    // -(void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
-    [Export("textFieldDidEndEditing:")]
-    void TextFieldDidEndEditing(UITextField textField);
-}
+        // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
+        [Static]
+        [Export ("measureLayout:scale:")]
+        CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
+    }
 
 // @interface BKYFieldLabel : BKYField
 [BaseType(typeof(BKYField))]
