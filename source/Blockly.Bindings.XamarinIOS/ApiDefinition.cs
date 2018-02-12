@@ -133,7 +133,8 @@ interface BKYAnglePickerViewController
     void ViewDidLoad();
 }
 
-// @protocol IBKYAnglePickerViewControllerDelegate
+// @protocol BKYAnglePickerViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface IBKYAnglePickerViewControllerDelegate
 {
@@ -482,6 +483,7 @@ interface BKYBlockGroupLayout
 }
 
 // @protocol BKYZIndexedView
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYZIndexedView: INativeObject
 {
@@ -667,6 +669,7 @@ interface BKYBlockLayout : BKYBlockListener
 }
 
 // @protocol BKYBlockListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYBlockListener
 {
@@ -1206,6 +1209,7 @@ interface BKYBlocklyPanGestureRecognizer
 }
 
 // @protocol BKYBlocklyPanGestureRecognizerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYBlocklyPanGestureRecognizerDelegate
 {
@@ -1637,6 +1641,7 @@ interface BKYConnectionManager_Blockly_Swift_2140
 }
 
 // @protocol BKYConnectionPositionDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYConnectionPositionDelegate
 {
@@ -2597,6 +2602,7 @@ interface BKYDropdownOptionsViewController
 }
 
 // @protocol BKYDropdownOptionsViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYDropdownOptionsViewControllerDelegate
 {
@@ -2688,6 +2694,7 @@ interface BKYDropdownView
 }
 
 // @protocol BKYDropdownViewDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYDropdownViewDelegate
 {
@@ -2749,6 +2756,7 @@ interface BKYEventManager
 }
 
 // @protocol BKYEventManagerListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYEventManagerListener
 {
@@ -2935,6 +2943,7 @@ interface BKYFieldView
     }
 
 // @protocol BKYFieldLayoutMeasurer
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYFieldLayoutMeasurer
 {
@@ -3106,6 +3115,7 @@ interface BKYFieldColorPickerViewController
 }
 
 // @protocol BKYFieldColorPickerViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYFieldColorPickerViewControllerDelegate
 {
@@ -3499,6 +3509,7 @@ interface BKYFieldLabelLayout
     }
 
 // @protocol BKYFieldListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYFieldListener
 {
@@ -3609,6 +3620,7 @@ interface BKYFieldNumberView : BKYFieldLayoutMeasurer, BKYNumberPadDelegate, IUI
 }
 
 // @protocol BKYNumberPadDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYNumberPadDelegate
 {
@@ -3705,6 +3717,7 @@ interface BKYFieldVariableLayout : BKYNameManagerListener
 }
 
 // @protocol BKYNameManagerListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYNameManagerListener
 {
@@ -3952,6 +3965,7 @@ interface BKYJSONHelper
 interface BKYLayout_Blockly_Swift_4516
 {
     // @property (readonly, nonatomic) BOOL animateChangeEvent;
+    [Static]
     [Export("animateChangeEvent")]
     bool AnimateChangeEvent { get; }
 }
@@ -4025,6 +4039,7 @@ interface BKYLayoutFactory
 }
 
 // @protocol BKYLayoutHierarchyListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYLayoutHierarchyListener
 {
@@ -4040,6 +4055,7 @@ interface BKYLayoutHierarchyListener
 }
 
 // @protocol BKYLayoutPopoverDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYLayoutPopoverDelegate
 {
@@ -4060,6 +4076,7 @@ interface BKYLayoutPopoverDelegate
 }
 
 // @protocol BKYRecyclable
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYRecyclable
 {
@@ -4165,6 +4182,7 @@ interface BKYMutatorIfElse_Blockly_Swift_4990
     bool MutateBlockAndReturnError([NullAllowed] out NSError error);
 
     // -(NSArray<BKYInput *> * _Nonnull)sortedMutatorInputs __attribute__((warn_unused_result));
+    [Static]
     [Export("sortedMutatorInputs")]
     BKYInput[] SortedMutatorInputs { get; }
 }
@@ -4763,6 +4781,7 @@ interface BKYProcedureCoordinator : BKYEventManagerListener, BKYNameManagerListe
 }
 
 // @protocol BKYWorkspaceListener
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYWorkspaceListener
 {
@@ -4781,38 +4800,6 @@ interface BKYWorkspaceListener
     // @optional -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
     [Export("workspace:didRemoveBlockTrees:")]
     void DidRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
-}
-
-// @interface Blockly_Swift_5590 (BKYProcedureCoordinator) <BKYWorkspaceListener>
-[Category]
-[BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5590 : BKYWorkspaceListener
-{
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace willAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:willAddBlockTrees:")]
-    void WillAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
-
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:didAddBlockTrees:")]
-    void DidAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
-
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace willRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:willRemoveBlockTrees:")]
-    void WillRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
-
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:didRemoveBlockTrees:")]
-    void DidRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
-}
-
-// @interface Blockly_Swift_5598 (BKYProcedureCoordinator) <BKYEventManagerListener>
-[Category]
-[BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5598 : BKYEventManagerListener
-{
-    // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
-    [Export("eventManager:didFireEvent:")]
-    void EventManager(BKYEventManager eventManager, BKYEvent @event);
 }
 
 // @interface BKYToolbox : NSObject
@@ -5043,13 +5030,14 @@ interface BKYToolboxCategoryListViewController : IUICollectionViewDelegateFlowLa
 }
 
 // @protocol BKYToolboxCategoryListViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYToolboxCategoryListViewControllerDelegate
 {
     // @required -(void)toolboxCategoryListViewController:(BKYToolboxCategoryListViewController * _Nonnull)controller didSelectCategory:(BKYToolboxCategory * _Nonnull)category;
     [Abstract]
     [Export("toolboxCategoryListViewController:didSelectCategory:")]
-    void ToolboxCategoryListViewController(BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
+    void ToolboxCategoryListViewControllerDidSelectCategory(BKYToolboxCategoryListViewController controller, BKYToolboxCategory category);
 
     // @required -(void)toolboxCategoryListViewControllerDidDeselectCategory:(BKYToolboxCategoryListViewController * _Nonnull)controller;
     [Abstract]
@@ -5299,6 +5287,7 @@ interface BKYTrashCanViewController
     }
 
 // @protocol BKYViewBuilderDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYViewBuilderDelegate
 {
@@ -5701,6 +5690,7 @@ interface BKYWorkbenchViewController_Blockly_Swift_6488
 }
 
 // @protocol BKYWorkspaceViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYWorkspaceViewControllerDelegate
 {
@@ -5752,17 +5742,18 @@ interface BKYWorkbenchViewController_Blockly_Swift_6544
 }
 
 // @protocol BKYWorkbenchViewControllerDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYWorkbenchViewControllerDelegate
 {
     // @required -(void)workbenchViewController:(BKYWorkbenchViewController * _Nonnull)workbenchViewController didUpdateState:(NSSet<NSNumber *> * _Nonnull)state;
     [Abstract]
     [Export("workbenchViewController:didUpdateState:")]
-    void WorkbenchViewController(BKYWorkbenchViewController workbenchViewController, NSSet<NSNumber> state);
+    void WorkbenchViewControllerDidUpdateState(BKYWorkbenchViewController workbenchViewController, NSSet<NSNumber> state);
 
     // @optional -(NSSet<NSNumber *> * _Nonnull)workbenchViewController:(BKYWorkbenchViewController * _Nonnull)workbenchViewController shouldKeepStates:(NSSet<NSNumber *> * _Nonnull)keepStateValues forStateValue:(NSInteger)stateValue __attribute__((warn_unused_result));
     [Export("workbenchViewController:shouldKeepStates:forStateValue:")]
-    NSSet<NSNumber> WorkbenchViewController(BKYWorkbenchViewController workbenchViewController, NSSet<NSNumber> keepStateValues, nint stateValue);
+    NSSet<NSNumber> WorkbenchViewControllerForStateValue(BKYWorkbenchViewController workbenchViewController, NSSet<NSNumber> keepStateValues, nint stateValue);
 }
 
 // @interface Blockly_Swift_6611 (BKYWorkspace)
@@ -6121,6 +6112,7 @@ interface BKYWorkspaceView_Blockly_Swift_7090
 }
 
 // @protocol BKYBlockGroupViewDelegate
+[BaseType (typeof (NSObject))]
 [Protocol, Model]
 interface BKYBlockGroupViewDelegate
 {
@@ -6302,6 +6294,7 @@ interface BKYZIndexedGroupView
     }
     
     // @protocol BKYBlockExtension
+    [BaseType (typeof (NSObject))]
     [Protocol, Model]
     interface BKYBlockExtension: INativeObject
     {
