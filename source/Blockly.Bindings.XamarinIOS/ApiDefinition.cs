@@ -549,6 +549,14 @@ interface BKYBlockGroupView : BKYZIndexedView
     [NullAllowed, Export("blockGroupLayout", ArgumentSemantic.Strong)]
     BKYBlockGroupLayout BlockGroupLayout { get; }
 
+    [Wrap("WeakBlockGroupDelegate")]
+    [NullAllowed]
+    BKYBlockGroupViewDelegate Delegate { get; set; }
+
+    // @property (nonatomic, weak) id<BKYBlockGroupViewDelegate> _Nullable delegate;
+    [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+    NSObject WeakBlockGroupDelegate { get; set; }
+    
     // @property (readonly, nonatomic) NSUInteger zIndex;
     [Export("zIndex")]
     nuint ZIndex { get; }
@@ -3183,43 +3191,31 @@ interface BKYFieldColorPickerViewControllerDelegate
     void DidPickColor(BKYFieldColorPickerViewController viewController, UIColor color);
 }
 
-// @interface BKYFieldColorView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldColorView
+// @interface BKYFieldColorView : BKYFieldView <BKYFieldColorPickerViewControllerDelegate, BKYFieldLayoutMeasurer>
+[BaseType (typeof(BKYFieldView))]
+interface BKYFieldColorView : BKYFieldColorPickerViewControllerDelegate, BKYFieldLayoutMeasurer
 {
     // @property (readonly, nonatomic, strong) BKYFieldColorLayout * _Nullable fieldColorLayout;
-    [NullAllowed, Export("fieldColorLayout", ArgumentSemantic.Strong)]
+    [NullAllowed, Export ("fieldColorLayout", ArgumentSemantic.Strong)]
     BKYFieldColorLayout FieldColorLayout { get; }
 
     // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
+    [Export ("initWithCoder:")]
     [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+    [Export ("prepareForReuse")]
+    void PrepareForReuse ();
 
-// @interface Blockly_Swift_3649 (BKYFieldColorView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldColorView))]
-interface BKYFieldColorView_Blockly_Swift_3649 : BKYFieldLayoutMeasurer
-{
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
+    [Export ("measureLayout:scale:")]
+    CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
 
-// @interface Blockly_Swift_3654 (BKYFieldColorView) <BKYFieldColorPickerViewControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldColorView))]
-interface BKYFieldColorView_Blockly_Swift_3654 : BKYFieldColorPickerViewControllerDelegate
-{
     // -(void)fieldColorPickerViewController:(BKYFieldColorPickerViewController * _Nonnull)viewController didPickColor:(UIColor * _Nonnull)color;
-    [Export("fieldColorPickerViewController:didPickColor:")]
-    void FieldColorPickerViewController(BKYFieldColorPickerViewController viewController, UIColor color);
+    [Export ("fieldColorPickerViewController:didPickColor:")]
+    void FieldColorPickerViewController (BKYFieldColorPickerViewController viewController, UIColor color);
 }
 
 // @interface BKYFieldDate : BKYField
@@ -6458,10 +6454,20 @@ interface BKYWorkspaceScrollView : IUIGestureRecognizerDelegate
     IntPtr Constructor(NSCoder aDecoder);
 }
 
+// @protocol BKYAnglePickerViewControllerDelegate
+[Protocol, Model]
+interface BKYBlockGroupViewDelegate
+{
+    // @required -(void)blockGroupViewDidUpdateDragging:(BKYBlockGroupView * _Nonnull) blockGroupView
+    [Abstract]
+    [Export("blockGroupViewDidUpdateDragging:")]
+    void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView);
+}
+    
 // @interface Blockly_Swift_7112 (BKYWorkspaceView)
 [Category]
 [BaseType(typeof(BKYWorkspaceView))]
-interface BKYWorkspaceView_Blockly_Swift_7112
+interface BKYWorkspaceView_Blockly_Swift_7112: BKYBlockGroupViewDelegate
 {
     // -(void)addBlockGroupView:(BKYBlockGroupView * _Nonnull)blockGroupView;
     [Export("addBlockGroupView:")]
