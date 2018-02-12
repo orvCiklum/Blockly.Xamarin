@@ -56,13 +56,13 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\Blockly.framework">
+    <BundleResource Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\..\..\..\Blockly.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets" Condition="Exists('..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets')" />

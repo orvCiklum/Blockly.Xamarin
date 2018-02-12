@@ -2953,23 +2953,40 @@ interface BKYFieldView
     IntPtr Constructor(NSCoder aDecoder);
 }
 
-// @interface BKYFieldAngleView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldAngleView
-{
-    // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
-    [Export("textField", ArgumentSemantic.Strong)]
-    BKYInsetTextField TextField { get; }
+// @interface BKYFieldAngleView : BKYFieldView <BKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
+    [BaseType (typeof(BKYFieldView))]
+    interface BKYFieldAngleView : BKYAnglePickerViewControllerDelegate, BKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate, IUITextFieldDelegate
+    {
+        // @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
+        [Export ("textField", ArgumentSemantic.Strong)]
+        BKYInsetTextField TextField { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
+
+        // -(BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
+        [Export ("textFieldShouldBeginEditing:")]
+        bool TextFieldShouldBeginEditing (UITextField textField);
+
+        // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
+        [Static]
+        [Export ("measureLayout:scale:")]
+        CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
+
+        // -(void)anglePickerViewController:(BKYAnglePickerViewController * _Nonnull)viewController didUpdateAngle:(double)angle;
+        [Export ("anglePickerViewController:didUpdateAngle:")]
+        void AnglePickerViewController (BKYAnglePickerViewController viewController, double angle);
+
+        // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
+        [Export ("prepareForPopoverPresentation:")]
+        void PrepareForPopoverPresentation (UIPopoverPresentationController popoverPresentationController);
+    }
 
 // @protocol BKYFieldLayoutMeasurer
 [Protocol, Model]
@@ -2979,47 +2996,6 @@ interface BKYFieldLayoutMeasurer
     [Static, Abstract]
     [Export("measureLayout:scale:")]
     CGSize Scale(BKYFieldLayout layout, nfloat scale);
-}
-
-// @interface Blockly_Swift_3463 (BKYFieldAngleView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldAngleView))]
-interface BKYFieldAngleView_Blockly_Swift_3463 : BKYFieldLayoutMeasurer
-{
-    // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
-
-// @interface Blockly_Swift_3468 (BKYFieldAngleView) <BKYAnglePickerViewControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldAngleView))]
-interface BKYFieldAngleView_Blockly_Swift_3468 : BKYAnglePickerViewControllerDelegate
-{
-    // -(void)anglePickerViewController:(BKYAnglePickerViewController * _Nonnull)viewController didUpdateAngle:(double)angle;
-    [Export("anglePickerViewController:didUpdateAngle:")]
-    void AnglePickerViewController(BKYAnglePickerViewController viewController, double angle);
-}
-
-// @interface Blockly_Swift_3474 (BKYFieldAngleView) <UITextFieldDelegate>
-[Category]
-[BaseType(typeof(BKYFieldAngleView))]
-interface BKYFieldAngleView_Blockly_Swift_3474 : IUITextFieldDelegate
-{
-    // -(BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
-    [Export("textFieldShouldBeginEditing:")]
-    bool TextFieldShouldBeginEditing(UITextField textField);
-}
-
-// @interface Blockly_Swift_3480 (BKYFieldAngleView) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldAngleView))]
-interface BKYFieldAngleView_Blockly_Swift_3480 : IUIPopoverPresentationControllerDelegate
-{
-    // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
 }
 
 // @interface BKYFieldCheckbox : BKYField
