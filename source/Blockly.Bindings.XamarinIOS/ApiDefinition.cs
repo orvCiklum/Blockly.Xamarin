@@ -4495,37 +4495,31 @@ interface MutatorProcedureDefinitionLayout
     bool ContainsDuplicateParameters { get; }
 }
 
-// @interface MutatorProcedureDefinitionView : BKYLayoutView
-[BaseType(typeof(BKYLayoutView))]
-interface MutatorProcedureDefinitionView
-{
-    // @property (readonly, nonatomic, strong) MutatorProcedureDefinitionLayout * _Nullable mutatorProcedureDefinitionLayout;
-    [NullAllowed, Export("mutatorProcedureDefinitionLayout", ArgumentSemantic.Strong)]
-    MutatorProcedureDefinitionLayout MutatorProcedureDefinitionLayout { get; }
+// @interface MutatorProcedureDefinitionView : BKYLayoutView <UIPopoverPresentationControllerDelegate>
+    [BaseType (typeof(BKYLayoutView))]
+    interface MutatorProcedureDefinitionView : IUIPopoverPresentationControllerDelegate
+    {
+        // @property (readonly, nonatomic, strong) MutatorProcedureDefinitionLayout * _Nullable mutatorProcedureDefinitionLayout;
+        [NullAllowed, Export ("mutatorProcedureDefinitionLayout", ArgumentSemantic.Strong)]
+        MutatorProcedureDefinitionLayout MutatorProcedureDefinitionLayout { get; }
 
-    // @property (readonly, nonatomic, strong) UIButton * _Nonnull popoverButton;
-    [Export("popoverButton", ArgumentSemantic.Strong)]
-    UIButton PopoverButton { get; }
+        // @property (readonly, nonatomic, strong) UIButton * _Nonnull popoverButton;
+        [Export ("popoverButton", ArgumentSemantic.Strong)]
+        UIButton PopoverButton { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-// @interface Blockly_Swift_5176 (MutatorProcedureDefinitionView) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(MutatorProcedureDefinitionView))]
-interface MutatorProcedureDefinitionView_Blockly_Swift_5176 : IUIPopoverPresentationControllerDelegate
-{
-    // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
-}
+        // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
+        [Export ("prepareForPopoverPresentation:")]
+        void PrepareForPopoverPresentation (UIPopoverPresentationController popoverPresentationController);
+    }
 
 // @interface BKYMutatorProcedureIfReturn : NSObject
 [BaseType(typeof(NSObject))]
