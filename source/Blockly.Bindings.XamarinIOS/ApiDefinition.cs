@@ -4552,41 +4552,35 @@ interface BKYMutatorProcedureIfReturn_Blockly_Swift_5195
     BKYInput[] SortedMutatorInputs { get; }
 }
 
-// @interface BKYMutatorProcedureIfReturnLayout : BKYMutatorLayout
-[BaseType(typeof(BKYMutatorLayout))]
-interface BKYMutatorProcedureIfReturnLayout
-{
-    // @property (nonatomic) BOOL hasReturnValue;
-    [Export("hasReturnValue")]
-    bool HasReturnValue { get; set; }
+// @interface BKYMutatorProcedureIfReturnLayout : BKYMutatorLayout <BKYEventManagerListener>
+    [BaseType (typeof(BKYMutatorLayout))]
+    interface BKYMutatorProcedureIfReturnLayout : IBKYEventManagerListener
+    {
+        // @property (nonatomic) BOOL hasReturnValue;
+        [Export ("hasReturnValue")]
+        bool HasReturnValue { get; set; }
 
-    // -(instancetype _Nonnull)initWithMutator:(BKYMutatorProcedureIfReturn * _Nonnull)mutator engine:(BKYLayoutEngine * _Nonnull)engine __attribute__((objc_designated_initializer));
-    [Export("initWithMutator:engine:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYMutatorProcedureIfReturn mutator, BKYLayoutEngine engine);
+        // -(instancetype _Nonnull)initWithMutator:(BKYMutatorProcedureIfReturn * _Nonnull)mutator engine:(BKYLayoutEngine * _Nonnull)engine __attribute__((objc_designated_initializer));
+        [Export ("initWithMutator:engine:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (BKYMutatorProcedureIfReturn mutator, BKYLayoutEngine engine);
 
-    // -(void)performLayoutWithIncludeChildren:(BOOL)includeChildren;
-    [Export("performLayoutWithIncludeChildren:")]
-    void PerformLayoutWithIncludeChildren(bool includeChildren);
+        // -(void)performLayoutWithIncludeChildren:(BOOL)includeChildren;
+        [Export ("performLayoutWithIncludeChildren:")]
+        void PerformLayoutWithIncludeChildren (bool includeChildren);
 
-    // -(BOOL)performMutationAndReturnError:(NSError * _Nullable * _Nullable)error;
-    [Export("performMutationAndReturnError:")]
-    bool PerformMutationAndReturnError([NullAllowed] out NSError error);
+        // -(BOOL)performMutationAndReturnError:(NSError * _Nullable * _Nullable)error;
+        [Export ("performMutationAndReturnError:")]
+        bool PerformMutationAndReturnError ([NullAllowed] out NSError error);
 
-    // -(void)preserveCurrentInputConnections;
-    [Export("preserveCurrentInputConnections")]
-    void PreserveCurrentInputConnections();
-}
+        // -(void)preserveCurrentInputConnections;
+        [Export ("preserveCurrentInputConnections")]
+        void PreserveCurrentInputConnections ();
 
-// @interface Blockly_Swift_5222 (BKYMutatorProcedureIfReturnLayout) <BKYEventManagerListener>
-[Category]
-[BaseType(typeof(BKYMutatorProcedureIfReturnLayout))]
-interface BKYMutatorProcedureIfReturnLayout_Blockly_Swift_5222 : BKYEventManagerListener
-{
-    // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
-    [Export("eventManager:didFireEvent:")]
-    void EventManager(BKYEventManager eventManager, BKYEvent @event);
-}
+        // -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
+        [Export ("eventManager:didFireEvent:")]
+        void EventManager (BKYEventManager eventManager, BKYEvent @event);
+    }
 
 // @interface BKYNameManager : NSObject
 [BaseType(typeof(NSObject))]
@@ -4839,56 +4833,70 @@ interface BKYPathHelper
     void AddHatCapToPath(BKYWorkspaceBezierPath path, NSObject hatSize);
 }
 
-// @interface BKYProcedureCoordinator : NSObject
-[BaseType(typeof(NSObject))]
-interface BKYProcedureCoordinator
+// @interface BKYProcedureCoordinator : NSObject <BKYEventManagerListener, BKYNameManagerListener, BKYWorkspaceListener>
+[BaseType (typeof(NSObject))]
+interface BKYProcedureCoordinator : IBKYEventManagerListener, IBKYNameManagerListener, IBKYWorkspaceListener
 {
-    // @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_DEFINITION_NO_RETURN;
-    [Static]
-    [Export("BLOCK_DEFINITION_NO_RETURN")]
-    string BLOCK_DEFINITION_NO_RETURN { get; }
+	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_DEFINITION_NO_RETURN;
+	[Static]
+	[Export ("BLOCK_DEFINITION_NO_RETURN")]
+	string BLOCK_DEFINITION_NO_RETURN { get; }
 
-    // @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_DEFINITION_RETURN;
-    [Static]
-    [Export("BLOCK_DEFINITION_RETURN")]
-    string BLOCK_DEFINITION_RETURN { get; }
+	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_DEFINITION_RETURN;
+	[Static]
+	[Export ("BLOCK_DEFINITION_RETURN")]
+	string BLOCK_DEFINITION_RETURN { get; }
 
-    // @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_CALLER_NO_RETURN;
-    [Static]
-    [Export("BLOCK_CALLER_NO_RETURN")]
-    string BLOCK_CALLER_NO_RETURN { get; }
+	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_CALLER_NO_RETURN;
+	[Static]
+	[Export ("BLOCK_CALLER_NO_RETURN")]
+	string BLOCK_CALLER_NO_RETURN { get; }
 
-    // @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_CALLER_RETURN;
-    [Static]
-    [Export("BLOCK_CALLER_RETURN")]
-    string BLOCK_CALLER_RETURN { get; }
+	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_CALLER_RETURN;
+	[Static]
+	[Export ("BLOCK_CALLER_RETURN")]
+	string BLOCK_CALLER_RETURN { get; }
 
-    // @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_IF_RETURN;
-    [Static]
-    [Export("BLOCK_IF_RETURN")]
-    string BLOCK_IF_RETURN { get; }
+	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_IF_RETURN;
+	[Static]
+	[Export ("BLOCK_IF_RETURN")]
+	string BLOCK_IF_RETURN { get; }
 
-    // @property (readonly, nonatomic, weak) BKYWorkbenchViewController * _Nullable workbench;
-    [NullAllowed, Export("workbench", ArgumentSemantic.Weak)]
-    BKYWorkbenchViewController Workbench { get; }
+	// @property (readonly, nonatomic, weak) BKYWorkbenchViewController * _Nullable workbench;
+	[NullAllowed, Export ("workbench", ArgumentSemantic.Weak)]
+	BKYWorkbenchViewController Workbench { get; }
 
-    // -(void)syncWithWorkbench:(BKYWorkbenchViewController * _Nullable)workbench;
-    [Export("syncWithWorkbench:")]
-    void SyncWithWorkbench([NullAllowed] BKYWorkbenchViewController workbench);
-}
+	// -(void)syncWithWorkbench:(BKYWorkbenchViewController * _Nullable)workbench;
+	[Export ("syncWithWorkbench:")]
+	void SyncWithWorkbench ([NullAllowed] BKYWorkbenchViewController workbench);
 
-// @interface Blockly_Swift_5553 (BKYProcedureCoordinator) <BKYNameManagerListener>
-[Category]
-[BaseType(typeof(BKYProcedureCoordinator))]
-interface BKYProcedureCoordinator_Blockly_Swift_5553 : BKYNameManagerListener
-{
-    // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
-    [Export("nameManager:shouldRemoveName:")]
-    bool NameManagerShouldRemoveName(BKYNameManager nameManager, string name);
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace willAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:willAddBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
-    [Export("nameManager:didRenameName:toName:")]
-    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:didAddBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace willRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:willRemoveBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:didRemoveBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
+
+	// -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
+	[Export ("eventManager:didFireEvent:")]
+	void EventManager (BKYEventManager eventManager, BKYEvent @event);
+
+	// -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
+	[Export ("nameManager:shouldRemoveName:")]
+	bool NameManager (BKYNameManager nameManager, string name);
+
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
+	[Export ("nameManager:didRenameName:toName:")]
+	void NameManager (BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @protocol BKYWorkspaceListener
