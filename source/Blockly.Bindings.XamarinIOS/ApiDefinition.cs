@@ -591,7 +591,7 @@ interface BKYBlockGroupView : BKYZIndexedView
 
 // @interface BKYBlockLayout : BKYLayout <BKYBlockListener>
 [BaseType (typeof(BKYLayout))]
-interface BKYBlockLayout : IBKYBlockListener
+interface BKYBlockLayout : BKYBlockListener
 {
 	// @property (readonly, nonatomic, strong) BKYBlock * _Nonnull block;
 	[Export ("block", ArgumentSemantic.Strong)]
@@ -3288,7 +3288,7 @@ interface BKYFieldDateView : BKYFieldLayoutMeasurer, IUITextFieldDelegate
 
     // -(BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string __attribute__((warn_unused_result));
     [Export ("textField:shouldChangeCharactersInRange:replacementString:")]
-    bool TextField (UITextField textField, NSRange range, string @string);
+    bool TextFieldShouldChangeCharactersInRange (UITextField textField, NSRange range, string @string);
 
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
@@ -3669,7 +3669,7 @@ interface BKYFieldNumberLayout
 
 // @interface BKYFieldNumberView : BKYFieldView <BKYFieldLayoutMeasurer, BKYNumberPadDelegate, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
 [BaseType (typeof(BKYFieldView))]
-interface BKYFieldNumberView : BKYFieldLayoutMeasurer, BKYNumberPadDelegate, IUIPopoverPresentationControllerDelegate, UITextFieldDelegate
+interface BKYFieldNumberView : BKYFieldLayoutMeasurer, BKYNumberPadDelegate, IUIPopoverPresentationControllerDelegate, IUITextFieldDelegate
 {
 	// @property (readonly, nonatomic, strong) BKYInsetTextField * _Nonnull textField;
 	[Export ("textField", ArgumentSemantic.Strong)]
@@ -3800,11 +3800,11 @@ interface BKYFieldVariableLayout : BKYNameManagerListener
 
 	// -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
 	[Export ("nameManager:shouldRemoveName:")]
-	bool NameManager (BKYNameManager nameManager, string name);
+	bool NameManagerShouldRemoveName (BKYNameManager nameManager, string name);
 
 	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
 	[Export ("nameManager:didRenameName:toName:")]
-	void NameManager (BKYNameManager nameManager, string oldName, string newName);
+	void NameManagerDidRenameName (BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @protocol BKYNameManagerListener
@@ -3830,7 +3830,7 @@ interface BKYNameManagerListener
 
 // @interface BKYFieldVariableView : BKYFieldView <BKYDropdownOptionsViewControllerDelegate, BKYDropdownViewDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate>
     [BaseType (typeof(BKYFieldView))]
-    interface BKYFieldVariableView : IBKYDropdownOptionsViewControllerDelegate, IBKYDropdownViewDelegate, IBKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate
+    interface BKYFieldVariableView : BKYDropdownOptionsViewControllerDelegate, BKYDropdownViewDelegate, BKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate
     {
         // @property (readonly, nonatomic, strong) BKYFieldVariableLayout * _Nullable fieldVariableLayout;
         [NullAllowed, Export ("fieldVariableLayout", ArgumentSemantic.Strong)]
@@ -4554,7 +4554,7 @@ interface BKYMutatorProcedureIfReturn_Blockly_Swift_5195
 
 // @interface BKYMutatorProcedureIfReturnLayout : BKYMutatorLayout <BKYEventManagerListener>
     [BaseType (typeof(BKYMutatorLayout))]
-    interface BKYMutatorProcedureIfReturnLayout : IBKYEventManagerListener
+    interface BKYMutatorProcedureIfReturnLayout : BKYEventManagerListener
     {
         // @property (nonatomic) BOOL hasReturnValue;
         [Export ("hasReturnValue")]
@@ -4730,7 +4730,7 @@ interface BKYNumberPad : IUITextFieldDelegate
 
 	// -(BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string __attribute__((warn_unused_result));
 	[Export ("textField:shouldChangeCharactersInRange:replacementString:")]
-	bool TextField (UITextField textField, NSRange range, string @string);
+	bool TextFieldShouldChangeCharactersInRange (UITextField textField, NSRange range, string @string);
 
 	// -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
 	[Export ("textFieldShouldReturn:")]
@@ -4835,7 +4835,7 @@ interface BKYPathHelper
 
 // @interface BKYProcedureCoordinator : NSObject <BKYEventManagerListener, BKYNameManagerListener, BKYWorkspaceListener>
 [BaseType (typeof(NSObject))]
-interface BKYProcedureCoordinator : IBKYEventManagerListener, IBKYNameManagerListener, IBKYWorkspaceListener
+interface BKYProcedureCoordinator : BKYEventManagerListener, BKYNameManagerListener, BKYWorkspaceListener
 {
 	// @property (readonly, copy, nonatomic, class) NSString * _Nonnull BLOCK_DEFINITION_NO_RETURN;
 	[Static]
@@ -5199,7 +5199,7 @@ interface BKYToolboxCategoryListViewControllerDelegate
 
 // @interface BKYToolboxCategoryViewController : UIViewController <BKYNameManagerListener>
 [BaseType (typeof(UIViewController))]
-interface BKYToolboxCategoryViewController : IBKYNameManagerListener
+interface BKYToolboxCategoryViewController : BKYNameManagerListener
 {
 	// @property (nonatomic, strong) BKYToolboxLayout * _Nullable toolboxLayout;
 	[NullAllowed, Export ("toolboxLayout", ArgumentSemantic.Strong)]
@@ -5533,10 +5533,10 @@ interface BKYViewManager
     [return: NullAllowed]
     BKYLayoutView FindViewForLayout(BKYLayout layout);
 }
-
+    
 // @interface BKYWorkbenchViewController : UIViewController <BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, UIGestureRecognizerDelegate>
 [BaseType (typeof(UIViewController))]
-interface BKYWorkbenchViewController : BKYBlocklyPanGestureRecognizerDelegate, BKYEventManagerListener, BKYToolboxCategoryListViewControllerDelegate, BKYWorkspaceViewControllerDelegate, IUIGestureRecognizerDelegate
+interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, IBKYEventManagerListener, IBKYToolboxCategoryListViewControllerDelegate, IBKYWorkspaceViewControllerDelegate, IUIGestureRecognizerDelegate
 {
 	// @property (readonly, nonatomic) NSInteger stateTrashCanOpen;
 	[Export ("stateTrashCanOpen")]
@@ -5781,6 +5781,7 @@ interface BKYWorkbenchViewController : BKYBlocklyPanGestureRecognizerDelegate, B
 	[Export ("eventManager:didFireEvent:")]
 	void EventManager (BKYEventManager eventManager, BKYEvent @event);
 }
+    
 // @interface Blockly_Swift_6384 (BKYWorkbenchViewController)
 [Category]
 [BaseType(typeof(BKYWorkbenchViewController))]
@@ -5886,28 +5887,6 @@ interface BKYWorkspaceViewControllerDelegate
 
     // @required -(void)workspaceViewControllerDismissedViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController;
     [Abstract]
-    [Export("workspaceViewControllerDismissedViewController:")]
-    void WorkspaceViewControllerDismissedViewController(BKYWorkspaceViewController workspaceViewController);
-}
-
-// @interface Blockly_Swift_6534 (BKYWorkbenchViewController) <BKYWorkspaceViewControllerDelegate>
-[Category]
-[BaseType(typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6534 : BKYWorkspaceViewControllerDelegate
-{
-    // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didAddBlockView:(BKYBlockView * _Nonnull)blockView;
-    [Export("workspaceViewController:didAddBlockView:")]
-    void WorkspaceViewControllerDidAddBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
-
-    // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController didRemoveBlockView:(BKYBlockView * _Nonnull)blockView;
-    [Export("workspaceViewController:didRemoveBlockView:")]
-    void WorkspaceViewControllerDidRemoveBlockView(BKYWorkspaceViewController workspaceViewController, BKYBlockView blockView);
-
-    // -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
-    [Export("workspaceViewController:willPresentViewController:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
-
-    // -(void)workspaceViewControllerDismissedViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController;
     [Export("workspaceViewControllerDismissedViewController:")]
     void WorkspaceViewControllerDismissedViewController(BKYWorkspaceViewController workspaceViewController);
 }
@@ -6322,77 +6301,6 @@ interface BKYBlockGroupViewDelegate
     [Abstract]
     [Export("blockGroupViewDidUpdateDragging:")]
     void BlockGroupViewDidUpdateDragging(BKYBlockGroupView blockGroupView);
-}
-
-// @interface Blockly_Swift_7137 (BKYWorkspaceViewController) <BKYViewBuilderDelegate>
-[Category]
-[BaseType(typeof(BKYWorkspaceViewController))]
-interface BKYWorkspaceViewController_Blockly_Swift_7137 : BKYViewBuilderDelegate
-{
-    // -(void)viewBuilder:(BKYViewBuilder * _Nonnull)viewBuilder didAddChild:(UIView * _Nonnull)childView toParent:(UIView * _Nonnull)parentView;
-    [Export("viewBuilder:didAddChild:toParent:")]
-    void ViewBuilder(BKYViewBuilder viewBuilder, UIView childView, UIView parentView);
-}
-
-// @interface Blockly_Swift_7143 (BKYWorkspaceViewController) <BKYLayoutPopoverDelegate>
-[Category]
-[BaseType(typeof(BKYWorkspaceViewController))]
-interface BKYWorkspaceViewController_Blockly_Swift_7143 : BKYLayoutPopoverDelegate
-{
-    // -(BOOL)layoutView:(BKYLayoutView * _Nonnull)layoutView requestedToPresentPopoverViewController:(UIViewController * _Nonnull)viewController fromView:(UIView * _Nonnull)fromView presentationDelegate:(id<UIPopoverPresentationControllerDelegate> _Nullable)presentationDelegate __attribute__((warn_unused_result));
-    [Export("layoutView:requestedToPresentPopoverViewController:fromView:presentationDelegate:")]
-    bool LayoutView(BKYLayoutView layoutView, UIViewController viewController, UIView fromView, [NullAllowed] UIPopoverPresentationControllerDelegate presentationDelegate);
-
-    // -(void)layoutView:(BKYLayoutView * _Nonnull)layoutView requestedToPresentViewController:(UIViewController * _Nonnull)viewController;
-    [Export("layoutView:requestedToPresentViewController:")]
-    void LayoutView(BKYLayoutView layoutView, UIViewController viewController);
-
-    // -(void)layoutView:(BKYLayoutView * _Nonnull)layoutView requestedToDismissPopoverViewController:(UIViewController * _Nonnull)viewController animated:(BOOL)animated;
-    [Export("layoutView:requestedToDismissPopoverViewController:animated:")]
-    void LayoutView(BKYLayoutView layoutView, UIViewController viewController, bool animated);
-}
-
-// @interface Blockly_Swift_7153 (BKYWorkspaceViewController) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(BKYWorkspaceViewController))]
-interface BKYWorkspaceViewController_Blockly_Swift_7153 : IUIPopoverPresentationControllerDelegate
-{
-    // -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller traitCollection:(UITraitCollection * _Nonnull)traitCollection __attribute__((availability(ios, introduced=8.3))) __attribute__((warn_unused_result));
-    [Export("adaptivePresentationStyleForPresentationController:traitCollection:")]
-    UIModalPresentationStyle AdaptivePresentationStyleForPresentationController(UIPresentationController controller, UITraitCollection traitCollection);
-
-    // -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller __attribute__((warn_unused_result));
-    [Export("adaptivePresentationStyleForPresentationController:")]
-    UIModalPresentationStyle AdaptivePresentationStyleForPresentationController(UIPresentationController controller);
-
-    // -(UIViewController * _Nullable)presentationController:(UIPresentationController * _Nonnull)controller viewControllerForAdaptivePresentationStyle:(UIModalPresentationStyle)style __attribute__((warn_unused_result));
-    [Export("presentationController:viewControllerForAdaptivePresentationStyle:")]
-    [return: NullAllowed]
-    UIViewController PresentationController(UIPresentationController controller, UIModalPresentationStyle style);
-
-    // -(void)presentationController:(UIPresentationController * _Nonnull)presentationController willPresentWithAdaptiveStyle:(UIModalPresentationStyle)style transitionCoordinator:(id<UIViewControllerTransitionCoordinator> _Nullable)transitionCoordinator __attribute__((availability(ios, introduced=8.3)));
-    [Export("presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:")]
-    void PresentationController(UIPresentationController presentationController, UIModalPresentationStyle style, [NullAllowed] IUIViewControllerTransitionCoordinator transitionCoordinator);
-
-    // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
-
-    // -(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController * _Nonnull)popoverPresentationController __attribute__((warn_unused_result));
-    [Export("popoverPresentationControllerShouldDismissPopover:")]
-    bool PopoverPresentationControllerShouldDismissPopover(UIPopoverPresentationController popoverPresentationController);
-
-    // -(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("popoverPresentationControllerDidDismissPopover:")]
-    void PopoverPresentationControllerDidDismissPopover(UIPopoverPresentationController popoverPresentationController);
-
-    // -(void)popoverPresentationController:(UIPopoverPresentationController * _Nonnull)popoverPresentationController willRepositionPopoverToRect:(CGRect * _Nonnull)rect inView:(UIView * _Nonnull * _Nonnull)view;
-    [Export("popoverPresentationController:willRepositionPopoverToRect:inView:")]
-    unsafe void PopoverPresentationController(UIPopoverPresentationController popoverPresentationController, CGRect rect, out UIView view);
-
-    // -(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^ _Nullable)(void))completion;
-    [Export("dismissViewControllerAnimated:completion:")]
-    void DismissViewControllerAnimated(bool flag, [NullAllowed] Action completion);
 }
 
 // @interface BKYZIndexedGroupView : UIView
