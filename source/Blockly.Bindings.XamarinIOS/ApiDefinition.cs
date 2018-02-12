@@ -6116,96 +6116,84 @@ interface BKYWorkspaceFlowLayout
     void PerformLayoutWithIncludeChildren(bool includeChildren);
 }
 
-// @interface BKYWorkspaceLayoutCoordinator : NSObject
-[BaseType(typeof(NSObject))]
+// @interface BKYWorkspaceLayoutCoordinator : NSObject <BKYNameManagerListener, BKYWorkspaceListener>
+[BaseType (typeof(NSObject))]
 [DisableDefaultCtor]
-interface BKYWorkspaceLayoutCoordinator
+interface BKYWorkspaceLayoutCoordinator : BKYNameManagerListener, BKYWorkspaceListener
 {
-    // @property (readonly, nonatomic, strong) BKYWorkspaceLayout * _Nonnull workspaceLayout;
-    [Export("workspaceLayout", ArgumentSemantic.Strong)]
-    BKYWorkspaceLayout WorkspaceLayout { get; }
+	// @property (readonly, nonatomic, strong) BKYWorkspaceLayout * _Nonnull workspaceLayout;
+	[Export ("workspaceLayout", ArgumentSemantic.Strong)]
+	BKYWorkspaceLayout WorkspaceLayout { get; }
 
-    // @property (readonly, nonatomic, strong) BKYLayoutBuilder * _Nonnull layoutBuilder;
-    [Export("layoutBuilder", ArgumentSemantic.Strong)]
-    BKYLayoutBuilder LayoutBuilder { get; }
+	// @property (readonly, nonatomic, strong) BKYLayoutBuilder * _Nonnull layoutBuilder;
+	[Export ("layoutBuilder", ArgumentSemantic.Strong)]
+	BKYLayoutBuilder LayoutBuilder { get; }
 
-    // @property (readonly, nonatomic, strong) BKYConnectionManager * _Nullable connectionManager;
-    [NullAllowed, Export("connectionManager", ArgumentSemantic.Strong)]
-    BKYConnectionManager ConnectionManager { get; }
+	// @property (readonly, nonatomic, strong) BKYConnectionManager * _Nullable connectionManager;
+	[NullAllowed, Export ("connectionManager", ArgumentSemantic.Strong)]
+	BKYConnectionManager ConnectionManager { get; }
 
-    // @property (readonly, nonatomic, strong) BKYBlockBumper * _Nonnull blockBumper;
-    [Export("blockBumper", ArgumentSemantic.Strong)]
-    BKYBlockBumper BlockBumper { get; }
+	// @property (readonly, nonatomic, strong) BKYBlockBumper * _Nonnull blockBumper;
+	[Export ("blockBumper", ArgumentSemantic.Strong)]
+	BKYBlockBumper BlockBumper { get; }
 
-    // @property (nonatomic, weak) BKYNameManager * _Nullable variableNameManager;
-    [NullAllowed, Export("variableNameManager", ArgumentSemantic.Weak)]
-    BKYNameManager VariableNameManager { get; set; }
+	// @property (nonatomic, weak) BKYNameManager * _Nullable variableNameManager;
+	[NullAllowed, Export ("variableNameManager", ArgumentSemantic.Weak)]
+	BKYNameManager VariableNameManager { get; set; }
 
-    // @property (nonatomic, strong) BKYBlockFactory * _Nullable blockFactory;
-    [NullAllowed, Export("blockFactory", ArgumentSemantic.Strong)]
-    BKYBlockFactory BlockFactory { get; set; }
+	// @property (nonatomic, strong) BKYBlockFactory * _Nullable blockFactory;
+	[NullAllowed, Export ("blockFactory", ArgumentSemantic.Strong)]
+	BKYBlockFactory BlockFactory { get; set; }
 
-    // -(instancetype _Nullable)initWithWorkspaceLayout:(BKYWorkspaceLayout * _Nonnull)workspaceLayout layoutBuilder:(BKYLayoutBuilder * _Nonnull)layoutBuilder connectionManager:(BKYConnectionManager * _Nullable)connectionManager error:(NSError * _Nullable * _Nullable)error __attribute__((objc_designated_initializer));
-    [Export("initWithWorkspaceLayout:layoutBuilder:connectionManager:error:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYWorkspaceLayout workspaceLayout, BKYLayoutBuilder layoutBuilder, [NullAllowed] BKYConnectionManager connectionManager, [NullAllowed] out NSError error);
+	// -(instancetype _Nullable)initWithWorkspaceLayout:(BKYWorkspaceLayout * _Nonnull)workspaceLayout layoutBuilder:(BKYLayoutBuilder * _Nonnull)layoutBuilder connectionManager:(BKYConnectionManager * _Nullable)connectionManager error:(NSError * _Nullable * _Nullable)error __attribute__((objc_designated_initializer));
+	[Export ("initWithWorkspaceLayout:layoutBuilder:connectionManager:error:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYWorkspaceLayout workspaceLayout, BKYLayoutBuilder layoutBuilder, [NullAllowed] BKYConnectionManager connectionManager, [NullAllowed] out NSError error);
 
-    // -(BOOL)addBlockTree:(BKYBlock * _Nonnull)rootBlock error:(NSError * _Nullable * _Nullable)error;
-    [Export("addBlockTree:error:")]
-    bool AddBlockTree(BKYBlock rootBlock, [NullAllowed] out NSError error);
+	// -(BOOL)addBlockTree:(BKYBlock * _Nonnull)rootBlock error:(NSError * _Nullable * _Nullable)error;
+	[Export ("addBlockTree:error:")]
+	bool AddBlockTree (BKYBlock rootBlock, [NullAllowed] out NSError error);
 
-    // -(BOOL)removeBlockTree:(BKYBlock * _Nonnull)rootBlock error:(NSError * _Nullable * _Nullable)error;
-    [Export("removeBlockTree:error:")]
-    bool RemoveBlockTree(BKYBlock rootBlock, [NullAllowed] out NSError error);
+	// -(BOOL)removeBlockTree:(BKYBlock * _Nonnull)rootBlock error:(NSError * _Nullable * _Nullable)error;
+	[Export ("removeBlockTree:error:")]
+	bool RemoveBlockTree (BKYBlock rootBlock, [NullAllowed] out NSError error);
 
-    // -(BOOL)removeSingleBlock:(BKYBlock * _Nonnull)block error:(NSError * _Nullable * _Nullable)error;
-    [Export("removeSingleBlock:error:")]
-    bool RemoveSingleBlock(BKYBlock block, [NullAllowed] out NSError error);
+	// -(BOOL)removeSingleBlock:(BKYBlock * _Nonnull)block error:(NSError * _Nullable * _Nullable)error;
+	[Export ("removeSingleBlock:error:")]
+	bool RemoveSingleBlock (BKYBlock block, [NullAllowed] out NSError error);
 
-    // -(BKYBlock * _Nullable)copyBlockTree:(BKYBlock * _Nonnull)rootBlock editable:(BOOL)editable position:(id)position error:(NSError * _Nullable * _Nullable)error __attribute__((warn_unused_result));
-    [Export("copyBlockTree:editable:position:error:")]
-    [return: NullAllowed]
-    BKYBlock CopyBlockTree(BKYBlock rootBlock, bool editable, NSObject position, [NullAllowed] out NSError error);
+	// -(BKYBlock * _Nullable)copyBlockTree:(BKYBlock * _Nonnull)rootBlock editable:(BOOL)editable position:(BKYWorkspacePoint)position error:(NSError * _Nullable * _Nullable)error __attribute__((warn_unused_result));
+	[Export ("copyBlockTree:editable:position:error:")]
+	[return: NullAllowed]
+	BKYBlock CopyBlockTree (BKYBlock rootBlock, bool editable, BKYWorkspacePoint position, [NullAllowed] out NSError error);
 
-    // -(BOOL)disconnect:(BKYConnection * _Nonnull)connection error:(NSError * _Nullable * _Nullable)error;
-    [Export("disconnect:error:")]
-    bool Disconnect(BKYConnection connection, [NullAllowed] out NSError error);
+	// -(BOOL)disconnect:(BKYConnection * _Nonnull)connection error:(NSError * _Nullable * _Nullable)error;
+	[Export ("disconnect:error:")]
+	bool Disconnect (BKYConnection connection, [NullAllowed] out NSError error);
 
-    // -(BOOL)disconnectShadow:(BKYConnection * _Nonnull)connection error:(NSError * _Nullable * _Nullable)error;
-    [Export("disconnectShadow:error:")]
-    bool DisconnectShadow(BKYConnection connection, [NullAllowed] out NSError error);
+	// -(BOOL)disconnectShadow:(BKYConnection * _Nonnull)connection error:(NSError * _Nullable * _Nullable)error;
+	[Export ("disconnectShadow:error:")]
+	bool DisconnectShadow (BKYConnection connection, [NullAllowed] out NSError error);
 
-    // -(BOOL)connect:(BKYConnection * _Nonnull)connection1 :(BKYConnection * _Nonnull)connection2 error:(NSError * _Nullable * _Nullable)error;
-    [Export("connect::error:")]
-    bool Connect(BKYConnection connection1, BKYConnection connection2, [NullAllowed] out NSError error);
+	// -(BOOL)connect:(BKYConnection * _Nonnull)connection1 :(BKYConnection * _Nonnull)connection2 error:(NSError * _Nullable * _Nullable)error;
+	[Export ("connect::error:")]
+	bool Connect (BKYConnection connection1, BKYConnection connection2, [NullAllowed] out NSError error);
 
-    // -(BOOL)rebuildLayoutTreeForBlock:(BKYBlock * _Nonnull)block error:(NSError * _Nullable * _Nullable)error;
-    [Export("rebuildLayoutTreeForBlock:error:")]
-    bool RebuildLayoutTreeForBlock(BKYBlock block, [NullAllowed] out NSError error);
-}
+	// -(BOOL)rebuildLayoutTreeForBlock:(BKYBlock * _Nonnull)block error:(NSError * _Nullable * _Nullable)error;
+	[Export ("rebuildLayoutTreeForBlock:error:")]
+	bool RebuildLayoutTreeForBlock (BKYBlock block, [NullAllowed] out NSError error);
 
-// @interface Blockly_Swift_6975 (BKYWorkspaceLayoutCoordinator) <BKYNameManagerListener>
-[Category]
-[BaseType(typeof(BKYWorkspaceLayoutCoordinator))]
-interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6975 : BKYNameManagerListener
-{
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
-    [Export("nameManager:didRemoveName:")]
-    void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
-}
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:didAddBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
-// @interface Blockly_Swift_6980 (BKYWorkspaceLayoutCoordinator) <BKYWorkspaceListener>
-[Category]
-[BaseType(typeof(BKYWorkspaceLayoutCoordinator))]
-interface BKYWorkspaceLayoutCoordinator_Blockly_Swift_6980 : BKYWorkspaceListener
-{
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didAddBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:didAddBlockTrees:")]
-    void DidAddBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
+	// -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
+	[Export ("workspace:didRemoveBlockTrees:")]
+	void Workspace (BKYWorkspace workspace, BKYBlock[] blockTrees);
 
-    // -(void)workspace:(BKYWorkspace * _Nonnull)workspace didRemoveBlockTrees:(NSArray<BKYBlock *> * _Nonnull)blockTrees;
-    [Export("workspace:didRemoveBlockTrees:")]
-    void DidRemoveBlockTrees(BKYWorkspace workspace, BKYBlock[] blockTrees);
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
+	[Export ("nameManager:didRemoveName:")]
+	void NameManager (BKYNameManager nameManager, string name);
 }
 
 // @interface BKYWorkspaceView : BKYLayoutView
