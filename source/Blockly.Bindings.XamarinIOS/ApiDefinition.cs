@@ -3348,63 +3348,39 @@ interface BKYFieldDropdownLayout
     void UpdateSelectedIndex(nint selectedIndex);
 }
 
-// @interface BKYFieldDropdownView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldDropdownView
+// @interface BKYFieldDropdownView : BKYFieldView <BKYDropdownOptionsViewControllerDelegate, BKYDropdownViewDelegate, BKYFieldLayoutMeasurer, UIPopoverPresentationControllerDelegate>
+[BaseType (typeof(BKYFieldView))]
+interface BKYFieldDropdownView : IBKYDropdownOptionsViewControllerDelegate, IBKYDropdownViewDelegate, IBKYFieldLayoutMeasurer, IUIPopoverPresentationControllerDelegate
 {
     // @property (readonly, nonatomic, strong) BKYFieldDropdownLayout * _Nullable fieldDropdownLayout;
-    [NullAllowed, Export("fieldDropdownLayout", ArgumentSemantic.Strong)]
+    [NullAllowed, Export ("fieldDropdownLayout", ArgumentSemantic.Strong)]
     BKYFieldDropdownLayout FieldDropdownLayout { get; }
 
     // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
+    [Export ("initWithCoder:")]
     [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+    [Export ("prepareForReuse")]
+    void PrepareForReuse ();
 
-// @interface Blockly_Swift_3806 (BKYFieldDropdownView) <BKYDropdownViewDelegate>
-[Category]
-[BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3806 : BKYDropdownViewDelegate
-{
-    // -(void)dropDownDidReceiveTap;
-    [Export("dropDownDidReceiveTap")]
-    void DropDownDidReceiveTap();
-}
-
-// @interface Blockly_Swift_3811 (BKYFieldDropdownView) <BKYDropdownOptionsViewControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3811 : BKYDropdownOptionsViewControllerDelegate
-{
-    // -(void)dropdownOptionsViewController:(BKYDropdownOptionsViewController * _Nonnull)viewController didSelectOptionIndex:(NSInteger)optionIndex;
-    [Export("dropdownOptionsViewController:didSelectOptionIndex:")]
-    void DropdownOptionsViewController(BKYDropdownOptionsViewController viewController, nint optionIndex);
-}
-
-// @interface Blockly_Swift_3816 (BKYFieldDropdownView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3816 : BKYFieldLayoutMeasurer
-{
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
+    [Export ("measureLayout:scale:")]
+    CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
 
-// @interface Blockly_Swift_3821 (BKYFieldDropdownView) <UIPopoverPresentationControllerDelegate>
-[Category]
-[BaseType(typeof(BKYFieldDropdownView))]
-interface BKYFieldDropdownView_Blockly_Swift_3821 : IUIPopoverPresentationControllerDelegate
-{
+    // -(void)dropDownDidReceiveTap;
+    [Export ("dropDownDidReceiveTap")]
+    void DropDownDidReceiveTap ();
+
     // -(void)prepareForPopoverPresentation:(UIPopoverPresentationController * _Nonnull)popoverPresentationController;
-    [Export("prepareForPopoverPresentation:")]
-    void PrepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController);
+    [Export ("prepareForPopoverPresentation:")]
+    void PrepareForPopoverPresentation (UIPopoverPresentationController popoverPresentationController);
+
+    // -(void)dropdownOptionsViewController:(BKYDropdownOptionsViewController * _Nonnull)viewController didSelectOptionIndex:(NSInteger)optionIndex;
+    [Export ("dropdownOptionsViewController:didSelectOptionIndex:")]
+    void DropdownOptionsViewController (BKYDropdownOptionsViewController viewController, nint optionIndex);
 }
 
 // @interface BKYFieldImage : BKYField
