@@ -3439,33 +3439,27 @@ interface BKYFieldImageLayout
     void LoadImageWithCompletion(Action<UIImage> completion);
 }
 
-// @interface BKYFieldImageView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldImageView
+// @interface BKYFieldImageView : BKYFieldView <BKYFieldLayoutMeasurer>
+[BaseType (typeof(BKYFieldView))]
+interface BKYFieldImageView : IBKYFieldLayoutMeasurer
 {
     // @property (readonly, nonatomic, strong) BKYFieldImageLayout * _Nullable fieldImageLayout;
-    [NullAllowed, Export("fieldImageLayout", ArgumentSemantic.Strong)]
+    [NullAllowed, Export ("fieldImageLayout", ArgumentSemantic.Strong)]
     BKYFieldImageLayout FieldImageLayout { get; }
 
     // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
+    [Export ("initWithCoder:")]
     [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+    IntPtr Constructor (NSCoder aDecoder);
 
     // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+    [Export ("prepareForReuse")]
+    void PrepareForReuse ();
 
-// @interface Blockly_Swift_3900 (BKYFieldImageView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldImageView))]
-interface BKYFieldImageView_Blockly_Swift_3900 : BKYFieldLayoutMeasurer
-{
     // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
     [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
+    [Export ("measureLayout:scale:")]
+    CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
 }
 
 // @interface BKYFieldInput : BKYField
