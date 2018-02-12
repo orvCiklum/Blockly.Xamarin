@@ -2948,7 +2948,7 @@ interface BKYFieldView
 interface BKYFieldLayoutMeasurer
 {
     // @required +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static, Abstract]
+    [Static]
     [Export("measureLayout:scale:")]
     CGSize Scale(BKYFieldLayout layout, nfloat scale);
 }
@@ -5606,6 +5606,10 @@ interface BKYWorkbenchViewController : BKYBlocklyPanGestureRecognizerDelegate, B
 	// -(void)eventManager:(BKYEventManager * _Nonnull)eventManager didFireEvent:(BKYEvent * _Nonnull)event;
 	[Export ("eventManager:didFireEvent:")]
 	void EventManager (BKYEventManager eventManager, BKYEvent @event);
+    
+    // @required -(void)blocklyPanGestureRecognizer:(BKYBlocklyPanGestureRecognizer * _Nonnull)gesture didTouchBlock:(BKYBlockView * _Nonnull)block touch:(UITouch * _Nonnull)touch touchState:(enum BKYBlocklyPanGestureRecognizerTouchState)touchState;
+    [Export("blocklyPanGestureRecognizer:didTouchBlock:touch:touchState:")]
+    void DidTouchBlock(BKYBlocklyPanGestureRecognizer gesture, BKYBlockView block, UITouch touch, BKYBlocklyPanGestureRecognizerTouchState touchState);
 }
     
 // @interface Blockly_Swift_6384 (BKYWorkbenchViewController)
@@ -5710,7 +5714,7 @@ interface BKYWorkspaceViewControllerDelegate
     // @required -(void)workspaceViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController willPresentViewController:(UIViewController * _Nonnull)viewController;
     [Abstract]
     [Export("workspaceViewController:willPresentViewController:")]
-    void WorkspaceViewController(BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
+    void WorkspaceViewControllerWillPresentViewController(BKYWorkspaceViewController workspaceViewController, UIViewController viewController);
 
     // @required -(void)workspaceViewControllerDismissedViewController:(BKYWorkspaceViewController * _Nonnull)workspaceViewController;
     [Abstract]

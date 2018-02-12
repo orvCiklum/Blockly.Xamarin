@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Blockly.Bindings.XamarinIOS;
 using UIKit;
 
 namespace Blockly.Sample
@@ -15,12 +15,15 @@ namespace Blockly.Sample
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-        }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            this.View.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+            this.View.AutosizesSubviews = true;
+            
+            var bench = new BKYWorkbenchViewController();
+            bench.View.Frame = this.View.Frame;
+           
+            View.AddSubview(bench.View);
+            bench.DidMoveToParentViewController(this);
         }
     }
 }
