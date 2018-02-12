@@ -3035,34 +3035,28 @@ interface BKYFieldCheckboxLayout
     void UpdateCheckbox(bool @checked);
 }
 
-// @interface BKYFieldCheckboxView : BKYFieldView
-[BaseType(typeof(BKYFieldView))]
-interface BKYFieldCheckboxView
-{
-    // @property (readonly, nonatomic, strong) BKYFieldCheckboxLayout * _Nullable fieldCheckboxLayout;
-    [NullAllowed, Export("fieldCheckboxLayout", ArgumentSemantic.Strong)]
-    BKYFieldCheckboxLayout FieldCheckboxLayout { get; }
+// @interface BKYFieldCheckboxView : BKYFieldView <BKYFieldLayoutMeasurer>
+    [BaseType (typeof(BKYFieldView))]
+    interface BKYFieldCheckboxView : BKYFieldLayoutMeasurer
+    {
+        // @property (readonly, nonatomic, strong) BKYFieldCheckboxLayout * _Nullable fieldCheckboxLayout;
+        [NullAllowed, Export ("fieldCheckboxLayout", ArgumentSemantic.Strong)]
+        BKYFieldCheckboxLayout FieldCheckboxLayout { get; }
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+        [Export ("initWithCoder:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)prepareForReuse;
-    [Export("prepareForReuse")]
-    void PrepareForReuse();
-}
+        // -(void)prepareForReuse;
+        [Export ("prepareForReuse")]
+        void PrepareForReuse ();
 
-// @interface Blockly_Swift_3541 (BKYFieldCheckboxView) <BKYFieldLayoutMeasurer>
-[Category]
-[BaseType(typeof(BKYFieldCheckboxView))]
-interface BKYFieldCheckboxView_Blockly_Swift_3541 : BKYFieldLayoutMeasurer
-{
-    // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
-    [Static]
-    [Export("measureLayout:scale:")]
-    CGSize MeasureLayout(BKYFieldLayout layout, nfloat scale);
-}
+        // +(CGSize)measureLayout:(BKYFieldLayout * _Nonnull)layout scale:(CGFloat)scale __attribute__((warn_unused_result));
+        [Static]
+        [Export ("measureLayout:scale:")]
+        CGSize MeasureLayout (BKYFieldLayout layout, nfloat scale);
+    }
 
 // @interface BKYFieldColor : BKYField
 [BaseType(typeof(BKYField))]
