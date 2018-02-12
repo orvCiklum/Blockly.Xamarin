@@ -3752,46 +3752,55 @@ interface BKYFieldVariable
     bool SetVariable(string name, [NullAllowed] out NSError error);
 }
 
-// @interface BKYFieldVariableLayout : BKYFieldLayout
-[BaseType(typeof(BKYFieldLayout))]
-interface BKYFieldVariableLayout
+// @interface BKYFieldVariableLayout : BKYFieldLayout <BKYNameManagerListener>
+[BaseType (typeof(BKYFieldLayout))]
+interface BKYFieldVariableLayout : BKYNameManagerListener
 {
-    // @property (readonly, copy, nonatomic) NSString * _Nonnull variable;
-    [Export("variable")]
-    string Variable { get; }
+	// @property (readonly, copy, nonatomic) NSString * _Nonnull variable;
+	[Export ("variable")]
+	string Variable { get; }
 
-    // @property (nonatomic, weak) BKYNameManager * _Nullable nameManager;
-    [NullAllowed, Export("nameManager", ArgumentSemantic.Weak)]
-    BKYNameManager NameManager { get; set; }
+	// @property (nonatomic, weak) BKYNameManager * _Nullable nameManager;
+	[NullAllowed, Export ("nameManager", ArgumentSemantic.Weak)]
+	BKYNameManager NameManager { get; set; }
 
-    // -(instancetype _Nonnull)initWithFieldVariable:(BKYFieldVariable * _Nonnull)fieldVariable engine:(BKYLayoutEngine * _Nonnull)engine measurer:(Class<BKYFieldLayoutMeasurer> _Nonnull)measurer __attribute__((objc_designated_initializer));
-    [Export("initWithFieldVariable:engine:measurer:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYFieldVariable fieldVariable, BKYLayoutEngine engine, BKYFieldLayoutMeasurer measurer);
+	// -(instancetype _Nonnull)initWithFieldVariable:(BKYFieldVariable * _Nonnull)fieldVariable engine:(BKYLayoutEngine * _Nonnull)engine measurer:(Class<BKYFieldLayoutMeasurer> _Nonnull)measurer __attribute__((objc_designated_initializer));
+	[Export ("initWithFieldVariable:engine:measurer:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYFieldVariable fieldVariable, BKYLayoutEngine engine, BKYFieldLayoutMeasurer measurer);
 
-    // -(void)didUpdateField:(BKYField * _Nonnull)field;
-    [Export("didUpdateField:")]
-    void DidUpdateField(BKYField field);
+	// -(void)didUpdateField:(BKYField * _Nonnull)field;
+	[Export ("didUpdateField:")]
+	void DidUpdateField (BKYField field);
 
-    // -(void)changeToExistingVariable:(NSString * _Nonnull)variable;
-    [Export("changeToExistingVariable:")]
-    void ChangeToExistingVariable(string variable);
+	// -(void)changeToExistingVariable:(NSString * _Nonnull)variable;
+	[Export ("changeToExistingVariable:")]
+	void ChangeToExistingVariable (string variable);
 
-    // -(void)renameVariableTo:(NSString * _Nonnull)newName;
-    [Export("renameVariableTo:")]
-    void RenameVariableTo(string newName);
+	// -(void)renameVariableTo:(NSString * _Nonnull)newName;
+	[Export ("renameVariableTo:")]
+	void RenameVariableTo (string newName);
 
-    // -(void)removeVariable;
-    [Export("removeVariable")]
-    void RemoveVariable();
+	// -(void)removeVariable;
+	[Export ("removeVariable")]
+	void RemoveVariable ();
 
-    // -(BOOL)isValidName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
-    [Export("isValidName:")]
-    bool IsValidName(string name);
+	// -(BOOL)isValidName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
+	[Export ("isValidName:")]
+	bool IsValidName (string name);
 
-    // -(NSInteger)numberOfVariableReferences __attribute__((warn_unused_result));
-    [Export("numberOfVariableReferences")]
-    nint NumberOfVariableReferences { get; }
+	// -(NSInteger)numberOfVariableReferences __attribute__((warn_unused_result));
+	[Export ("numberOfVariableReferences")]
+	[Verify (MethodToProperty)]
+	nint NumberOfVariableReferences { get; }
+
+	// -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
+	[Export ("nameManager:shouldRemoveName:")]
+	bool NameManager (BKYNameManager nameManager, string name);
+
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
+	[Export ("nameManager:didRenameName:toName:")]
+	void NameManager (BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @protocol BKYNameManagerListener
@@ -3813,20 +3822,6 @@ interface BKYNameManagerListener
     // @optional -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
     [Export("nameManager:didRemoveName:")]
     void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
-}
-
-// @interface Blockly_Swift_4268 (BKYFieldVariableLayout) <BKYNameManagerListener>
-[Category]
-[BaseType(typeof(BKYFieldVariableLayout))]
-interface BKYFieldVariableLayout_Blockly_Swift_4268 : BKYNameManagerListener
-{
-    // -(BOOL)nameManager:(BKYNameManager * _Nonnull)nameManager shouldRemoveName:(NSString * _Nonnull)name __attribute__((warn_unused_result));
-    [Export("nameManager:shouldRemoveName:")]
-    bool NameManagerShouldRemoveName(BKYNameManager nameManager, string name);
-
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
-    [Export("nameManager:didRenameName:toName:")]
-    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
 }
 
 // @interface BKYFieldVariableView : BKYFieldView
