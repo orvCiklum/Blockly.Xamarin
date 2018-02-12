@@ -5197,81 +5197,75 @@ interface BKYToolboxCategoryListViewControllerDelegate
     void ToolboxCategoryListViewControllerDidDeselectCategory(BKYToolboxCategoryListViewController controller);
 }
 
-// @interface BKYToolboxCategoryViewController : UIViewController
-[BaseType(typeof(UIViewController))]
-interface BKYToolboxCategoryViewController
+// @interface BKYToolboxCategoryViewController : UIViewController <BKYNameManagerListener>
+[BaseType (typeof(UIViewController))]
+interface BKYToolboxCategoryViewController : IBKYNameManagerListener
 {
-    // @property (nonatomic, strong) BKYToolboxLayout * _Nullable toolboxLayout;
-    [NullAllowed, Export("toolboxLayout", ArgumentSemantic.Strong)]
-    BKYToolboxLayout ToolboxLayout { get; set; }
+	// @property (nonatomic, strong) BKYToolboxLayout * _Nullable toolboxLayout;
+	[NullAllowed, Export ("toolboxLayout", ArgumentSemantic.Strong)]
+	BKYToolboxLayout ToolboxLayout { get; set; }
 
-    // @property (readonly, nonatomic, strong) BKYToolboxCategory * _Nullable category;
-    [NullAllowed, Export("category", ArgumentSemantic.Strong)]
-    BKYToolboxCategory Category { get; }
+	// @property (readonly, nonatomic, strong) BKYToolboxCategory * _Nullable category;
+	[NullAllowed, Export ("category", ArgumentSemantic.Strong)]
+	BKYToolboxCategory Category { get; }
 
-    // @property (nonatomic, strong) UIView * _Nonnull headerView;
-    [Export("headerView", ArgumentSemantic.Strong)]
-    UIView HeaderView { get; set; }
+	// @property (nonatomic, strong) UIView * _Nonnull headerView;
+	[Export ("headerView", ArgumentSemantic.Strong)]
+	UIView HeaderView { get; set; }
 
-    // @property (nonatomic, strong) UIView * _Nonnull footerView;
-    [Export("footerView", ArgumentSemantic.Strong)]
-    UIView FooterView { get; set; }
+	// @property (nonatomic, strong) UIView * _Nonnull footerView;
+	[Export ("footerView", ArgumentSemantic.Strong)]
+	UIView FooterView { get; set; }
 
-    [Wrap("WeakDelegate")]
-    [NullAllowed]
-    BKYWorkspaceViewControllerDelegate Delegate { get; set; }
+	[Wrap ("WeakDelegate")]
+	[NullAllowed]
+	BKYWorkspaceViewControllerDelegate Delegate { get; set; }
 
-    // @property (nonatomic, strong) id<BKYWorkspaceViewControllerDelegate> _Nullable delegate;
-    [NullAllowed, Export("delegate", ArgumentSemantic.Strong)]
-    NSObject WeakDelegate { get; set; }
+	// @property (nonatomic, strong) id<BKYWorkspaceViewControllerDelegate> _Nullable delegate;
+	[NullAllowed, Export ("delegate", ArgumentSemantic.Strong)]
+	NSObject WeakDelegate { get; set; }
 
-    // @property (readonly, nonatomic, strong) BKYWorkspaceScrollView * _Nonnull workspaceScrollView;
-    [Export("workspaceScrollView", ArgumentSemantic.Strong)]
-    BKYWorkspaceScrollView WorkspaceScrollView { get; }
+	// @property (readonly, nonatomic, strong) BKYWorkspaceScrollView * _Nonnull workspaceScrollView;
+	[Export ("workspaceScrollView", ArgumentSemantic.Strong)]
+	BKYWorkspaceScrollView WorkspaceScrollView { get; }
 
-    // -(instancetype _Nonnull)initWithViewFactory:(BKYViewFactory * _Nonnull)viewFactory orientation:(enum BKYToolboxCategoryListViewControllerOrientation)orientation variableNameManager:(BKYNameManager * _Nullable)variableNameManager __attribute__((objc_designated_initializer));
-    [Export("initWithViewFactory:orientation:variableNameManager:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYViewFactory viewFactory, BKYToolboxCategoryListViewControllerOrientation orientation, [NullAllowed] BKYNameManager variableNameManager);
+	// -(instancetype _Nonnull)initWithViewFactory:(BKYViewFactory * _Nonnull)viewFactory orientation:(enum BKYToolboxCategoryListViewControllerOrientation)orientation variableNameManager:(BKYNameManager * _Nullable)variableNameManager __attribute__((objc_designated_initializer));
+	[Export ("initWithViewFactory:orientation:variableNameManager:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (BKYViewFactory viewFactory, BKYToolboxCategoryListViewControllerOrientation orientation, [NullAllowed] BKYNameManager variableNameManager);
 
-    // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-    [Export("initWithCoder:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(NSCoder aDecoder);
+	// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+	[Export ("initWithCoder:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (NSCoder aDecoder);
 
-    // -(void)viewDidLoad;
-    [Export("viewDidLoad")]
-    void ViewDidLoad();
+	// -(void)viewDidLoad;
+	[Export ("viewDidLoad")]
+	void ViewDidLoad ();
 
-    // -(void)showCategory:(BKYToolboxCategory * _Nonnull)category animated:(BOOL)animated;
-    [Export("showCategory:animated:")]
-    void ShowCategory(BKYToolboxCategory category, bool animated);
+	// -(void)showCategory:(BKYToolboxCategory * _Nonnull)category animated:(BOOL)animated;
+	[Export ("showCategory:animated:")]
+	void ShowCategory (BKYToolboxCategory category, bool animated);
 
-    // -(void)hideCategoryWithAnimated:(BOOL)animated;
-    [Export("hideCategoryWithAnimated:")]
-    void HideCategoryWithAnimated(bool animated);
+	// -(void)hideCategoryWithAnimated:(BOOL)animated;
+	[Export ("hideCategoryWithAnimated:")]
+	void HideCategoryWithAnimated (bool animated);
 
-    // -(void)didTapAddButton:(UIButton * _Nonnull)_;
-    [Export("didTapAddButton:")]
-    void DidTapAddButton(UIButton _);
-}
+	// -(void)didTapAddButton:(UIButton * _Nonnull)_;
+	[Export ("didTapAddButton:")]
+	void DidTapAddButton (UIButton _);
 
-// @interface Blockly_Swift_5900 (BKYToolboxCategoryViewController) <BKYNameManagerListener>
-[Category]
-[BaseType(typeof(BKYToolboxCategoryViewController))]
-interface BKYToolboxCategoryViewController_Blockly_Swift_5900 : BKYNameManagerListener
-{
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
-    [Export("nameManager:didAddName:")]
-    void NameManagerDidAddName(BKYNameManager nameManager, string name);
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didAddName:(NSString * _Nonnull)name;
+	[Export ("nameManager:didAddName:")]
+	void NameManager (BKYNameManager nameManager, string name);
 
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
-    [Export("nameManager:didRenameName:toName:")]
-    void NameManagerDidRenameName(BKYNameManager nameManager, string oldName, string newName);
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRenameName:(NSString * _Nonnull)oldName toName:(NSString * _Nonnull)newName;
+	[Export ("nameManager:didRenameName:toName:")]
+	void NameManager (BKYNameManager nameManager, string oldName, string newName);
 
-    // -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
-    [Export("nameManager:didRemoveName:")]
-    void NameManagerDidRemoveName(BKYNameManager nameManager, string name);
+	// -(void)nameManager:(BKYNameManager * _Nonnull)nameManager didRemoveName:(NSString * _Nonnull)name;
+	[Export ("nameManager:didRemoveName:")]
+	void NameManager (BKYNameManager nameManager, string name);
 }
 
 // @interface BKYToolboxLayout : NSObject
