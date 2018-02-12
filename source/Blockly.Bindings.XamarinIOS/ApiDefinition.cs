@@ -5410,32 +5410,40 @@ interface BKYTrashCanViewController
     void SetWorkspaceViewWidth(nfloat width, bool animated);
 }
 
-// @interface BKYViewBuilder : NSObject
-[BaseType(typeof(NSObject))]
-[DisableDefaultCtor]
-interface BKYViewBuilder
-{
-    // @property (readonly, nonatomic, strong) BKYViewFactory * _Nonnull viewFactory;
-    [Export("viewFactory", ArgumentSemantic.Strong)]
-    BKYViewFactory ViewFactory { get; }
+// @interface BKYViewBuilder : NSObject <BKYLayoutHierarchyListener>
+    [BaseType (typeof(NSObject))]
+    [DisableDefaultCtor]
+    interface BKYViewBuilder : BKYLayoutHierarchyListener
+    {
+        // @property (readonly, nonatomic, strong) BKYViewFactory * _Nonnull viewFactory;
+        [Export ("viewFactory", ArgumentSemantic.Strong)]
+        BKYViewFactory ViewFactory { get; }
 
-    [Wrap("WeakDelegate")]
-    [NullAllowed]
-    BKYViewBuilderDelegate Delegate { get; set; }
+        [Wrap ("WeakDelegate")]
+        [NullAllowed]
+        BKYViewBuilderDelegate Delegate { get; set; }
 
-    // @property (nonatomic, weak) id<BKYViewBuilderDelegate> _Nullable delegate;
-    [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-    NSObject WeakDelegate { get; set; }
+        // @property (nonatomic, weak) id<BKYViewBuilderDelegate> _Nullable delegate;
+        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+        NSObject WeakDelegate { get; set; }
 
-    // -(instancetype _Nonnull)initWithViewFactory:(BKYViewFactory * _Nonnull)viewFactory __attribute__((objc_designated_initializer));
-    [Export("initWithViewFactory:")]
-    [DesignatedInitializer]
-    IntPtr Constructor(BKYViewFactory viewFactory);
+        // -(instancetype _Nonnull)initWithViewFactory:(BKYViewFactory * _Nonnull)viewFactory __attribute__((objc_designated_initializer));
+        [Export ("initWithViewFactory:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (BKYViewFactory viewFactory);
 
-    // -(BOOL)buildViewTreeForWorkspaceView:(BKYWorkspaceView * _Nonnull)workspaceView error:(NSError * _Nullable * _Nullable)error;
-    [Export("buildViewTreeForWorkspaceView:error:")]
-    bool BuildViewTreeForWorkspaceView(BKYWorkspaceView workspaceView, [NullAllowed] out NSError error);
-}
+        // -(BOOL)buildViewTreeForWorkspaceView:(BKYWorkspaceView * _Nonnull)workspaceView error:(NSError * _Nullable * _Nullable)error;
+        [Export ("buildViewTreeForWorkspaceView:error:")]
+        bool BuildViewTreeForWorkspaceView (BKYWorkspaceView workspaceView, [NullAllowed] out NSError error);
+
+        // -(void)layout:(BKYLayout * _Nonnull)layout didAdoptChildLayout:(BKYLayout * _Nonnull)childLayout fromOldParentLayout:(BKYLayout * _Nullable)oldParentLayout;
+        [Export ("layout:didAdoptChildLayout:fromOldParentLayout:")]
+        void Layout (BKYLayout layout, BKYLayout childLayout, [NullAllowed] BKYLayout oldParentLayout);
+
+        // -(void)layout:(BKYLayout * _Nonnull)layout didRemoveChildLayout:(BKYLayout * _Nonnull)childLayout;
+        [Export ("layout:didRemoveChildLayout:")]
+        void Layout (BKYLayout layout, BKYLayout childLayout);
+    }
 
 // @interface Blockly_Swift_6071 (BKYViewBuilder) <BKYLayoutHierarchyListener>
 [Category]
