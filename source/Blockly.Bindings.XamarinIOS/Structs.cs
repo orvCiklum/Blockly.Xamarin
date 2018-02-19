@@ -104,4 +104,18 @@ namespace Blockly.Bindings.XamarinIOS
 
         public nfloat trailing;
     }
+
+    [Native]
+    public enum BKYBlockJSONFile : ulong
+    {
+        ColorDefault = 1 << 0,
+        ListDefault = 1 << 1,
+        LogicDefault = 1 << 2,
+        LoopDefault = 1 << 3,
+        MathDefault = 1 << 4,
+        ProcedureDefault = 1 << 5,
+        TextDefault = 1 << 6,
+        VariableDefault = 1 << 7,
+        AllDefault = ColorDefault | ListDefault | LogicDefault | LoopDefault | MathDefault | TextDefault | VariableDefault | ProcedureDefault
+    }
 }
