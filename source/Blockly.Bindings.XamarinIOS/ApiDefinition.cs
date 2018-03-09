@@ -2538,6 +2538,10 @@ namespace Blockly.Bindings.XamarinIOS
     [BaseType(typeof(UITableViewController))]
     interface BKYDropdownOptionsViewController
     {
+        // @property (copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+        [Export("options", ArgumentSemantic.Copy)]
+        BKYOption[] Options { get; set; }
+
         // @property (nonatomic) NSInteger selectedIndex;
         [Export("selectedIndex")]
         nint SelectedIndex { get; set; }
@@ -3237,9 +3241,22 @@ namespace Blockly.Bindings.XamarinIOS
     [BaseType(typeof(BKYField))]
     interface BKYFieldDropdown
     {
+        // @property (copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+        [Export("options", ArgumentSemantic.Copy)]
+        BKYOption[] Options { get; set; }
+
         // @property (nonatomic) NSInteger selectedIndex;
         [Export("selectedIndex")]
         nint SelectedIndex { get; set; }
+
+        // @property (readonly, nonatomic, strong) BKYOption * _Nullable selectedOption;
+        [NullAllowed, Export("selectedOption", ArgumentSemantic.Strong)]
+        BKYOption SelectedOption { get; }
+
+        // -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)name options:(NSArray<BKYOption *> * _Nonnull)options selectedIndex:(NSInteger)selectedIndex __attribute__((objc_designated_initializer));
+        [Export("initWithName:options:selectedIndex:")]
+        [DesignatedInitializer]
+        IntPtr Constructor(string name, BKYOption[] options, nint selectedIndex);
 
         // -(instancetype _Nullable)initWithName:(NSString * _Nonnull)name displayNames:(NSArray<NSString *> * _Nonnull)displayNames values:(NSArray<NSString *> * _Nonnull)values selectedIndex:(NSInteger)selectedIndex error:(NSError * _Nullable * _Nullable)error;
         [Export("initWithName:displayNames:values:selectedIndex:error:")]
@@ -3258,9 +3275,17 @@ namespace Blockly.Bindings.XamarinIOS
     [BaseType(typeof(BKYFieldLayout))]
     interface BKYFieldDropdownLayout
     {
+        // @property (readonly, copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+        [Export("options", ArgumentSemantic.Copy)]
+        BKYOption[] Options { get; }
+
         // @property (readonly, nonatomic) NSInteger selectedIndex;
         [Export("selectedIndex")]
         nint SelectedIndex { get; }
+
+        // @property (readonly, nonatomic, strong) BKYOption * _Nullable selectedOption;
+        [NullAllowed, Export("selectedOption", ArgumentSemantic.Strong)]
+        BKYOption SelectedOption { get; }
 
         // -(instancetype _Nonnull)initWithFieldDropdown:(BKYFieldDropdown * _Nonnull)fieldDropdown engine:(BKYLayoutEngine * _Nonnull)engine measurer:(Class<BKYFieldLayoutMeasurer> _Nonnull)measurer __attribute__((objc_designated_initializer));
         [Export("initWithFieldDropdown:engine:measurer:")]
@@ -3670,6 +3695,10 @@ namespace Blockly.Bindings.XamarinIOS
     [BaseType(typeof(BKYFieldLayout))]
     interface BKYFieldVariableLayout : BKYNameManagerListener
     {
+        // @property (readonly, copy, nonatomic) NSArray<BKYOption *> * _Nonnull variables;
+        [Export("variables", ArgumentSemantic.Copy)]
+        BKYOption[] Variables { get; }
+
         // @property (readonly, copy, nonatomic) NSString * _Nonnull variable;
         [Export("variable")]
         string Variable { get; }
@@ -6494,5 +6523,24 @@ namespace Blockly.Bindings.XamarinIOS
         [Export("xml")]
         string Xml { get; }
     }
+
+    // @interface BKYOption : NSObject
+    [BaseType(typeof(NSObject))]
+    [DisableDefaultCtor]
+    interface BKYOption
+    {
+        // @property (copy, nonatomic) NSString * _Nonnull displayName;
+        [Export("displayName")]
+        string DisplayName { get; set; }
+
+        // @property (copy, nonatomic) NSString * _Nonnull value;
+        [Export("value")]
+        string Value { get; set; }
+
+        [Export("initWithDisplayName:value:")]
+        IntPtr Constructor(string displayName, string value);
+    }
+
+
 }
 

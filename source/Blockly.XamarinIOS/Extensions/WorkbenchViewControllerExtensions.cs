@@ -1,18 +1,41 @@
 ﻿using System;
 using System.IO;
 using Blockly.Bindings.XamarinIOS;
+using Blockly.XamarinIOS;
 using Foundation;
 
 namespace Blockly.Extensions
 {
     public static class WorkbenchViewControllerExtensions
     {
+        public static BKYCodeGeneratorService SetupCodeGeneratorService(this BKYWorkbenchViewController _, 
+                                                                        string[] blocks, string generator)
+        {
+            var _codeService = new BKYCodeGeneratorService(new string[] { BlocklyConstants.BLOCKLY_JS_BLOCKS });
+
+            var builder = new BKYCodeGeneratorServiceRequestBuilder("Blockly.JavaScript");
+
+            builder.AddJSBlockGeneratorFiles(new string[] { BlocklyConstants.BLOCKLY_JS_GENERATOR, generator });
+            builder.AddJSONBlockDefinitionFilesFromDefaultFiles(BKYBlockJSONFile.AllDefault);
+            builder.AddJSONBlockDefinitionFiles(blocks);
+
+            _codeService.SetRequestBuilder(builder, true);
+
+            return _codeService;
+        }
+
         public static void SetupToolBox(this BKYWorkbenchViewController bench, string toolboxXml, string[] blocksJsons)
         {
             try
             {
                 ExtractBlocks(bench, blocksJsons);
                 UpdateToolbox(bench, toolboxXml);
+            }
+            catch(NSErrorException nex)
+            {
+                Console.WriteLine(nex.Error.LocalizedDescription);
+                Console.WriteLine(nex);
+                throw nex;
             }
             catch (Exception ex)
             {

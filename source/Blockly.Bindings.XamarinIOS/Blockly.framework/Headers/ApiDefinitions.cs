@@ -65008,6 +65008,10 @@ interface BKYDragger
 [BaseType (typeof(UITableViewController))]
 interface BKYDropdownOptionsViewController
 {
+	// @property (copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+	[Export ("options", ArgumentSemantic.Copy)]
+	BKYOption[] Options { get; set; }
+
 	// @property (nonatomic) NSInteger selectedIndex;
 	[Export ("selectedIndex")]
 	nint SelectedIndex { get; set; }
@@ -65733,9 +65737,22 @@ interface BKYFieldDateView : IBKYFieldLayoutMeasurer, IUITextFieldDelegate
 [BaseType (typeof(BKYField))]
 interface BKYFieldDropdown
 {
+	// @property (copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+	[Export ("options", ArgumentSemantic.Copy)]
+	BKYOption[] Options { get; set; }
+
 	// @property (nonatomic) NSInteger selectedIndex;
 	[Export ("selectedIndex")]
 	nint SelectedIndex { get; set; }
+
+	// @property (readonly, nonatomic, strong) BKYOption * _Nullable selectedOption;
+	[NullAllowed, Export ("selectedOption", ArgumentSemantic.Strong)]
+	BKYOption SelectedOption { get; }
+
+	// -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)name options:(NSArray<BKYOption *> * _Nonnull)options selectedIndex:(NSInteger)selectedIndex __attribute__((objc_designated_initializer));
+	[Export ("initWithName:options:selectedIndex:")]
+	[DesignatedInitializer]
+	IntPtr Constructor (string name, BKYOption[] options, nint selectedIndex);
 
 	// -(instancetype _Nullable)initWithName:(NSString * _Nonnull)name displayNames:(NSArray<NSString *> * _Nonnull)displayNames values:(NSArray<NSString *> * _Nonnull)values selectedIndex:(NSInteger)selectedIndex error:(NSError * _Nullable * _Nullable)error;
 	[Export ("initWithName:displayNames:values:selectedIndex:error:")]
@@ -65755,9 +65772,17 @@ interface BKYFieldDropdown
 [BaseType (typeof(BKYFieldLayout))]
 interface BKYFieldDropdownLayout
 {
+	// @property (readonly, copy, nonatomic) NSArray<BKYOption *> * _Nonnull options;
+	[Export ("options", ArgumentSemantic.Copy)]
+	BKYOption[] Options { get; }
+
 	// @property (readonly, nonatomic) NSInteger selectedIndex;
 	[Export ("selectedIndex")]
 	nint SelectedIndex { get; }
+
+	// @property (readonly, nonatomic, strong) BKYOption * _Nullable selectedOption;
+	[NullAllowed, Export ("selectedOption", ArgumentSemantic.Strong)]
+	BKYOption SelectedOption { get; }
 
 	// -(instancetype _Nonnull)initWithFieldDropdown:(BKYFieldDropdown * _Nonnull)fieldDropdown engine:(BKYLayoutEngine * _Nonnull)engine measurer:(Class<BKYFieldLayoutMeasurer> _Nonnull)measurer __attribute__((objc_designated_initializer));
 	[Export ("initWithFieldDropdown:engine:measurer:")]
@@ -66200,6 +66225,10 @@ interface BKYNameManagerListener
 [BaseType (typeof(BKYFieldLayout))]
 interface BKYFieldVariableLayout : IBKYNameManagerListener
 {
+	// @property (readonly, copy, nonatomic) NSArray<BKYOption *> * _Nonnull variables;
+	[Export ("variables", ArgumentSemantic.Copy)]
+	BKYOption[] Variables { get; }
+
 	// @property (readonly, copy, nonatomic) NSString * _Nonnull variable;
 	[Export ("variable")]
 	string Variable { get; }
@@ -66526,10 +66555,10 @@ interface BKYFieldJSONRegistry
 	void UnregisterType (string type);
 }
 
-// @interface Blockly_Swift_4405 (BKYLayout)
+// @interface Blockly_Swift_4426 (BKYLayout)
 [Category]
 [BaseType (typeof(BKYLayout))]
-interface BKYLayout_Blockly_Swift_4405
+interface BKYLayout_Blockly_Swift_4426
 {
 	// @property (readonly, nonatomic) BOOL animateChangeEvent;
 	[Export ("animateChangeEvent")]
@@ -66779,10 +66808,10 @@ interface BKYMutatorIfElse
 	bool ElseStatement { get; set; }
 }
 
-// @interface Blockly_Swift_4910 (BKYMutatorIfElse)
+// @interface Blockly_Swift_4931 (BKYMutatorIfElse)
 [Category]
 [BaseType (typeof(BKYMutatorIfElse))]
-interface BKYMutatorIfElse_Blockly_Swift_4910
+interface BKYMutatorIfElse_Blockly_Swift_4931
 {
 	// -(BOOL)mutateBlockAndReturnError:(NSError * _Nullable * _Nullable)error;
 	[Export ("mutateBlockAndReturnError:")]
@@ -66901,10 +66930,10 @@ interface BKYMutatorProcedureCaller
 	string ProcedureName { get; set; }
 }
 
-// @interface Blockly_Swift_5003 (BKYMutatorProcedureCaller)
+// @interface Blockly_Swift_5024 (BKYMutatorProcedureCaller)
 [Category]
 [BaseType (typeof(BKYMutatorProcedureCaller))]
-interface BKYMutatorProcedureCaller_Blockly_Swift_5003
+interface BKYMutatorProcedureCaller_Blockly_Swift_5024
 {
 	// -(BOOL)mutateBlockAndReturnError:(NSError * _Nullable * _Nullable)error;
 	[Export ("mutateBlockAndReturnError:")]
@@ -66982,10 +67011,10 @@ interface BKYMutatorProcedureDefinition
 	IntPtr Constructor (bool returnsValue);
 }
 
-// @interface Blockly_Swift_5050 (BKYMutatorProcedureDefinition)
+// @interface Blockly_Swift_5071 (BKYMutatorProcedureDefinition)
 [Category]
 [BaseType (typeof(BKYMutatorProcedureDefinition))]
-interface BKYMutatorProcedureDefinition_Blockly_Swift_5050
+interface BKYMutatorProcedureDefinition_Blockly_Swift_5071
 {
 	// -(BOOL)mutateBlockAndReturnError:(NSError * _Nullable * _Nullable)error;
 	[Export ("mutateBlockAndReturnError:")]
@@ -67093,10 +67122,10 @@ interface BKYMutatorProcedureIfReturn
 	bool HasReturnValue { get; set; }
 }
 
-// @interface Blockly_Swift_5124 (BKYMutatorProcedureIfReturn)
+// @interface Blockly_Swift_5145 (BKYMutatorProcedureIfReturn)
 [Category]
 [BaseType (typeof(BKYMutatorProcedureIfReturn))]
-interface BKYMutatorProcedureIfReturn_Blockly_Swift_5124
+interface BKYMutatorProcedureIfReturn_Blockly_Swift_5145
 {
 	// -(BOOL)mutateBlockAndReturnError:(NSError * _Nullable * _Nullable)error;
 	[Export ("mutateBlockAndReturnError:")]
@@ -67373,6 +67402,20 @@ interface BKYObjectPool
 	void RemoveAllRecycledObjects ();
 }
 
+// @interface BKYOption : NSObject
+[BaseType (typeof(NSObject))]
+[DisableDefaultCtor]
+interface BKYOption
+{
+	// @property (copy, nonatomic) NSString * _Nonnull displayName;
+	[Export ("displayName")]
+	string DisplayName { get; set; }
+
+	// @property (copy, nonatomic) NSString * _Nonnull value;
+	[Export ("value")]
+	string Value { get; set; }
+}
+
 // @interface BKYPathHelper : NSObject
 [BaseType (typeof(NSObject))]
 interface BKYPathHelper
@@ -67552,10 +67595,10 @@ interface BKYToolbox
 	BKYToolboxCategory AddCategoryWithName (string name, UIColor color, [NullAllowed] UIImage icon);
 }
 
-// @interface Blockly_Swift_5585 (BKYToolbox)
+// @interface Blockly_Swift_5614 (BKYToolbox)
 [Category]
 [BaseType (typeof(BKYToolbox))]
-interface BKYToolbox_Blockly_Swift_5585
+interface BKYToolbox_Blockly_Swift_5614
 {
 	// +(BKYToolbox * _Nullable)makeToolboxWithXmlString:(NSString * _Nonnull)xmlString factory:(BKYBlockFactory * _Nonnull)factory error:(NSError * _Nullable * _Nullable)error __attribute__((warn_unused_result));
 	[Static]
@@ -68425,10 +68468,10 @@ interface BKYWorkbenchViewController : IBKYBlocklyPanGestureRecognizerDelegate, 
 	void EventManager (BKYEventManager eventManager, BKYEvent @event);
 }
 
-// @interface Blockly_Swift_6384 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6413 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6384
+interface BKYWorkbenchViewController_Blockly_Swift_6413
 {
 	// -(void)scrollBlockIntoViewWithBlockUUID:(NSString * _Nonnull)blockUUID location:(enum BKYWorkspaceViewLocation)location animated:(BOOL)animated;
 	[Export ("scrollBlockIntoViewWithBlockUUID:location:animated:")]
@@ -68439,10 +68482,10 @@ interface BKYWorkbenchViewController_Blockly_Swift_6384
 	void SetViewportTo (BKYWorkspaceViewLocation location, bool animated);
 }
 
-// @interface Blockly_Swift_6406 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6435 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6406
+interface BKYWorkbenchViewController_Blockly_Swift_6435
 {
 	// -(void)addGestureTrackingForBlockView:(BKYBlockView * _Nonnull)blockView;
 	[Export ("addGestureTrackingForBlockView:")]
@@ -68453,10 +68496,10 @@ interface BKYWorkbenchViewController_Blockly_Swift_6406
 	void RemoveGestureTrackingForBlockView (BKYBlockView blockView);
 }
 
-// @interface Blockly_Swift_6425 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6454 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6425
+interface BKYWorkbenchViewController_Blockly_Swift_6454
 {
 	// -(BKYBlockView * _Nullable)copyBlockToWorkspace:(BKYBlockView * _Nonnull)blockView __attribute__((warn_unused_result));
 	[Export ("copyBlockToWorkspace:")]
@@ -68472,10 +68515,10 @@ interface BKYWorkbenchViewController_Blockly_Swift_6425
 	void RemoveBlockFromTrash (BKYBlockView blockView);
 }
 
-// @interface Blockly_Swift_6446 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6475 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6446
+interface BKYWorkbenchViewController_Blockly_Swift_6475
 {
 	// -(void)highlightBlockWithBlockUUID:(NSString * _Nonnull)blockUUID;
 	[Export ("highlightBlockWithBlockUUID:")]
@@ -68490,10 +68533,10 @@ interface BKYWorkbenchViewController_Blockly_Swift_6446
 	void UnhighlightAllBlocks ();
 }
 
-// @interface Blockly_Swift_6463 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6492 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6463
+interface BKYWorkbenchViewController_Blockly_Swift_6492
 {
 	// +(NSInteger)newUIStateValue __attribute__((warn_unused_result));
 	[Static]
@@ -68510,10 +68553,10 @@ interface BKYWorkbenchViewController_Blockly_Swift_6463
 	void RemoveUIStateValue (nint stateValue, bool animated);
 }
 
-// @interface Blockly_Swift_6495 (BKYWorkbenchViewController)
+// @interface Blockly_Swift_6524 (BKYWorkbenchViewController)
 [Category]
 [BaseType (typeof(BKYWorkbenchViewController))]
-interface BKYWorkbenchViewController_Blockly_Swift_6495
+interface BKYWorkbenchViewController_Blockly_Swift_6524
 {
 	// -(void)updateFromEvent:(BKYEvent * _Nonnull)event runForward:(BOOL)runForward;
 	[Export ("updateFromEvent:runForward:")]
@@ -68550,10 +68593,10 @@ interface BKYWorkbenchViewControllerDelegate
 	NSSet<NSNumber> WorkbenchViewController (BKYWorkbenchViewController workbenchViewController, NSSet<NSNumber> keepStateValues, nint stateValue);
 }
 
-// @interface Blockly_Swift_6562 (BKYWorkspace)
+// @interface Blockly_Swift_6591 (BKYWorkspace)
 [Category]
 [BaseType (typeof(BKYWorkspace))]
-interface BKYWorkspace_Blockly_Swift_6562
+interface BKYWorkspace_Blockly_Swift_6591
 {
 	// -(NSString * _Nullable)toXMLWithError:(NSError * _Nullable * _Nullable)error __attribute__((warn_unused_result));
 	[Export ("toXMLWithError:")]
@@ -68561,10 +68604,10 @@ interface BKYWorkspace_Blockly_Swift_6562
 	string ToXMLWithError ([NullAllowed] out NSError error);
 }
 
-// @interface Blockly_Swift_6575 (BKYWorkspace)
+// @interface Blockly_Swift_6604 (BKYWorkspace)
 [Category]
 [BaseType (typeof(BKYWorkspace))]
-interface BKYWorkspace_Blockly_Swift_6575
+interface BKYWorkspace_Blockly_Swift_6604
 {
 	// -(BOOL)loadBlocksFromXMLString:(NSString * _Nonnull)xmlString factory:(BKYBlockFactory * _Nonnull)factory error:(NSError * _Nullable * _Nullable)error;
 	[Export ("loadBlocksFromXMLString:factory:error:")]

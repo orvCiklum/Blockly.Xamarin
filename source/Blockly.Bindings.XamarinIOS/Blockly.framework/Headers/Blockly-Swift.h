@@ -3057,6 +3057,7 @@ SWIFT_CLASS_NAMED("Dragger")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class BKYOption;
 @protocol BKYDropdownOptionsViewControllerDelegate;
 @class UITableView;
 @class UITableViewCell;
@@ -3064,6 +3065,8 @@ SWIFT_CLASS_NAMED("Dragger")
 /// View controller for selecting an option from inside a dropdown.
 SWIFT_CLASS_NAMED("DropdownOptionsViewController")
 @interface BKYDropdownOptionsViewController : UITableViewController
+/// The list of drop-down options to display.
+@property (nonatomic, copy) NSArray<BKYOption *> * _Nonnull options;
 /// The currently selected index.
 @property (nonatomic) NSInteger selectedIndex;
 /// Delegate for events that occur on this controller
@@ -3677,8 +3680,20 @@ SWIFT_CLASS_NAMED("FieldDateView")
 /// An input field for selecting options from a dropdown menu.
 SWIFT_CLASS_NAMED("FieldDropdown")
 @interface BKYFieldDropdown : BKYField
+/// Drop-down options. First value is the display name, second value is the option value.
+@property (nonatomic, copy) NSArray<BKYOption *> * _Nonnull options;
 /// The currently selected index
 @property (nonatomic) NSInteger selectedIndex;
+/// The option tuple of the currently selected index
+@property (nonatomic, readonly, strong) BKYOption * _Nullable selectedOption;
+/// Initializes the dropdown field.
+/// \param name The name of this field.
+///
+/// \param options An array of tuples, containing <code>dislpayName</code> and <code>value</code> pairs.
+///
+/// \param selectedIndex The currently selected index for the dropdown.
+///
+- (nonnull instancetype)initWithName:(NSString * _Nonnull)name options:(NSArray<BKYOption *> * _Nonnull)options selectedIndex:(NSInteger)selectedIndex OBJC_DESIGNATED_INITIALIZER;
 /// Initializes the dropdown field.
 /// \param name The name of this field.
 ///
@@ -3701,8 +3716,12 @@ SWIFT_CLASS_NAMED("FieldDropdown")
 /// Class for a <code>FieldDropdown</code>-based <code>Layout</code>.
 SWIFT_CLASS_NAMED("FieldDropdownLayout")
 @interface BKYFieldDropdownLayout : BKYFieldLayout
+/// The list of options that should be presented when rendering this layout
+@property (nonatomic, readonly, copy) NSArray<BKYOption *> * _Nonnull options;
 /// The currently selected index of <code>self.options</code>
 @property (nonatomic, readonly) NSInteger selectedIndex;
+/// The option tuple of the currently selected index
+@property (nonatomic, readonly, strong) BKYOption * _Nullable selectedOption;
 /// Initializes the dropdown field layout.
 /// \param fieldDropdown The <code>FieldDropdown</code> model for this layout.
 ///
@@ -4098,6 +4117,8 @@ SWIFT_PROTOCOL_NAMED("NameManagerListener")
 /// Class for a <code>FieldVariable</code>-based <code>Layout</code>.
 SWIFT_CLASS_NAMED("FieldVariableLayout")
 @interface BKYFieldVariableLayout : BKYFieldLayout <BKYNameManagerListener>
+/// The list of all variable options that should be presented when rendering this layout
+@property (nonatomic, readonly, copy) NSArray<BKYOption *> * _Nonnull variables;
 /// The currently selected variable
 @property (nonatomic, readonly, copy) NSString * _Nonnull variable;
 /// Optional name manager that this field is scoped to.
@@ -5346,6 +5367,14 @@ SWIFT_CLASS_NAMED("ObjectPool")
 /// Removes all recycled objects from memory.
 - (void)removeAllRecycledObjects;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS_NAMED("Option")
+@interface BKYOption : NSObject
+@property (nonatomic, copy) NSString * _Nonnull displayName;
+@property (nonatomic, copy) NSString * _Nonnull value;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
 @class BKYWorkspaceBezierPath;

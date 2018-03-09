@@ -1,0 +1,41 @@
+<xml id="toolbox_simple" style="display: none">
+    <category colour="210" name="CONTROL">
+        <block type="fable_wait">
+            <value name="WAIT">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_whileUntil">
+            <value name="BOOL">
+                <block type="logic_boolean" />
+            </value>
+        </block>
+    </category>
+    <category colour="310" name="INPUT">
+        <block type="fable_get_module_motor_position" />
+    </category>
+    <category colour="185" name="OUTPUT">
+        <block type="fable_set_module_motor_position">
+            <!--            <value name="MOTOR_POSITION_X">
+                <block type="fable_angle">
+                </block>
+            </value>
+            <value name="MOTOR_POSITION_Y">
+                <block type="fable_angle">
+                </block>
+            </value>-->
+            <value name="MOTOR_POSITION_X">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="MOTOR_POSITION_Y">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+</xml>

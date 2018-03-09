@@ -12,7 +12,7 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Blockly.Bindings.iOS</PackageId>
-    <PackageVersion>0.1</PackageVersion>
+    <PackageVersion>0.2.3</PackageVersion>
     <Authors>Oleksii Rvachov</Authors>
     <Description>Binding native Blockly library for using with Xamarin</Description>
   </PropertyGroup>
@@ -76,7 +76,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,17 +86,15 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="packages.config" />
-    <BundleResource Include="Resources\blockly_compressed.js" />
-    <BundleResource Include="Resources\javascript_compressed.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="Blockly.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets" Condition="Exists('..\..\..\packages\Xamarin.Swift4.4.0.0.0\build\Xamarin.Swift4.targets')" />

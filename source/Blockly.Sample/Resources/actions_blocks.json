@@ -1,0 +1,251 @@
+[
+  {
+    "type": "fable_set_module_rgb",
+    "message0": "%1 Light %2 on module %3",
+    "args0": [
+      {
+        "type": "field_image",
+        "src": "fable/led.png",
+        "width": 30,
+        "height": 30,
+        "alt": "*"
+      },
+      {
+        "type": "field_colour",
+        "name": "COLOUR",
+        "colour": "#ff0000"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MOUDULE",
+        "options": [
+          ["module 1", "1"],
+          ["module 2", "2"],
+          ["module 3", "3"],
+          ["module 4", "4"],
+          ["module 5", "5"],
+          ["module 6", "6"],
+          ["module 7", "7"],
+          ["module 8", "8"],
+          ["module 9", "9"],
+          ["module 10", "10"]
+        ]
+      }
+    ],
+    "tooltip": "Light",
+    "colour": 160,
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true
+  },
+  {
+    "type": "fable_play_sound",
+    "message0": "%1 Play sound %2",
+    "args0": [
+      {
+        "type": "field_image",
+        "src": "fable/node.png",
+        "width": 30,
+        "height": 30,
+        "alt": "*"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "SOUNDFILE",
+        "options": [
+          ["angry", "angry"],
+          ["boing", "boing"],
+          ["buzz", "buzz"],
+          ["chimp", "chimp"],
+          ["elephant", "elephant"],
+          ["escape", "escape"],
+          ["laught", "laught"],
+          ["offsound", "offsound"],
+          ["onsound", "onsound"],
+          ["pling", "pling"],
+          ["running", "running"],
+          ["theEnd", "theend"],
+          ["twirly", "twirly"],
+          ["woof", "woof"]
+        ]
+      }
+    ],
+    "tooltip": "Play back a standard sound",
+    "colour": 160,
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true
+  },
+  {
+    "type": "fable_set_module_buzzer",
+    "message0": "%1 Play tone %2 on module %3",
+    "args0": [
+      {
+        "type": "field_image",
+        "src": "fable/node.png",
+        "width": 30,
+        "height": 30,
+        "alt": "*"
+      },
+      {
+        "type": "input_value",
+        "name": "TONE"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MOUDULE",
+        "options": [
+          ["module 1", "1"],
+          ["module 2", "2"],
+          ["module 3", "3"],
+          ["module 4", "4"],
+          ["module 5", "5"],
+          ["module 6", "6"],
+          ["module 7", "7"],
+          ["module 8", "8"],
+          ["module 9", "9"],
+          ["module 10", "10"]
+        ]
+      }
+    ],
+    "tooltip": "Play back a standard sound",
+    "colour": 160,
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true
+  },
+  {
+    "type": "fable_set_module_motor_position",
+    "message0": "%1 Move motor to %2 in direction in %3 on module %4",
+    "args0": [
+      {
+        "type": "field_image",
+        "src": "fable/joint.png",
+        "width": 30,
+        "height": 30,
+        "alt": "*"
+      },
+      {
+        "type": "input_value",
+        "name": "MOTOR_POSITION"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MOTOR_ID",
+        "options": [
+          ["x", "0"],
+          ["y", "1"]
+        ]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MOUDULE",
+        "options": [
+          ["module 1", "1"],
+          ["module 2", "2"],
+          ["module 3", "3"],
+          ["module 4", "4"],
+          ["module 5", "5"],
+          ["module 6", "6"],
+          ["module 7", "7"],
+          ["module 8", "8"],
+          ["module 9", "9"],
+          ["module 10", "10"]
+        ]
+      }
+    ],
+    "tooltip": "Set motor angle in degrees",
+    "colour": 160,
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true
+  },
+  {
+  "type": "fable_set_module_motor_positions",
+  "message0": "%1 Move motor to x: %2 y: %3 on module %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "fable/joint.png",
+      "width": 30,
+      "height": 30,
+      "alt": "*"
+    },
+    {
+      "type": "input_value",
+      "name": "MOTOR_POSITION_X"
+    },
+    {
+      "type": "input_value",
+      "name": "MOTOR_POSITION_Y"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "MOUDULE",
+      "options": [
+        ["module 1", "1"],
+        ["module 2", "2"],
+        ["module 3", "3"],
+        ["module 4", "4"],
+        ["module 5", "5"],
+        ["module 6", "6"],
+        ["module 7", "7"],
+        ["module 8", "8"],
+        ["module 9", "9"],
+        ["module 10", "10"]
+      ]
+    }
+  ],
+  "tooltip": "Set motor angle in degrees",
+  "colour": 160,
+  "previousStatement": null,
+  "nextStatement": null,
+  "inputsInline": true
+},
+  {
+    "type": "fable_set_module_motor_pos_speed",
+    "message0": "%1 Move motor to x: %2 y: %3 with speed %4 on module %5",
+    "args0": [
+      {
+        "type": "field_image",
+        "src": "fable/joint.png",
+        "width": 30,
+        "height": 30,
+        "alt": "*"
+      },
+      {
+        "type": "input_value",
+        "name": "MOTOR_POSITION_X"
+      },
+      {
+        "type": "input_value",
+        "name": "MOTOR_POSITION_Y"
+      },
+      {
+        "type": "input_value",
+        "name": "MOTORS_SPEEDS"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "MOUDULE",
+        "options": [
+          ["module 1", "1"],
+          ["module 2", "2"],
+          ["module 3", "3"],
+          ["module 4", "4"],
+          ["module 5", "5"],
+          ["module 6", "6"],
+          ["module 7", "7"],
+          ["module 8", "8"],
+          ["module 9", "9"],
+          ["module 10", "10"]
+        ]
+      }
+    ],
+    "tooltip": "Set motor angle in degrees",
+    "colour": 160,
+    "previousStatement": null,
+    "nextStatement": null,
+    "inputsInline": true
+  }
+]
